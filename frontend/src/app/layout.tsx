@@ -15,6 +15,17 @@ export const metadata: Metadata = {
     ],
     apple: [{ url: "/apple-touch-icon.png", sizes: "180x180", type: "image/png" }],
   },
+  appleWebApp: {
+    capable: true,
+    statusBarStyle: "black-translucent",
+    title: "Election LIVE",
+  },
+  formatDetection: {
+    telephone: false,
+  },
+  other: {
+    "mobile-web-app-capable": "yes",
+  },
 };
 
 export default function RootLayout({
@@ -26,11 +37,31 @@ export default function RootLayout({
     <html lang="en" className="dark">
       <head>
         <link rel="manifest" href="/manifest.json" />
-        <meta name="theme-color" content="#dc2626" />
-        <meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover" />
+        <meta name="theme-color" content="#050a18" media="(prefers-color-scheme: dark)" />
+        <meta name="theme-color" content="#dc2626" media="(prefers-color-scheme: light)" />
+        <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1, user-scalable=no, viewport-fit=cover" />
+        {/* iOS PWA splash/status bar */}
+        <meta name="apple-mobile-web-app-capable" content="yes" />
+        <meta name="apple-mobile-web-app-status-bar-style" content="black-translucent" />
+        <meta name="apple-mobile-web-app-title" content="Election LIVE" />
+        <link rel="apple-touch-icon" href="/apple-touch-icon.png" />
+        {/* Android PWA */}
+        <meta name="mobile-web-app-capable" content="yes" />
       </head>
-      <body className="antialiased min-h-screen bg-[var(--background)] text-[var(--foreground)]">
+      <body className="antialiased min-h-screen bg-[var(--background)] text-[var(--foreground)] overscroll-none">
         {children}
+        {/* Service Worker registration */}
+        <script
+          dangerouslySetInnerHTML={{
+            __html: `
+              if ('serviceWorker' in navigator) {
+                window.addEventListener('load', () => {
+                  navigator.serviceWorker.register('/sw.js').catch(() => {});
+                });
+              }
+            `,
+          }}
+        />
       </body>
     </html>
   );

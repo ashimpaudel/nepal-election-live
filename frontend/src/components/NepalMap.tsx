@@ -112,8 +112,7 @@ export default function NepalMap({ leadingPartyByProvince }: NepalMapProps) {
     };
   }, [getProvinceColor]);
 
-  // eslint-disable-next-line @typescript-eslint/no-explicit-any
-  const styleDistrict = useCallback((_feature: any) => ({
+  const styleDistrict = useCallback(() => ({
     fillColor: "transparent",
     fillOpacity: 0,
     color: "rgba(255,255,255,0.15)",

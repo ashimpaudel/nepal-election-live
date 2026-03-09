@@ -8,7 +8,7 @@ import SummaryCards from "@/components/SummaryCards";
 import PartyResults from "@/components/PartyResults";
 import ConstituencyResults from "@/components/ConstituencyResults";
 import SeatBar from "@/components/SeatBar";
-import PRResults from "@/components/PRResults";
+import LivePRTicker from "@/components/LivePRTicker";
 import DataSourceBanner from "@/components/DataSourceBanner";
 import DisclaimerFooter from "@/components/DisclaimerFooter";
 
@@ -25,7 +25,7 @@ import {
   useElectionSummary,
   useParties,
   useConstituencies,
-  usePRResults,
+  useLiveECData,
   readLegacyCache,
   writeLegacyCache,
   fetchElectionNews,
@@ -104,7 +104,7 @@ export default function Home() {
   const { summary, isLoading: summaryLoading } = useElectionSummary();
   const { parties, isLoading: partiesLoading } = useParties();
   const { constituencies } = useConstituencies();
-  const { prResults } = usePRResults();
+  const { ecData: liveFPTP } = useLiveECData("fptp");
   const [news, setNews] = useState<NewsArticle[]>([]);
 
   // Fallback: try static data.json if Supabase APIs fail
@@ -170,9 +170,47 @@ export default function Home() {
           lastUpdated: null,
         };
 
-  const displayParties: LegacyParty[] = useSupabase
-    ? toLegacyParties(parties)
-    : fallbackData?.parties ?? [];
+  // Merge live FPTP data from EC proxy (refreshes every 30s) with DB/fallback
+  const PARTY_NAME_MAP: Record<string, string> = {
+    "राष्ट्रिय स्वतन्त्र पार्टी": "RSP",
+    "नेपाली काँग्रेस": "Nepali Congress",
+    "नेपाल कम्युनिष्ट पार्टी (एकीकृत मार्क्सवादी लेनिनवादी)": "CPN-UML",
+    "नेपाली कम्युनिष्ट पार्टी": "CPN-Maoist Centre",
+    "श्रम संस्कृति पार्टी": "Shram Sanskriti Party",
+    "राष्ट्रिय प्रजातन्त्र पार्टी": "RPP",
+    "स्वतन्त्र": "Independent",
+  };
+  const PARTY_COLORS: Record<string, { shortName: string; color: string; nameNp: string }> = {
+    "RSP": { shortName: "RSP", color: "#F59E0B", nameNp: "राष्ट्रिय स्वतन्त्र पार्टी" },
+    "Nepali Congress": { shortName: "NC", color: "#E11D48", nameNp: "नेपाली काँग्रेस" },
+    "CPN-UML": { shortName: "UML", color: "#2563EB", nameNp: "नेकपा एमाले" },
+    "CPN-Maoist Centre": { shortName: "MC", color: "#DC2626", nameNp: "नेपाली कम्युनिष्ट पार्टी" },
+    "Shram Sanskriti Party": { shortName: "SSP", color: "#059669", nameNp: "श्रम संस्कृति पार्टी" },
+    "RPP": { shortName: "RPP", color: "#8B5CF6", nameNp: "राप्रपा" },
+    "Independent": { shortName: "Ind", color: "#6B7280", nameNp: "स्वतन्त्र" },
+  };
+
+  let displayParties: LegacyParty[];
+  if (liveFPTP?.data && liveFPTP.data.length > 0) {
+    // Use live EC data (freshest)
+    displayParties = liveFPTP.data.map((p) => {
+      const en = PARTY_NAME_MAP[p.PoliticalPartyName] ?? p.PoliticalPartyName;
+      const info = PARTY_COLORS[en] ?? { shortName: en.substring(0, 4), color: "#6B7280", nameNp: p.PoliticalPartyName };
+      return {
+        name: en,
+        nameNp: info.nameNp,
+        shortName: info.shortName,
+        color: info.color,
+        won: p.TotWin ?? 0,
+        leading: p.TotLead ?? 0,
+        totalVotes: 0,
+      };
+    });
+  } else if (useSupabase) {
+    displayParties = toLegacyParties(parties);
+  } else {
+    displayParties = fallbackData?.parties ?? [];
+  }
 
   const displayConstituencies: LegacyConstituency[] = useSupabase
     ? constituencies.map((c) => ({
@@ -234,7 +272,7 @@ export default function Home() {
         {/* Interactive Nepal Province Map */}
         <NepalMap />
 
-        {/* Three-column layout: Party Results | PR Results | Constituencies */}
+        {/* Three-column layout: Party Results | Live PR Votes | Constituencies */}
         <div className="grid grid-cols-1 lg:grid-cols-3 gap-4 sm:gap-6">
           <div>
             <PartyResults
@@ -243,7 +281,7 @@ export default function Home() {
             />
           </div>
           <div>
-            <PRResults prData={prResults ?? null} />
+            <LivePRTicker />
           </div>
           <div>
             <ConstituencyResults constituencies={displayConstituencies} />

@@ -73,9 +73,9 @@ export default function ProvincePage() {
             <p className="text-gray-500 text-sm mb-4">
               This page requires a Supabase database connection. Please configure your environment variables.
             </p>
-            <a href="/" className="text-blue-400 hover:text-blue-300 text-sm underline">
+            <Link href="/" className="text-blue-400 hover:text-blue-300 text-sm underline">
               ← Back to Dashboard
-            </a>
+            </Link>
           </div>
         </main>
       </div>

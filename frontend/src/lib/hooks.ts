@@ -87,6 +87,37 @@ export function usePRResults() {
   return { prResults: data, error, isLoading };
 }
 
+// ─── Live EC Data (direct from Election Commission) ────────
+
+interface ECPartyData {
+  PoliticalPartyName: string;
+  TotalVoteReceived?: number;
+  TotWin?: number;
+  TotLead?: number;
+  TotWinLead?: number;
+  SymbolID: number;
+}
+
+interface ECProxyResponse {
+  type: string;
+  file: string;
+  data: ECPartyData[];
+  lastFetched: string;
+}
+
+/**
+ * Hook to fetch live PR (Samanupātik) vote data from EC via proxy.
+ * Polls every 30 seconds.
+ */
+export function useLiveECData(type: "pr" | "fptp" = "pr") {
+  const { data, error, isLoading } = useSWR<ECProxyResponse>(
+    `${API_BASE}/api/ec-proxy?type=${type}`,
+    fetcher,
+    { refreshInterval: REFRESH_INTERVAL, dedupingInterval: 10_000 }
+  );
+  return { ecData: data, error, isLoading };
+}
+
 // ─── Legacy fallback: fetch from static data.json ─────────────
 
 const LEGACY_CACHE_KEY = "nepal-election-data";

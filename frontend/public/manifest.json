@@ -1,41 +1,37 @@
 {
-  "name": "Nepal Election LIVE",
+  "name": "Nepal Election LIVE - प्रतिनिधि सभा निर्वाचन २०८२",
   "short_name": "Election LIVE",
-  "description": "Live election results dashboard for Nepal 2082 parliamentary elections",
-  "start_url": "/",
+  "description": "Live election results dashboard for Nepal 2082 parliamentary elections. 275 seats tracked in real-time.",
+  "start_url": "/?source=pwa",
+  "scope": "/",
   "display": "standalone",
-  "background_color": "#0f172a",
+  "background_color": "#050a18",
   "theme_color": "#dc2626",
   "orientation": "any",
+  "id": "nepal-election-live",
   "icons": [
+    { "src": "/icon-16.png", "sizes": "16x16", "type": "image/png" },
+    { "src": "/icon-32.png", "sizes": "32x32", "type": "image/png" },
+    { "src": "/apple-touch-icon.png", "sizes": "180x180", "type": "image/png" },
+    { "src": "/icon-512.png", "sizes": "512x512", "type": "image/png", "purpose": "any" },
+    { "src": "/icon-512.png", "sizes": "512x512", "type": "image/png", "purpose": "maskable" }
+  ],
+  "shortcuts": [
     {
-      "src": "/favicon.ico",
-      "sizes": "48x48",
-      "type": "image/x-icon"
+      "name": "FPTP Results",
+      "short_name": "FPTP",
+      "url": "/?view=fptp",
+      "icons": [{ "src": "/icon-32.png", "sizes": "32x32" }]
     },
     {
-      "src": "/icon-16.png",
-      "sizes": "16x16",
-      "type": "image/png"
-    },
-    {
-      "src": "/icon-32.png",
-      "sizes": "32x32",
-      "type": "image/png"
-    },
-    {
-      "src": "/apple-touch-icon.png",
-      "sizes": "180x180",
-      "type": "image/png"
-    },
-    {
-      "src": "/icon-512.png",
-      "sizes": "512x512",
-      "type": "image/png",
-      "purpose": "any maskable"
+      "name": "PR Vote Count",
+      "short_name": "PR Votes",
+      "url": "/?view=pr",
+      "icons": [{ "src": "/icon-32.png", "sizes": "32x32" }]
     }
   ],
-  "categories": ["news", "politics"],
+  "categories": ["news", "politics", "government"],
   "lang": "en",
-  "dir": "ltr"
+  "dir": "ltr",
+  "prefer_related_applications": false
 }
