@@ -6,6 +6,15 @@ export const metadata: Metadata = {
   description:
     "Live election results dashboard for Nepal 2082 parliamentary elections. Track real-time 275-seat results (165 FPTP + 110 PR), party-wise results, and constituency updates across all 7 provinces.",
   keywords: ["Nepal", "Election", "2082", "2026", "Live Results", "Dashboard", "FPTP", "Proportional Representation"],
+  icons: {
+    icon: [
+      { url: "/favicon.ico", sizes: "any" },
+      { url: "/icon.svg", type: "image/svg+xml" },
+      { url: "/icon-16.png", sizes: "16x16", type: "image/png" },
+      { url: "/icon-32.png", sizes: "32x32", type: "image/png" },
+    ],
+    apple: [{ url: "/apple-touch-icon.png", sizes: "180x180", type: "image/png" }],
+  },
 };
 
 export default function RootLayout({

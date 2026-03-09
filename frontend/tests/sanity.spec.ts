@@ -73,9 +73,9 @@ test.describe("Language Switcher", () => {
   test("language dropdown opens and shows 7 languages", async ({ page }) => {
     await page.goto("/");
     await page.getByLabel("Change language").click();
-    await expect(page.getByText("नेपाली")).toBeVisible();
-    await expect(page.getByText("मैथिली")).toBeVisible();
-    await expect(page.getByText("भोजपुरी")).toBeVisible();
+    await expect(page.getByRole("button", { name: /नेपाली/ })).toBeVisible();
+    await expect(page.getByRole("button", { name: /मैथिली/ })).toBeVisible();
+    await expect(page.getByRole("button", { name: /भोजपुरी/ })).toBeVisible();
   });
 });
 
