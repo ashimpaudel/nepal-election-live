@@ -1,25 +1,15 @@
 {
-  "lastUpdated": "2026-03-09T19:18:35.843Z",
+  "lastUpdated": "2026-03-09T20:33:50.200Z",
   "totalSeats": 275,
   "fptpSeats": 165,
   "prSeats": 110,
   "parties": [
     {
-      "name": "RSP",
-      "nameNp": "राष्ट्रिय स्वतन्त्र पार्टी",
-      "shortName": "RSP",
-      "color": "#F59E0B",
-      "won": 125,
-      "leading": 0,
-      "totalVotes": 0,
-      "prVotes": 0
-    },
-    {
       "name": "Nepali Congress",
       "nameNp": "नेपाली कांग्रेस",
       "shortName": "NC",
       "color": "#E11D48",
-      "won": 18,
+      "won": 0,
       "leading": 0,
       "totalVotes": 0,
       "prVotes": 0
@@ -29,7 +19,7 @@
       "nameNp": "नेकपा एमाले",
       "shortName": "UML",
       "color": "#2563EB",
-      "won": 9,
+      "won": 0,
       "leading": 0,
       "totalVotes": 0,
       "prVotes": 0
@@ -39,17 +29,17 @@
       "nameNp": "नेकपा माओवादी केन्द्र",
       "shortName": "MC",
       "color": "#DC2626",
-      "won": 7,
+      "won": 0,
       "leading": 0,
       "totalVotes": 0,
       "prVotes": 0
     },
     {
-      "name": "Shram Sanskriti Party",
-      "nameNp": "श्रम संस्कृति पार्टी",
-      "shortName": "SSP",
-      "color": "#059669",
-      "won": 3,
+      "name": "RSP",
+      "nameNp": "राष्ट्रिय स्वतन्त्र पार्टी",
+      "shortName": "RSP",
+      "color": "#F59E0B",
+      "won": 0,
       "leading": 0,
       "totalVotes": 0,
       "prVotes": 0
@@ -59,17 +49,7 @@
       "nameNp": "राप्रपा",
       "shortName": "RPP",
       "color": "#8B5CF6",
-      "won": 1,
-      "leading": 0,
-      "totalVotes": 0,
-      "prVotes": 0
-    },
-    {
-      "name": "Independent",
-      "nameNp": "स्वतन्त्र",
-      "shortName": "Ind",
-      "color": "#6B7280",
-      "won": 1,
+      "won": 0,
       "leading": 0,
       "totalVotes": 0,
       "prVotes": 0
@@ -113,6 +93,16 @@
       "leading": 0,
       "totalVotes": 0,
       "prVotes": 0
+    },
+    {
+      "name": "Independent",
+      "nameNp": "स्वतन्त्र",
+      "shortName": "Ind",
+      "color": "#6B7280",
+      "won": 0,
+      "leading": 0,
+      "totalVotes": 0,
+      "prVotes": 0
     }
   ],
   "constituencies": [],
@@ -120,9 +110,9 @@
     "totalSeats": 275,
     "fptpSeats": 165,
     "prSeats": 110,
-    "declared": 164,
-    "counting": 1,
-    "pending": 0,
+    "declared": 0,
+    "counting": 0,
+    "pending": 165,
     "totalVotesCast": 0
   }
 }
