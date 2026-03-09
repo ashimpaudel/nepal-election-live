@@ -1,0 +1,13 @@
+{
+  "lastUpdated": null,
+  "totalSeats": 165,
+  "parties": [],
+  "constituencies": [],
+  "summary": {
+    "totalSeats": 165,
+    "declared": 0,
+    "counting": 0,
+    "pending": 165,
+    "totalVotesCast": 0
+  }
+}
