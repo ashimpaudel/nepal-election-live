@@ -94,7 +94,12 @@ async function fetchECData(file, options = {}) {
           throw new Error(`HTTP ${res.status} ${res.statusText}`);
         }
 
-        const data = await res.json();
+        // Strip UTF-8 BOM (0xEF 0xBB 0xBF) that EC server sometimes sends
+        let text = await res.text();
+        if (text.charCodeAt(0) === 0xFEFF) {
+          text = text.slice(1);
+        }
+        const data = JSON.parse(text);
         return data;
       } finally {
         clearTimeout(timer);
