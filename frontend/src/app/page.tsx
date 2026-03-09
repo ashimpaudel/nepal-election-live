@@ -1,6 +1,7 @@
 "use client";
 
 import { useEffect, useState } from "react";
+import dynamic from "next/dynamic";
 import { Newspaper } from "lucide-react";
 import Header from "@/components/Header";
 import SummaryCards from "@/components/SummaryCards";
@@ -10,6 +11,16 @@ import SeatBar from "@/components/SeatBar";
 import PRResults from "@/components/PRResults";
 import DataSourceBanner from "@/components/DataSourceBanner";
 import DisclaimerFooter from "@/components/DisclaimerFooter";
+
+// Lazy-load the map component to reduce initial bundle size
+const NepalMap = dynamic(() => import("@/components/NepalMap"), {
+  ssr: false,
+  loading: () => (
+    <div className="glass-card rounded-2xl p-4">
+      <div className="h-[300px] sm:h-[400px] bg-gray-800/50 rounded-xl animate-pulse" />
+    </div>
+  ),
+});
 import {
   useElectionSummary,
   useParties,
@@ -219,6 +230,9 @@ export default function Home() {
 
         {/* Seat Distribution Bar + Majority Progress */}
         <SeatBar parties={displayParties} totalSeats={displaySummary.totalSeats} />
+
+        {/* Interactive Nepal Province Map */}
+        <NepalMap />
 
         {/* Three-column layout: Party Results | PR Results | Constituencies */}
         <div className="grid grid-cols-1 lg:grid-cols-3 gap-4">

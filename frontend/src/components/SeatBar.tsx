@@ -35,13 +35,14 @@ export default function SeatBar({ parties, totalSeats }: SeatBarProps) {
 
       {/* Stacked bar */}
       <div className="relative">
-        <div className="flex h-6 rounded-full overflow-hidden bg-gray-700/50">
+        <div className="flex h-6 rounded-full overflow-hidden bg-gray-700/50" role="img" aria-label={`Seat distribution: ${declaredSeats} of ${totalSeats} seats declared`}>
           {parties
             .filter((p) => p.won > 0)
             .map((party) => (
               <div
                 key={party.name}
                 title={`${party.shortName}: ${party.won} seats`}
+                aria-label={`${party.shortName}: ${party.won} seats`}
                 className="h-full transition-all duration-500 relative group"
                 style={{
                   width: `${(party.won / totalSeats) * 100}%`,

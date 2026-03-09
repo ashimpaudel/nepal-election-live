@@ -1,0 +1,20 @@
+{
+  "name": "Nepal Election LIVE",
+  "short_name": "Election LIVE",
+  "description": "Live election results dashboard for Nepal 2082 parliamentary elections",
+  "start_url": "/",
+  "display": "standalone",
+  "background_color": "#0f172a",
+  "theme_color": "#dc2626",
+  "orientation": "any",
+  "icons": [
+    {
+      "src": "/favicon.ico",
+      "sizes": "48x48",
+      "type": "image/x-icon"
+    }
+  ],
+  "categories": ["news", "politics"],
+  "lang": "en",
+  "dir": "ltr"
+}
