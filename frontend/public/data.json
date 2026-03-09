@@ -1,6 +1,8 @@
 {
-  "lastUpdated": "2026-03-09T19:10:05.630Z",
-  "totalSeats": 165,
+  "lastUpdated": "2026-03-09T19:01:26.043Z",
+  "totalSeats": 275,
+  "fptpSeats": 165,
+  "prSeats": 110,
   "parties": [
     {
       "name": "Nepali Congress",
@@ -9,7 +11,8 @@
       "color": "#E11D48",
       "won": 0,
       "leading": 0,
-      "totalVotes": 0
+      "totalVotes": 0,
+      "prVotes": 0
     },
     {
       "name": "CPN-UML",
@@ -18,7 +21,8 @@
       "color": "#2563EB",
       "won": 0,
       "leading": 0,
-      "totalVotes": 0
+      "totalVotes": 0,
+      "prVotes": 0
     },
     {
       "name": "CPN-Maoist Centre",
@@ -27,7 +31,8 @@
       "color": "#DC2626",
       "won": 0,
       "leading": 0,
-      "totalVotes": 0
+      "totalVotes": 0,
+      "prVotes": 0
     },
     {
       "name": "RSP",
@@ -36,7 +41,8 @@
       "color": "#F59E0B",
       "won": 0,
       "leading": 0,
-      "totalVotes": 0
+      "totalVotes": 0,
+      "prVotes": 0
     },
     {
       "name": "RPP",
@@ -45,7 +51,8 @@
       "color": "#8B5CF6",
       "won": 0,
       "leading": 0,
-      "totalVotes": 0
+      "totalVotes": 0,
+      "prVotes": 0
     },
     {
       "name": "Janata Samajbadi",
@@ -54,7 +61,8 @@
       "color": "#10B981",
       "won": 0,
       "leading": 0,
-      "totalVotes": 0
+      "totalVotes": 0,
+      "prVotes": 0
     },
     {
       "name": "Janamat Party",
@@ -63,7 +71,8 @@
       "color": "#F97316",
       "won": 0,
       "leading": 0,
-      "totalVotes": 0
+      "totalVotes": 0,
+      "prVotes": 0
     },
     {
       "name": "Loktantrik Samajbadi",
@@ -72,7 +81,8 @@
       "color": "#6366F1",
       "won": 0,
       "leading": 0,
-      "totalVotes": 0
+      "totalVotes": 0,
+      "prVotes": 0
     },
     {
       "name": "Nagarik Unmukti",
@@ -81,7 +91,8 @@
       "color": "#14B8A6",
       "won": 0,
       "leading": 0,
-      "totalVotes": 0
+      "totalVotes": 0,
+      "prVotes": 0
     },
     {
       "name": "Independent",
@@ -90,12 +101,15 @@
       "color": "#6B7280",
       "won": 0,
       "leading": 0,
-      "totalVotes": 0
+      "totalVotes": 0,
+      "prVotes": 0
     }
   ],
   "constituencies": [],
   "summary": {
-    "totalSeats": 165,
+    "totalSeats": 275,
+    "fptpSeats": 165,
+    "prSeats": 110,
     "declared": 0,
     "counting": 0,
     "pending": 165,

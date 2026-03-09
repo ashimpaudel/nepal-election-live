@@ -57,7 +57,8 @@ CREATE TABLE parties (
   pr_seats     INT DEFAULT 0,
   -- Computed total
   total_seats  INT GENERATED ALWAYS AS (fptp_won + pr_seats) STORED,
-  updated_at   TIMESTAMPTZ DEFAULT now()
+  updated_at   TIMESTAMPTZ DEFAULT now(),
+  UNIQUE(name_en)
 );
 
 CREATE TABLE candidates (

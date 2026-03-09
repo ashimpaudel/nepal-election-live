@@ -84,9 +84,9 @@ test.describe("Language Switcher", () => {
 test.describe("Province Page", () => {
   test("province page loads without hanging (no Supabase)", async ({ page }) => {
     await page.goto("/province/6");
-    // Should NOT be stuck on loading — should either show data or "not found" within 5s
+    // Should show province data from DB, or "not found" if no DB — but NOT stuck loading
     await expect(
-      page.getByText("Province not found").or(page.getByText("Karnali"))
+      page.getByText("Province not found").or(page.getByRole("heading", { name: /Karnali/ }))
     ).toBeVisible({ timeout: 10000 });
   });
 
@@ -103,7 +103,7 @@ test.describe("District Page", () => {
   test("district page loads without hanging (no Supabase)", async ({ page }) => {
     await page.goto("/district/5");
     await expect(
-      page.getByText("District not found").or(page.getByText("Morang"))
+      page.getByText("District not found").or(page.getByRole("heading", { name: /Morang/ }))
     ).toBeVisible({ timeout: 10000 });
   });
 });
@@ -114,7 +114,7 @@ test.describe("Constituency Page", () => {
   test("constituency page loads without hanging (no Supabase)", async ({ page }) => {
     await page.goto("/constituency/1");
     await expect(
-      page.getByText("Constituency not found").or(page.getByText("Candidates"))
+      page.getByText("Constituency not found").or(page.getByRole("heading", { name: /Taplejung/ }))
     ).toBeVisible({ timeout: 10000 });
   });
 });
