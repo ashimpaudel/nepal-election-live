@@ -1,5 +1,5 @@
 {
-  "lastUpdated": "2026-03-09T19:18:35.843Z",
+  "lastUpdated": "2026-03-09T20:19:06.232Z",
   "totalSeats": 275,
   "fptpSeats": 165,
   "prSeats": 110,
@@ -11,8 +11,10 @@
       "color": "#F59E0B",
       "won": 125,
       "leading": 0,
-      "totalVotes": 0,
-      "prVotes": 0
+      "totalVotes": 125,
+      "prVotes": 4858382,
+      "prSeats": 69,
+      "totalSeats": 194
     },
     {
       "name": "Nepali Congress",
@@ -21,8 +23,10 @@
       "color": "#E11D48",
       "won": 18,
       "leading": 0,
-      "totalVotes": 0,
-      "prVotes": 0
+      "totalVotes": 18,
+      "prVotes": 1657,
+      "prSeats": 0,
+      "totalSeats": 18
     },
     {
       "name": "CPN-UML",
@@ -31,8 +35,10 @@
       "color": "#2563EB",
       "won": 9,
       "leading": 0,
-      "totalVotes": 0,
-      "prVotes": 0
+      "totalVotes": 9,
+      "prVotes": 1369174,
+      "prSeats": 20,
+      "totalSeats": 29
     },
     {
       "name": "CPN-Maoist Centre",
@@ -41,8 +47,10 @@
       "color": "#DC2626",
       "won": 7,
       "leading": 0,
-      "totalVotes": 0,
-      "prVotes": 0
+      "totalVotes": 7,
+      "prVotes": 741916,
+      "prSeats": 11,
+      "totalSeats": 18
     },
     {
       "name": "Shram Sanskriti Party",
@@ -51,8 +59,10 @@
       "color": "#059669",
       "won": 3,
       "leading": 0,
-      "totalVotes": 0,
-      "prVotes": 0
+      "totalVotes": 3,
+      "prVotes": 344265,
+      "prSeats": 5,
+      "totalSeats": 8
     },
     {
       "name": "RPP",
@@ -61,8 +71,10 @@
       "color": "#8B5CF6",
       "won": 1,
       "leading": 0,
-      "totalVotes": 0,
-      "prVotes": 0
+      "totalVotes": 1,
+      "prVotes": 319302,
+      "prSeats": 5,
+      "totalSeats": 6
     },
     {
       "name": "Independent",
@@ -71,8 +83,10 @@
       "color": "#6B7280",
       "won": 1,
       "leading": 0,
-      "totalVotes": 0,
-      "prVotes": 0
+      "totalVotes": 1,
+      "prVotes": 0,
+      "prSeats": 0,
+      "totalSeats": 1
     },
     {
       "name": "Janata Samajbadi",
@@ -82,7 +96,9 @@
       "won": 0,
       "leading": 0,
       "totalVotes": 0,
-      "prVotes": 0
+      "prVotes": 59855,
+      "prSeats": 0,
+      "totalSeats": 0
     },
     {
       "name": "Janamat Party",
@@ -92,7 +108,9 @@
       "won": 0,
       "leading": 0,
       "totalVotes": 0,
-      "prVotes": 0
+      "prVotes": 73994,
+      "prSeats": 0,
+      "totalSeats": 0
     },
     {
       "name": "Loktantrik Samajbadi",
@@ -102,7 +120,9 @@
       "won": 0,
       "leading": 0,
       "totalVotes": 0,
-      "prVotes": 0
+      "prVotes": 0,
+      "prSeats": 0,
+      "totalSeats": 0
     },
     {
       "name": "Nagarik Unmukti",
@@ -112,17 +132,592 @@
       "won": 0,
       "leading": 0,
       "totalVotes": 0,
-      "prVotes": 0
+      "prVotes": 0,
+      "prSeats": 0,
+      "totalSeats": 0
+    },
+    {
+      "name": "राष्ट्रिय परिवर्तन पार्टी",
+      "nameNp": "राष्ट्रिय परिवर्तन पार्टी",
+      "shortName": "राष्",
+      "color": "#3B82F6",
+      "won": 0,
+      "leading": 0,
+      "totalVotes": 0,
+      "prVotes": 162638,
+      "prSeats": 0,
+      "totalSeats": 0
+    },
+    {
+      "name": "नेपाल मजदुर किसान पार्टी",
+      "nameNp": "नेपाल मजदुर किसान पार्टी",
+      "shortName": "नेपा",
+      "color": "#3B82F6",
+      "won": 0,
+      "leading": 0,
+      "totalVotes": 0,
+      "prVotes": 41726,
+      "prSeats": 0,
+      "totalSeats": 0
+    },
+    {
+      "name": "राष्ट्र निर्माण दल नेपाल",
+      "nameNp": "राष्ट्र निर्माण दल नेपाल",
+      "shortName": "राष्",
+      "color": "#3B82F6",
+      "won": 0,
+      "leading": 0,
+      "totalVotes": 0,
+      "prVotes": 35958,
+      "prSeats": 0,
+      "totalSeats": 0
+    },
+    {
+      "name": "राष्ट्रिय जनमोर्चा",
+      "nameNp": "राष्ट्रिय जनमोर्चा",
+      "shortName": "राष्",
+      "color": "#3B82F6",
+      "won": 0,
+      "leading": 0,
+      "totalVotes": 0,
+      "prVotes": 29166,
+      "prSeats": 0,
+      "totalSeats": 0
+    },
+    {
+      "name": "एकल चिन्ह  बस (नेपाल संघीय समाजवादी पार्टी/बहुजन एकता पार्टी नेपाल/नेपाल जनजागृति पार्टी)",
+      "nameNp": "एकल चिन्ह  बस (नेपाल संघीय समाजवादी पार्टी/बहुजन एकता पार्टी नेपाल/नेपाल जनजागृति पार्टी)",
+      "shortName": "एकल ",
+      "color": "#3B82F6",
+      "won": 0,
+      "leading": 0,
+      "totalVotes": 0,
+      "prVotes": 27190,
+      "prSeats": 0,
+      "totalSeats": 0
+    },
+    {
+      "name": "नेपाल जनता संरक्षण पार्टी",
+      "nameNp": "नेपाल जनता संरक्षण पार्टी",
+      "shortName": "नेपा",
+      "color": "#3B82F6",
+      "won": 0,
+      "leading": 0,
+      "totalVotes": 0,
+      "prVotes": 26504,
+      "prSeats": 0,
+      "totalSeats": 0
+    },
+    {
+      "name": "प्रगतिशील लोकतान्त्रिक पार्टी",
+      "nameNp": "प्रगतिशील लोकतान्त्रिक पार्टी",
+      "shortName": "प्रग",
+      "color": "#3B82F6",
+      "won": 0,
+      "leading": 0,
+      "totalVotes": 0,
+      "prVotes": 23184,
+      "prSeats": 0,
+      "totalSeats": 0
+    },
+    {
+      "name": "नेपाल कम्युनिस्ट पार्टी (माओवादी)",
+      "nameNp": "नेपाल कम्युनिस्ट पार्टी (माओवादी)",
+      "shortName": "नेपा",
+      "color": "#3B82F6",
+      "won": 0,
+      "leading": 0,
+      "totalVotes": 0,
+      "prVotes": 23014,
+      "prSeats": 0,
+      "totalSeats": 0
+    },
+    {
+      "name": "मंगोल नेशनल अर्गनाइजेशन",
+      "nameNp": "मंगोल नेशनल अर्गनाइजेशन",
+      "shortName": "मंगो",
+      "color": "#3B82F6",
+      "won": 0,
+      "leading": 0,
+      "totalVotes": 0,
+      "prVotes": 18871,
+      "prSeats": 0,
+      "totalSeats": 0
+    },
+    {
+      "name": "सार्वभौम नागरिक पार्टी",
+      "nameNp": "सार्वभौम नागरिक पार्टी",
+      "shortName": "सार्",
+      "color": "#3B82F6",
+      "won": 0,
+      "leading": 0,
+      "totalVotes": 0,
+      "prVotes": 13872,
+      "prSeats": 0,
+      "totalSeats": 0
+    },
+    {
+      "name": "एकल चिन्ह मोबाइल (आम जनता पार्टी/जनादेश पार्टी नेपाल)",
+      "nameNp": "एकल चिन्ह मोबाइल (आम जनता पार्टी/जनादेश पार्टी नेपाल)",
+      "shortName": "एकल ",
+      "color": "#3B82F6",
+      "won": 0,
+      "leading": 0,
+      "totalVotes": 0,
+      "prVotes": 12521,
+      "prSeats": 0,
+      "totalSeats": 0
+    },
+    {
+      "name": "राष्ट्रिय मुक्ति आन्दोलन, नेपाल",
+      "nameNp": "राष्ट्रिय मुक्ति आन्दोलन, नेपाल",
+      "shortName": "राष्",
+      "color": "#3B82F6",
+      "won": 0,
+      "leading": 0,
+      "totalVotes": 0,
+      "prVotes": 9782,
+      "prSeats": 0,
+      "totalSeats": 0
+    },
+    {
+      "name": "संयुक्त नागरिक पार्टी",
+      "nameNp": "संयुक्त नागरिक पार्टी",
+      "shortName": "संयु",
+      "color": "#3B82F6",
+      "won": 0,
+      "leading": 0,
+      "totalVotes": 0,
+      "prVotes": 8386,
+      "prSeats": 0,
+      "totalSeats": 0
+    },
+    {
+      "name": "स्वाभिमान पार्टी",
+      "nameNp": "स्वाभिमान पार्टी",
+      "shortName": "स्वा",
+      "color": "#3B82F6",
+      "won": 0,
+      "leading": 0,
+      "totalVotes": 0,
+      "prVotes": 6891,
+      "prSeats": 0,
+      "totalSeats": 0
+    },
+    {
+      "name": "नेपाल जनता पार्टी",
+      "nameNp": "नेपाल जनता पार्टी",
+      "shortName": "नेपा",
+      "color": "#3B82F6",
+      "won": 0,
+      "leading": 0,
+      "totalVotes": 0,
+      "prVotes": 6872,
+      "prSeats": 0,
+      "totalSeats": 0
+    },
+    {
+      "name": "राष्ट्रिय एकता दल",
+      "nameNp": "राष्ट्रिय एकता दल",
+      "shortName": "राष्",
+      "color": "#3B82F6",
+      "won": 0,
+      "leading": 0,
+      "totalVotes": 0,
+      "prVotes": 6673,
+      "prSeats": 0,
+      "totalSeats": 0
+    },
+    {
+      "name": "राष्ट्रिय जनमुक्ति पार्टी",
+      "nameNp": "राष्ट्रिय जनमुक्ति पार्टी",
+      "shortName": "राष्",
+      "color": "#3B82F6",
+      "won": 0,
+      "leading": 0,
+      "totalVotes": 0,
+      "prVotes": 6632,
+      "prSeats": 0,
+      "totalSeats": 0
+    },
+    {
+      "name": "नेपाल कम्युनिष्ट पार्टी (मार्क्सवादी-लेनिनवादी)",
+      "nameNp": "नेपाल कम्युनिष्ट पार्टी (मार्क्सवादी-लेनिनवादी)",
+      "shortName": "नेपा",
+      "color": "#3B82F6",
+      "won": 0,
+      "leading": 0,
+      "totalVotes": 0,
+      "prVotes": 5691,
+      "prSeats": 0,
+      "totalSeats": 0
+    },
+    {
+      "name": "नेशनल रिपब्लिक नेपाल",
+      "nameNp": "नेशनल रिपब्लिक नेपाल",
+      "shortName": "नेशन",
+      "color": "#3B82F6",
+      "won": 0,
+      "leading": 0,
+      "totalVotes": 0,
+      "prVotes": 4950,
+      "prSeats": 0,
+      "totalSeats": 0
+    },
+    {
+      "name": "नेपालका लागि नेपाली पार्टी",
+      "nameNp": "नेपालका लागि नेपाली पार्टी",
+      "shortName": "नेपा",
+      "color": "#3B82F6",
+      "won": 0,
+      "leading": 0,
+      "totalVotes": 0,
+      "prVotes": 4756,
+      "prSeats": 0,
+      "totalSeats": 0
+    },
+    {
+      "name": "नेपाल कम्युनिष्ट पार्टी मार्क्सवादी (पुष्पलाल)",
+      "nameNp": "नेपाल कम्युनिष्ट पार्टी मार्क्सवादी (पुष्पलाल)",
+      "shortName": "नेपा",
+      "color": "#3B82F6",
+      "won": 0,
+      "leading": 0,
+      "totalVotes": 0,
+      "prVotes": 4686,
+      "prSeats": 0,
+      "totalSeats": 0
+    },
+    {
+      "name": "राष्ट्रिय गौरव पार्टी",
+      "nameNp": "राष्ट्रिय गौरव पार्टी",
+      "shortName": "राष्",
+      "color": "#3B82F6",
+      "won": 0,
+      "leading": 0,
+      "totalVotes": 0,
+      "prVotes": 4646,
+      "prSeats": 0,
+      "totalSeats": 0
+    },
+    {
+      "name": "संघीय लोकतान्त्रिक राष्ट्रिय मञ्च",
+      "nameNp": "संघीय लोकतान्त्रिक राष्ट्रिय मञ्च",
+      "shortName": "संघी",
+      "color": "#3B82F6",
+      "won": 0,
+      "leading": 0,
+      "totalVotes": 0,
+      "prVotes": 4488,
+      "prSeats": 0,
+      "totalSeats": 0
+    },
+    {
+      "name": "राष्ट्रिय उर्जाशील पार्टी, नेपाल",
+      "nameNp": "राष्ट्रिय उर्जाशील पार्टी, नेपाल",
+      "shortName": "राष्",
+      "color": "#3B82F6",
+      "won": 0,
+      "leading": 0,
+      "totalVotes": 0,
+      "prVotes": 4211,
+      "prSeats": 0,
+      "totalSeats": 0
+    },
+    {
+      "name": "नेपाल कम्युनिष्ट पार्टी (संयुक्त)",
+      "nameNp": "नेपाल कम्युनिष्ट पार्टी (संयुक्त)",
+      "shortName": "नेपा",
+      "color": "#3B82F6",
+      "won": 0,
+      "leading": 0,
+      "totalVotes": 0,
+      "prVotes": 4175,
+      "prSeats": 0,
+      "totalSeats": 0
+    },
+    {
+      "name": "समावेशी समाजवादी पार्टी नेपाल",
+      "nameNp": "समावेशी समाजवादी पार्टी नेपाल",
+      "shortName": "समाव",
+      "color": "#3B82F6",
+      "won": 0,
+      "leading": 0,
+      "totalVotes": 0,
+      "prVotes": 4038,
+      "prSeats": 0,
+      "totalSeats": 0
+    },
+    {
+      "name": "गतिशील लोकतान्त्रिक पार्टी",
+      "nameNp": "गतिशील लोकतान्त्रिक पार्टी",
+      "shortName": "गतिश",
+      "color": "#3B82F6",
+      "won": 0,
+      "leading": 0,
+      "totalVotes": 0,
+      "prVotes": 3950,
+      "prSeats": 0,
+      "totalSeats": 0
+    },
+    {
+      "name": "नेपाल लोकतान्त्रिक पार्टी",
+      "nameNp": "नेपाल लोकतान्त्रिक पार्टी",
+      "shortName": "नेपा",
+      "color": "#3B82F6",
+      "won": 0,
+      "leading": 0,
+      "totalVotes": 0,
+      "prVotes": 3710,
+      "prSeats": 0,
+      "totalSeats": 0
+    },
+    {
+      "name": "नेपाल मातृभूमि पार्टी",
+      "nameNp": "नेपाल मातृभूमि पार्टी",
+      "shortName": "नेपा",
+      "color": "#3B82F6",
+      "won": 0,
+      "leading": 0,
+      "totalVotes": 0,
+      "prVotes": 3048,
+      "prSeats": 0,
+      "totalSeats": 0
+    },
+    {
+      "name": "राष्ट्रिय जनता पार्टी नेपाल",
+      "nameNp": "राष्ट्रिय जनता पार्टी नेपाल",
+      "shortName": "राष्",
+      "color": "#3B82F6",
+      "won": 0,
+      "leading": 0,
+      "totalVotes": 0,
+      "prVotes": 2729,
+      "prSeats": 0,
+      "totalSeats": 0
+    },
+    {
+      "name": "जय मातृभूमि पार्टी",
+      "nameNp": "जय मातृभूमि पार्टी",
+      "shortName": "जय म",
+      "color": "#3B82F6",
+      "won": 0,
+      "leading": 0,
+      "totalVotes": 0,
+      "prVotes": 2631,
+      "prSeats": 0,
+      "totalSeats": 0
+    },
+    {
+      "name": "बहुजन शक्ति पार्टी",
+      "nameNp": "बहुजन शक्ति पार्टी",
+      "shortName": "बहुज",
+      "color": "#3B82F6",
+      "won": 0,
+      "leading": 0,
+      "totalVotes": 0,
+      "prVotes": 2606,
+      "prSeats": 0,
+      "totalSeats": 0
+    },
+    {
+      "name": "नेपाल जनमुक्ति पार्टी",
+      "nameNp": "नेपाल जनमुक्ति पार्टी",
+      "shortName": "नेपा",
+      "color": "#3B82F6",
+      "won": 0,
+      "leading": 0,
+      "totalVotes": 0,
+      "prVotes": 2073,
+      "prSeats": 0,
+      "totalSeats": 0
+    },
+    {
+      "name": "प्रजातान्त्रिक पार्टी नेपाल",
+      "nameNp": "प्रजातान्त्रिक पार्टी नेपाल",
+      "shortName": "प्रज",
+      "color": "#3B82F6",
+      "won": 0,
+      "leading": 0,
+      "totalVotes": 0,
+      "prVotes": 2031,
+      "prSeats": 0,
+      "totalSeats": 0
+    },
+    {
+      "name": "जन अधिकार पार्टी",
+      "nameNp": "जन अधिकार पार्टी",
+      "shortName": "जन अ",
+      "color": "#3B82F6",
+      "won": 0,
+      "leading": 0,
+      "totalVotes": 0,
+      "prVotes": 1930,
+      "prSeats": 0,
+      "totalSeats": 0
+    },
+    {
+      "name": "नेपाल सद्‍भावना पार्टी",
+      "nameNp": "नेपाल सद्‍भावना पार्टी",
+      "shortName": "नेपा",
+      "color": "#3B82F6",
+      "won": 0,
+      "leading": 0,
+      "totalVotes": 0,
+      "prVotes": 1869,
+      "prSeats": 0,
+      "totalSeats": 0
+    },
+    {
+      "name": "पिपुल फर्ष्ट पार्टी",
+      "nameNp": "पिपुल फर्ष्ट पार्टी",
+      "shortName": "पिपु",
+      "color": "#3B82F6",
+      "won": 0,
+      "leading": 0,
+      "totalVotes": 0,
+      "prVotes": 1658,
+      "prSeats": 0,
+      "totalSeats": 0
+    },
+    {
+      "name": "नागरिक शक्ति, नेपाल",
+      "nameNp": "नागरिक शक्ति, नेपाल",
+      "shortName": "नागर",
+      "color": "#3B82F6",
+      "won": 0,
+      "leading": 0,
+      "totalVotes": 0,
+      "prVotes": 1607,
+      "prSeats": 0,
+      "totalSeats": 0
+    },
+    {
+      "name": "नेपाली जनश्रमदान संस्कृति पार्टी",
+      "nameNp": "नेपाली जनश्रमदान संस्कृति पार्टी",
+      "shortName": "नेपा",
+      "color": "#3B82F6",
+      "won": 0,
+      "leading": 0,
+      "totalVotes": 0,
+      "prVotes": 1480,
+      "prSeats": 0,
+      "totalSeats": 0
+    },
+    {
+      "name": "नेपाली जनता दल",
+      "nameNp": "नेपाली जनता दल",
+      "shortName": "नेपा",
+      "color": "#3B82F6",
+      "won": 0,
+      "leading": 0,
+      "totalVotes": 0,
+      "prVotes": 1352,
+      "prSeats": 0,
+      "totalSeats": 0
+    },
+    {
+      "name": "समावेशी समाजवादी पार्टी",
+      "nameNp": "समावेशी समाजवादी पार्टी",
+      "shortName": "समाव",
+      "color": "#3B82F6",
+      "won": 0,
+      "leading": 0,
+      "totalVotes": 0,
+      "prVotes": 1282,
+      "prSeats": 0,
+      "totalSeats": 0
+    },
+    {
+      "name": "जनता लोकतान्त्रिक पार्टी, नेपाल",
+      "nameNp": "जनता लोकतान्त्रिक पार्टी, नेपाल",
+      "shortName": "जनता",
+      "color": "#3B82F6",
+      "won": 0,
+      "leading": 0,
+      "totalVotes": 0,
+      "prVotes": 1229,
+      "prSeats": 0,
+      "totalSeats": 0
+    },
+    {
+      "name": "एकल चिन्ह जगर भएको सिंह(सचेत नेपाली पार्टी/नागरिक सर्वोच्चता पार्टी नेपाल)",
+      "nameNp": "एकल चिन्ह जगर भएको सिंह(सचेत नेपाली पार्टी/नागरिक सर्वोच्चता पार्टी नेपाल)",
+      "shortName": "एकल ",
+      "color": "#3B82F6",
+      "won": 0,
+      "leading": 0,
+      "totalVotes": 0,
+      "prVotes": 1067,
+      "prSeats": 0,
+      "totalSeats": 0
+    },
+    {
+      "name": "जनप्रिय लोकतान्त्रिक पार्टी",
+      "nameNp": "जनप्रिय लोकतान्त्रिक पार्टी",
+      "shortName": "जनप्",
+      "color": "#3B82F6",
+      "won": 0,
+      "leading": 0,
+      "totalVotes": 0,
+      "prVotes": 866,
+      "prSeats": 0,
+      "totalSeats": 0
+    },
+    {
+      "name": "मितेरी पार्टी नेपाल",
+      "nameNp": "मितेरी पार्टी नेपाल",
+      "shortName": "मिते",
+      "color": "#3B82F6",
+      "won": 0,
+      "leading": 0,
+      "totalVotes": 0,
+      "prVotes": 732,
+      "prSeats": 0,
+      "totalSeats": 0
+    },
+    {
+      "name": "उन्‍नत लोकतन्त्र पार्टी",
+      "nameNp": "उन्‍नत लोकतन्त्र पार्टी",
+      "shortName": "उन्‍",
+      "color": "#3B82F6",
+      "won": 0,
+      "leading": 0,
+      "totalVotes": 0,
+      "prVotes": 686,
+      "prSeats": 0,
+      "totalSeats": 0
+    },
+    {
+      "name": "त्रिमुल नेपाल",
+      "nameNp": "त्रिमुल नेपाल",
+      "shortName": "त्रि",
+      "color": "#3B82F6",
+      "won": 0,
+      "leading": 0,
+      "totalVotes": 0,
+      "prVotes": 632,
+      "prSeats": 0,
+      "totalSeats": 0
     }
   ],
   "constituencies": [],
+  "paResults": {
+    "1": [],
+    "2": [],
+    "3": [],
+    "4": [],
+    "5": [],
+    "6": [],
+    "7": []
+  },
   "summary": {
     "totalSeats": 275,
     "fptpSeats": 165,
     "prSeats": 110,
     "declared": 164,
-    "counting": 1,
-    "pending": 0,
-    "totalVotesCast": 0
+    "counting": 0,
+    "pending": 1,
+    "totalVotesCast": 8309234
   }
 }

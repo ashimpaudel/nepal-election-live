@@ -1,0 +1,104 @@
+{
+  "base_url": "https://result.election.gov.np",
+  "page_url": "https://result.election.gov.np/PRVoteChartResult2082.aspx",
+  "json_handler": "https://result.election.gov.np/Handlers/SecureJson.ashx",
+  "election_year": "2082",
+  "endpoints": {
+    "lookup": {
+      "states": {
+        "path": "JSONFiles/Election2082/Local/Lookup/states.json",
+        "description": "Province/state list with id and name"
+      },
+      "districts": {
+        "path": "JSONFiles/Election2082/Local/Lookup/districts.json",
+        "description": "District list with id, name, and parentId (province)"
+      },
+      "hor_constituencies": {
+        "path": "JSONFiles/Election2082/HOR/Lookup/constituencies.json",
+        "description": "HoR constituency list with distId and consts count per district"
+      }
+    },
+    "common_summaries": {
+      "hor_fptp_top5": {
+        "path": "JSONFiles/Election2082/Common/HoRPartyTop5.txt",
+        "description": "HoR FPTP party results (top parties)"
+      },
+      "hor_pr_top5": {
+        "path": "JSONFiles/Election2082/Common/PRHoRPartyTop5.txt",
+        "description": "HoR PR party vote totals (top parties)"
+      },
+      "pa_fptp": {
+        "pattern": "JSONFiles/Election2082/Common/PAPartyTop5-S{provinceId}.txt",
+        "description": "PA FPTP party results per province",
+        "province_ids": [1, 2, 3, 4, 5, 6, 7]
+      },
+      "pa_pr": {
+        "pattern": "JSONFiles/Election2082/Common/PRPAPartyTop5-S{provinceId}.txt",
+        "description": "PA PR party vote totals per province",
+        "province_ids": [1, 2, 3, 4, 5, 6, 7]
+      }
+    },
+    "hor_fptp_candidates": {
+      "by_constituency": {
+        "pattern": "JSONFiles/Election2082/HOR/FPTP/HOR-{districtCd}-{constNo}.json",
+        "description": "FPTP candidate results for a specific HoR constituency",
+        "data_shape": {
+          "CandidateID": "number",
+          "CandidateName": "string (Nepali)",
+          "Age": "number",
+          "Gender": "string (पुरुष/महिला/अन्य)",
+          "PoliticalPartyName": "string (Nepali)",
+          "SymbolID": "number",
+          "TotalVoteReceived": "number",
+          "Remarks": "string (Elected/null)"
+        }
+      },
+      "common_top5": {
+        "pattern": "JSONFiles/Election2082/Common/HORT5-{districtCd}-{constNo}.txt",
+        "description": "Top 5 candidates per HoR constituency (from chart page)"
+      },
+      "common_all": {
+        "pattern": "JSONFiles/Election2082/Common/HORT6-{districtCd}-{constNo}.txt",
+        "description": "All candidates per HoR constituency (from chart page)"
+      }
+    },
+    "hor_pr_votes": {
+      "by_province": {
+        "pattern": "JSONFiles/Election2082/HOR/PR/Province/{stateId}.json",
+        "description": "PR vote totals per party for a province"
+      },
+      "by_district": {
+        "pattern": "JSONFiles/Election2082/HOR/PR/District/{districtCd}.json",
+        "description": "PR vote totals per party for a district"
+      },
+      "by_constituency": {
+        "pattern": "JSONFiles/Election2082/HOR/PR/HOR/HOR-{districtCd}-{constNo}.json",
+        "description": "PR vote totals per party for a HoR constituency"
+      }
+    },
+    "pa_fptp_candidates": {
+      "by_constituency": {
+        "pattern": "JSONFiles/Election2082/PA/FPTP/PA-{districtCd}-{fConst}-{pConst}.json",
+        "description": "FPTP candidate results for a PA constituency"
+      },
+      "common_top5": {
+        "pattern": "JSONFiles/Election2082/Common/PAT5-{districtCd}-{constNo}.txt",
+        "description": "Top 5 candidates per PA constituency"
+      },
+      "common_all": {
+        "pattern": "JSONFiles/Election2082/Common/PAT6-{districtCd}-{constNo}.txt",
+        "description": "All candidates per PA constituency"
+      }
+    },
+    "pa_seats_per_province": {
+      "1": { "name": "Koshi", "fptp_seats": 56 },
+      "2": { "name": "Madhesh", "fptp_seats": 64 },
+      "3": { "name": "Bagmati", "fptp_seats": 66 },
+      "4": { "name": "Gandaki", "fptp_seats": 36 },
+      "5": { "name": "Lumbini", "fptp_seats": 52 },
+      "6": { "name": "Karnali", "fptp_seats": 24 },
+      "7": { "name": "Sudurpashchim", "fptp_seats": 32 }
+    }
+  },
+  "notes": "Discovered by analyzing EC website JavaScript: PRMapElectionResult.js, MapElectionResult.js, FPTPWLChartResult2082.aspx, PRVoteChartResult2082.aspx"
+}

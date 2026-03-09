@@ -2,7 +2,7 @@ name: Scrape Election Data
 
 on:
   schedule:
-    - cron: '*/15 * * * *'
+    - cron: '*/5 * * * *'
   workflow_dispatch:
 
 permissions:
@@ -24,8 +24,13 @@ jobs:
           cd scripts
           npm install
 
-      - name: Run scraper
-        run: node scripts/scrape-v2.js
+      - name: Run scraper (with retry)
+        uses: nick-fields/retry@v3
+        with:
+          timeout_minutes: 5
+          max_attempts: 3
+          retry_wait_seconds: 30
+          command: node scripts/scrape-ec-json.js
         env:
           SUPABASE_URL: ${{ secrets.SUPABASE_URL }}
           SUPABASE_SERVICE_KEY: ${{ secrets.SUPABASE_SERVICE_KEY }}
