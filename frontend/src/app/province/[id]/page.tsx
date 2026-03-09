@@ -7,7 +7,7 @@ import { MapPin, Users, ChevronRight } from "lucide-react";
 import Header from "@/components/Header";
 import DrillDown from "@/components/DrillDown";
 import DisclaimerFooter from "@/components/DisclaimerFooter";
-import { supabase } from "@/lib/supabase";
+import { getSupabase } from "@/lib/supabase";
 import type { Province, District } from "@/lib/types";
 
 export default function ProvincePage() {
@@ -20,18 +20,29 @@ export default function ProvincePage() {
 
   useEffect(() => {
     async function load() {
-      const [pRes, dRes] = await Promise.all([
-        supabase.from("provinces").select("*").eq("id", provinceId).single(),
-        supabase
-          .from("districts")
-          .select("*")
-          .eq("province_id", provinceId)
-          .order("name_en"),
-      ]);
+      try {
+        const supabase = getSupabase();
+        if (!supabase) {
+          setLoading(false);
+          return;
+        }
 
-      if (pRes.data) setProvince(pRes.data);
-      if (dRes.data) setDistricts(dRes.data);
-      setLoading(false);
+        const [pRes, dRes] = await Promise.all([
+          supabase.from("provinces").select("*").eq("id", provinceId).single(),
+          supabase
+            .from("districts")
+            .select("*")
+            .eq("province_id", provinceId)
+            .order("name_en"),
+        ]);
+
+        if (pRes.data) setProvince(pRes.data);
+        if (dRes.data) setDistricts(dRes.data);
+      } catch (err) {
+        console.warn("Failed to load province data:", err);
+      } finally {
+        setLoading(false);
+      }
     }
     load();
   }, [provinceId]);
@@ -57,7 +68,15 @@ export default function ProvincePage() {
       <div className="min-h-screen bg-[var(--background)]">
         <Header lastUpdated={null} totalSeats={275} />
         <main className="max-w-7xl mx-auto px-4 py-8 text-center">
-          <p className="text-gray-400">Province not found</p>
+          <div className="glass-card rounded-2xl p-8 max-w-md mx-auto">
+            <p className="text-gray-400 text-lg mb-2">Province not found</p>
+            <p className="text-gray-500 text-sm mb-4">
+              This page requires a Supabase database connection. Please configure your environment variables.
+            </p>
+            <a href="/" className="text-blue-400 hover:text-blue-300 text-sm underline">
+              ← Back to Dashboard
+            </a>
+          </div>
         </main>
       </div>
     );

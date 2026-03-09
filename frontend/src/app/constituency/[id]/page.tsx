@@ -6,7 +6,7 @@ import { MapPin, Trophy } from "lucide-react";
 import Header from "@/components/Header";
 import DrillDown from "@/components/DrillDown";
 import DisclaimerFooter from "@/components/DisclaimerFooter";
-import { supabase } from "@/lib/supabase";
+import { getSupabase } from "@/lib/supabase";
 import type { Constituency, Candidate, District, Province } from "@/lib/types";
 
 export default function ConstituencyPage() {
@@ -21,43 +21,54 @@ export default function ConstituencyPage() {
 
   useEffect(() => {
     async function load() {
-      // Load constituency
-      const cRes = await supabase
-        .from("constituencies")
-        .select("*")
-        .eq("id", constId)
-        .single();
+      try {
+        const supabase = getSupabase();
+        if (!supabase) {
+          setLoading(false);
+          return;
+        }
 
-      if (cRes.data) {
-        setConstituency(cRes.data);
-
-        // Load district & province
-        const dRes = await supabase
-          .from("districts")
+        // Load constituency
+        const cRes = await supabase
+          .from("constituencies")
           .select("*")
-          .eq("id", cRes.data.district_id)
+          .eq("id", constId)
           .single();
 
-        if (dRes.data) {
-          setDistrict(dRes.data);
-          const pRes = await supabase
-            .from("provinces")
+        if (cRes.data) {
+          setConstituency(cRes.data);
+
+          // Load district & province
+          const dRes = await supabase
+            .from("districts")
             .select("*")
-            .eq("id", dRes.data.province_id)
+            .eq("id", cRes.data.district_id)
             .single();
-          if (pRes.data) setProvince(pRes.data);
+
+          if (dRes.data) {
+            setDistrict(dRes.data);
+            const pRes = await supabase
+              .from("provinces")
+              .select("*")
+              .eq("id", dRes.data.province_id)
+              .single();
+            if (pRes.data) setProvince(pRes.data);
+          }
         }
+
+        // Load candidates with party info
+        const candRes = await supabase
+          .from("candidates")
+          .select("*, party:parties(id, name_en, name_ne, short_name, color)")
+          .eq("constituency_id", constId)
+          .order("votes", { ascending: false });
+
+        if (candRes.data) setCandidates(candRes.data);
+      } catch (err) {
+        console.warn("Failed to load constituency data:", err);
+      } finally {
+        setLoading(false);
       }
-
-      // Load candidates with party info
-      const candRes = await supabase
-        .from("candidates")
-        .select("*, party:parties(id, name_en, name_ne, short_name, color)")
-        .eq("constituency_id", constId)
-        .order("votes", { ascending: false });
-
-      if (candRes.data) setCandidates(candRes.data);
-      setLoading(false);
     }
     load();
   }, [constId]);

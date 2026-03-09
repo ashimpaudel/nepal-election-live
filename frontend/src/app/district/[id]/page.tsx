@@ -7,7 +7,7 @@ import { MapPin, ChevronRight } from "lucide-react";
 import Header from "@/components/Header";
 import DrillDown from "@/components/DrillDown";
 import DisclaimerFooter from "@/components/DisclaimerFooter";
-import { supabase } from "@/lib/supabase";
+import { getSupabase } from "@/lib/supabase";
 import type { District, Province, Constituency } from "@/lib/types";
 
 export default function DistrictPage() {
@@ -21,32 +21,42 @@ export default function DistrictPage() {
 
   useEffect(() => {
     async function load() {
-      const dRes = await supabase
-        .from("districts")
-        .select("*")
-        .eq("id", districtId)
-        .single();
+      try {
+        const supabase = getSupabase();
+        if (!supabase) {
+          setLoading(false);
+          return;
+        }
 
-      if (dRes.data) {
-        setDistrict(dRes.data);
-
-        // Load province
-        const pRes = await supabase
-          .from("provinces")
+        const dRes = await supabase
+          .from("districts")
           .select("*")
-          .eq("id", dRes.data.province_id)
+          .eq("id", districtId)
           .single();
-        if (pRes.data) setProvince(pRes.data);
+
+        if (dRes.data) {
+          setDistrict(dRes.data);
+
+          // Load province
+          const pRes = await supabase
+            .from("provinces")
+            .select("*")
+            .eq("id", dRes.data.province_id)
+            .single();
+          if (pRes.data) setProvince(pRes.data);
+        }
+
+        const cRes = await supabase
+          .from("constituencies")
+          .select("*")
+          .eq("district_id", districtId)
+          .order("number");
+        if (cRes.data) setConstituencies(cRes.data);
+      } catch (err) {
+        console.warn("Failed to load district data:", err);
+      } finally {
+        setLoading(false);
       }
-
-      const cRes = await supabase
-        .from("constituencies")
-        .select("*")
-        .eq("district_id", districtId)
-        .order("number");
-      if (cRes.data) setConstituencies(cRes.data);
-
-      setLoading(false);
     }
     load();
   }, [districtId]);
