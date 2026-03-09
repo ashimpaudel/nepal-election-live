@@ -127,7 +127,9 @@ export default function Home() {
       });
 
     // Fetch election-related news from Hamro Patro API
-    fetchElectionNews().then(setNews);
+    fetchElectionNews().then(setNews).catch((err) => {
+      console.warn("Unexpected error fetching news:", err);
+    });
   }, []);
 
   if (loading || !data) {

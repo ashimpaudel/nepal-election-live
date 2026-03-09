@@ -6,6 +6,7 @@ interface SeatBarProps {
   totalSeats: number;
 }
 
+// 138 seats needed for majority in Nepal's 275-seat House of Representatives
 const MAJORITY_SEATS = 138;
 
 export default function SeatBar({ parties, totalSeats }: SeatBarProps) {

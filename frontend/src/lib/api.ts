@@ -1,12 +1,12 @@
-const HAMROPATRO_NEWS_URL =
-  "https://news.hamropatro.com/news?nextPageToken=&q=Nepali%20Communist%20Party";
+const HAMROPATRO_NEWS_BASE = "https://news.hamropatro.com/news";
+const DEFAULT_QUERY = "Nepali%20Communist%20Party";
 
 export interface NewsArticle {
   title: string;
   description: string;
   url: string;
   source: string;
-  publishedAt: string;
+  publishedAt: string | null;
   imageUrl: string | null;
 }
 
@@ -40,7 +40,7 @@ function mapNewsItem(item: HamroPatroNewsItem): NewsArticle {
     description: item.description ?? "",
     url: item.link ?? item.url ?? "#",
     source: item.source ?? item.sourceName ?? "Hamro Patro",
-    publishedAt: item.publishedAt ?? item.pubDate ?? new Date().toISOString(),
+    publishedAt: item.publishedAt ?? item.pubDate ?? null,
     imageUrl: item.image ?? item.imageUrl ?? item.thumbnail ?? null,
   };
 }
@@ -49,9 +49,12 @@ function mapNewsItem(item: HamroPatroNewsItem): NewsArticle {
  * Fetches election-related news from Hamro Patro API.
  * Used as a supplementary data source alongside the main election data.
  */
-export async function fetchElectionNews(): Promise<NewsArticle[]> {
+export async function fetchElectionNews(
+  query: string = DEFAULT_QUERY
+): Promise<NewsArticle[]> {
   try {
-    const res = await fetch(HAMROPATRO_NEWS_URL);
+    const url = `${HAMROPATRO_NEWS_BASE}?nextPageToken=&q=${query}`;
+    const res = await fetch(url);
     if (!res.ok) throw new Error(`HTTP ${res.status}`);
     const json: HamroPatroResponse = await res.json();
 
