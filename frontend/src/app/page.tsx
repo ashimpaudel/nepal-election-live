@@ -224,7 +224,7 @@ export default function Home() {
         totalSeats={displaySummary.totalSeats}
       />
 
-      <main className="max-w-7xl mx-auto px-4 py-4 space-y-4">
+      <main className="max-w-7xl mx-auto px-4 sm:px-6 py-6 space-y-6">
         {/* Summary Statistics */}
         <SummaryCards summary={displaySummary} />
 
@@ -235,7 +235,7 @@ export default function Home() {
         <NepalMap />
 
         {/* Three-column layout: Party Results | PR Results | Constituencies */}
-        <div className="grid grid-cols-1 lg:grid-cols-3 gap-4">
+        <div className="grid grid-cols-1 lg:grid-cols-3 gap-4 sm:gap-6">
           <div>
             <PartyResults
               parties={displayParties}
