@@ -103,7 +103,9 @@ export default function ConstituencyResults({
                   : "bg-gray-700 text-gray-300 hover:bg-gray-600"
               }`}
             >
-              {status === "all" ? "All" : status.charAt(0).toUpperCase() + status.slice(1)}
+              {status === "all"
+                ? "All"
+                : STATUS_STYLES[status as keyof typeof STATUS_STYLES].label}
             </button>
           ))}
         </div>
