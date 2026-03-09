@@ -4,6 +4,7 @@
   "description": "Election Commission data scraper",
   "main": "scrape.js",
   "dependencies": {
+    "@supabase/supabase-js": "^2.49.0",
     "cheerio": "^1.0.0",
     "node-fetch": "^2.7.0"
   }

@@ -7,17 +7,25 @@ import SummaryCards from "@/components/SummaryCards";
 import PartyResults from "@/components/PartyResults";
 import ConstituencyResults from "@/components/ConstituencyResults";
 import SeatBar from "@/components/SeatBar";
+import PRResults from "@/components/PRResults";
 import DataSourceBanner from "@/components/DataSourceBanner";
 import DisclaimerFooter from "@/components/DisclaimerFooter";
-import { fetchElectionNews, type NewsArticle } from "@/lib/api";
+import {
+  useElectionSummary,
+  useParties,
+  useConstituencies,
+  usePRResults,
+  readLegacyCache,
+  writeLegacyCache,
+  fetchElectionNews,
+  type NewsArticle,
+} from "@/lib/hooks";
+import type { LegacyElectionData } from "@/lib/types";
 import type {
-  Party,
-  Constituency,
-  ElectionSummary,
+  Party as LegacyParty,
+  Constituency as LegacyConstituency,
+  ElectionSummary as LegacyElectionSummary,
 } from "@/data/electionData";
-
-const CACHE_KEY = "nepal-election-data";
-const CACHE_MAX_AGE_MS = 5 * 60 * 1000; // 5 minutes
 
 const DATA_SOURCES = [
   {
@@ -34,108 +42,151 @@ const DATA_SOURCES = [
   },
 ];
 
-interface ElectionData {
-  lastUpdated: string | null;
+/**
+ * Converts new Supabase Party type to legacy Party shape for existing components.
+ */
+function toLegacyParties(
+  parties: Array<{
+    name_en: string;
+    name_ne: string;
+    short_name: string;
+    color: string;
+    fptp_won: number;
+    fptp_leading: number;
+    pr_votes: number;
+    total_seats: number;
+  }>
+): LegacyParty[] {
+  return parties.map((p) => ({
+    name: p.name_en,
+    nameNp: p.name_ne,
+    shortName: p.short_name,
+    color: p.color,
+    won: p.fptp_won,
+    leading: p.fptp_leading,
+    totalVotes: p.pr_votes, // approximate: using PR votes as proxy
+  }));
+}
+
+/**
+ * Converts new summary to legacy ElectionSummary shape.
+ */
+function toLegacySummary(summary: {
   totalSeats: number;
-  parties: Party[];
-  constituencies: Constituency[];
-  summary: {
-    totalSeats: number;
-    declared: number;
-    counting: number;
-    pending: number;
-    totalVotesCast: number;
-  };
-}
-
-function buildSummary(data: ElectionData): ElectionSummary {
+  declared: number;
+  counting: number;
+  pending: number;
+  totalVotesCast: number;
+  lastUpdated?: string | null;
+}): LegacyElectionSummary {
   return {
-    ...data.summary,
-    lastUpdated: data.lastUpdated ? new Date(data.lastUpdated) : null,
+    totalSeats: summary.totalSeats,
+    declared: summary.declared,
+    counting: summary.counting,
+    pending: summary.pending,
+    totalVotesCast: summary.totalVotesCast,
+    lastUpdated: summary.lastUpdated ? new Date(summary.lastUpdated) : null,
   };
 }
-
-function readCache(): ElectionData | null {
-  try {
-    const raw = localStorage.getItem(CACHE_KEY);
-    if (!raw) return null;
-    const { data, ts } = JSON.parse(raw) as {
-      data: ElectionData;
-      ts: number;
-    };
-    if (Date.now() - ts > CACHE_MAX_AGE_MS) return null;
-    return data;
-  } catch {
-    return null;
-  }
-}
-
-function writeCache(data: ElectionData) {
-  try {
-    localStorage.setItem(CACHE_KEY, JSON.stringify({ data, ts: Date.now() }));
-  } catch {
-    // storage might be full or unavailable — ignore
-  }
-}
-
-export const EMPTY_DATA: ElectionData = {
-  lastUpdated: null,
-  totalSeats: 165,
-  parties: [],
-  constituencies: [],
-  summary: {
-    totalSeats: 165,
-    declared: 0,
-    counting: 0,
-    pending: 165,
-    totalVotesCast: 0,
-  },
-};
 
 export default function Home() {
-  const [data, setData] = useState<ElectionData | null>(null);
-  const [loading, setLoading] = useState(true);
+  const { summary, isLoading: summaryLoading } = useElectionSummary();
+  const { parties, isLoading: partiesLoading } = useParties();
+  const { constituencies } = useConstituencies();
+  const { prResults } = usePRResults();
   const [news, setNews] = useState<NewsArticle[]>([]);
 
+  // Fallback: try static data.json if Supabase APIs fail
+  const [fallbackData, setFallbackData] = useState<LegacyElectionData | null>(
+    null
+  );
+
   useEffect(() => {
-    // Show cached data immediately for instant perceived load
-    const cached = readCache();
-    if (cached) {
-      setData(cached);
-      setLoading(false);
+    // If Supabase data isn't loading, no need for fallback
+    if (!summaryLoading && summary) return;
+
+    let cancelled = false;
+
+    async function loadFallback() {
+      const cached = readLegacyCache();
+      if (cached) {
+        if (!cancelled) setFallbackData(cached);
+        return;
+      }
+
+      try {
+        const basePath = process.env.NEXT_PUBLIC_BASE_PATH ?? "";
+        const res = await fetch(`${basePath}/data.json`);
+        if (!res.ok) throw new Error(`HTTP ${res.status}`);
+        const data = (await res.json()) as LegacyElectionData;
+        writeLegacyCache(data);
+        if (!cancelled) setFallbackData(data);
+      } catch {
+        // No fallback available — will show loading/empty state
+      }
     }
 
-    // Always fetch fresh data in the background
-    const basePath = process.env.NEXT_PUBLIC_BASE_PATH ?? "";
-    fetch(`${basePath}/data.json`)
-      .then((res) => {
-        if (!res.ok) throw new Error(`HTTP ${res.status}`);
-        return res.json() as Promise<ElectionData>;
-      })
-      .then((fresh) => {
-        writeCache(fresh);
-        setData(fresh);
-        setLoading(false);
-      })
-      .catch((err) => {
-        console.warn("Failed to fetch data.json:", err);
-        // If no cached data either, fall back to an empty state so the page renders
-        if (!cached) {
-          setData(EMPTY_DATA);
-          setLoading(false);
-        }
-      });
+    loadFallback();
+    return () => { cancelled = true; };
+  }, [summaryLoading, summary]);
 
-    // Fetch election-related news from Hamro Patro API
-    fetchElectionNews().then(setNews).catch((err) => {
-      console.warn("Unexpected error fetching news:", err);
-    });
+  useEffect(() => {
+    fetchElectionNews()
+      .then(setNews)
+      .catch((err) => {
+        console.warn("Unexpected error fetching news:", err);
+      });
   }, []);
 
-  if (loading || !data) {
+  // Determine data source: prefer Supabase, fall back to static
+  const useSupabase = !!summary && parties.length > 0;
+
+  const displaySummary: LegacyElectionSummary = useSupabase
+    ? toLegacySummary(summary!)
+    : fallbackData
+      ? {
+          ...fallbackData.summary,
+          lastUpdated: fallbackData.lastUpdated
+            ? new Date(fallbackData.lastUpdated)
+            : null,
+        }
+      : {
+          totalSeats: 275,
+          declared: 0,
+          counting: 0,
+          pending: 165,
+          totalVotesCast: 0,
+          lastUpdated: null,
+        };
+
+  const displayParties: LegacyParty[] = useSupabase
+    ? toLegacyParties(parties)
+    : fallbackData?.parties ?? [];
+
+  const displayConstituencies: LegacyConstituency[] = useSupabase
+    ? constituencies.map((c) => ({
+        id: c.id,
+        name: c.name_en,
+        province: c.district?.province?.name_en ?? "",
+        status: c.status,
+        totalVotes: c.total_votes_cast,
+        candidates: (c.candidates ?? []).map((cand) => ({
+          name: cand.name_en,
+          party: cand.party?.name_en ?? "Independent",
+          partyShort: cand.party?.short_name ?? "Ind",
+          votes: cand.votes,
+          color: cand.party?.color ?? "#6B7280",
+        })),
+      }))
+    : fallbackData?.constituencies ?? [];
+
+  const loading =
+    (summaryLoading || partiesLoading) && !fallbackData;
+
+  if (loading) {
     return (
       <div className="min-h-screen bg-[var(--background)]">
-        <Header lastUpdated={null} totalSeats={165} />
+        <Header lastUpdated={null} totalSeats={275} />
         <main className="max-w-7xl mx-auto px-4 py-4 space-y-4">
           <div className="grid grid-cols-2 sm:grid-cols-4 gap-3">
             {[...Array(4)].map((_, i) => (
@@ -155,26 +206,33 @@ export default function Home() {
     );
   }
 
-  const summary = buildSummary(data);
-
   return (
     <div className="min-h-screen bg-[var(--background)]">
-      <Header lastUpdated={summary.lastUpdated} totalSeats={summary.totalSeats} />
+      <Header
+        lastUpdated={displaySummary.lastUpdated}
+        totalSeats={displaySummary.totalSeats}
+      />
 
       <main className="max-w-7xl mx-auto px-4 py-4 space-y-4">
         {/* Summary Statistics */}
-        <SummaryCards summary={summary} />
+        <SummaryCards summary={displaySummary} />
 
         {/* Seat Distribution Bar + Majority Progress */}
-        <SeatBar parties={data.parties} totalSeats={summary.totalSeats} />
+        <SeatBar parties={displayParties} totalSeats={displaySummary.totalSeats} />
 
-        {/* Two-column layout on desktop, stacked on mobile */}
-        <div className="grid grid-cols-1 lg:grid-cols-5 gap-4">
-          <div className="lg:col-span-3">
-            <PartyResults parties={data.parties} totalSeats={summary.totalSeats} />
+        {/* Three-column layout: Party Results | PR Results | Constituencies */}
+        <div className="grid grid-cols-1 lg:grid-cols-3 gap-4">
+          <div>
+            <PartyResults
+              parties={displayParties}
+              totalSeats={displaySummary.totalSeats}
+            />
           </div>
-          <div className="lg:col-span-2">
-            <ConstituencyResults constituencies={data.constituencies} />
+          <div>
+            <PRResults prData={prResults ?? null} />
+          </div>
+          <div>
+            <ConstituencyResults constituencies={displayConstituencies} />
           </div>
         </div>
 

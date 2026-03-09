@@ -1,0 +1,106 @@
+{
+  "common": {
+    "home": "गृहपृष्ठ",
+    "live": "प्रत्यक्ष",
+    "lastUpdated": "अन्तिम अपडेट",
+    "seats": "सिट",
+    "votes": "मत",
+    "search": "खोज्नुहोस्",
+    "loading": "लोड हुँदैछ...",
+    "notFound": "फेला परेन",
+    "showMore": "थप देखाउनुहोस्",
+    "showLess": "कम देखाउनुहोस्",
+    "all": "सबै"
+  },
+  "header": {
+    "title": "नेपाल निर्वाचन",
+    "subtitle": "प्रतिनिधि सभा निर्वाचन २०८२",
+    "seatBreakdown": "{total} सिट ({fptp} प्रत्यक्ष + {pr} समानुपातिक)"
+  },
+  "summary": {
+    "totalSeats": "कुल सिट",
+    "declared": "घोषित",
+    "counting": "मतगणना",
+    "pending": "बाँकी",
+    "totalVotes": "कुल मतदान",
+    "fptpPlusPr": "{fptp} प्रत्यक्ष + {pr} समानुपातिक"
+  },
+  "parties": {
+    "title": "दलगत नतिजा",
+    "subtitle": "बहुमत: {majority} सिट",
+    "won": "जित",
+    "leading": "अगाडि",
+    "total": "जम्मा",
+    "progress": "प्रगति",
+    "showAllParties": "सबै {count} दल देखाउनुहोस्"
+  },
+  "pr": {
+    "title": "समानुपातिक प्रतिनिधित्व",
+    "subtitle": "{seats} सिट",
+    "totalPRVotes": "कुल समानुपातिक मत",
+    "seatsAllocated": "सिट विभाजन",
+    "threshold": "३% सीमा",
+    "thresholdNote": "समानुपातिक सिट प्राप्त गर्न कुल मतको ३% ({threshold}) आवश्यक",
+    "belowThreshold": "सीमाभन्दा कम"
+  },
+  "constituency": {
+    "title": "निर्वाचन क्षेत्रगत नतिजा",
+    "subtitle": "निर्वाचन क्षेत्रगत नतिजा",
+    "searchPlaceholder": "निर्वाचन क्षेत्र खोज्नुहोस्...",
+    "candidates": "उम्मेदवारहरू",
+    "winner": "विजेता",
+    "registeredVoters": "दर्ता मतदाता",
+    "votesCast": "खसेको मत",
+    "turnout": "मतदान प्रतिशत",
+    "noData": "अहिलेसम्म उम्मेदवार डेटा उपलब्ध छैन",
+    "noResults": "कुनै निर्वाचन क्षेत्र फेला परेन"
+  },
+  "seatBar": {
+    "title": "सिट वितरण",
+    "declared": "{declared}/{total} घोषित",
+    "majority": "बहुमत",
+    "pathToMajority": "{party} — बहुमतको मार्ग",
+    "seatsNeeded": "{count} / {total} सिट आवश्यक",
+    "moreSeatsNeeded": "बहुमतका लागि {count} थप सिट आवश्यक",
+    "majorityAchieved": "बहुमत प्राप्त!"
+  },
+  "drillDown": {
+    "districts": "जिल्लाहरू",
+    "constituencies": "निर्वाचन क्षेत्रहरू"
+  },
+  "province": {
+    "koshi": "कोशी प्रदेश",
+    "madhesh": "मधेश प्रदेश",
+    "bagmati": "बागमती प्रदेश",
+    "gandaki": "गण्डकी प्रदेश",
+    "lumbini": "लुम्बिनी प्रदेश",
+    "karnali": "कर्णाली प्रदेश",
+    "sudurpashchim": "सुदूरपश्चिम प्रदेश"
+  },
+  "status": {
+    "declared": "घोषित",
+    "counting": "मतगणना",
+    "pending": "बाँकी"
+  },
+  "dataSources": {
+    "title": "डेटा स्रोतहरू",
+    "disclaimer": "प्रदर्शित नतिजा प्रदर्शनका लागि हुन्। आधिकारिक प्रत्यक्ष डेटाका लागि माथिका स्रोतहरू हेर्नुहोस्।"
+  },
+  "disclaimer": {
+    "title": "अनधिकृत नतिजा",
+    "titleNe": "अनधिकृत नतिजा",
+    "body": "यस ड्यासबोर्डमा प्रदर्शित डेटा सार्वजनिक रूपमा उपलब्ध स्रोतहरूबाट संकलित गरिएको हो र ढिलो वा गलत हुन सक्छ। यो {notOfficial} आधिकारिक सरकारी पोर्टल हो।",
+    "notOfficial": "होइन",
+    "viewOfficial": "आधिकारिक निर्वाचन आयोग नतिजा पोर्टल हेर्नुहोस्",
+    "copyright": "© {year} नेपाल निर्वाचन LIVE ड्यासबोर्ड • GPLv3 अन्तर्गत खुला स्रोत"
+  },
+  "language": {
+    "en": "English",
+    "ne": "नेपाली",
+    "mai": "मैथिली",
+    "bho": "भोजपुरी",
+    "thr": "थारु",
+    "tam": "तामाङ",
+    "new": "नेवारी"
+  }
+}

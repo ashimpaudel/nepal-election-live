@@ -1,0 +1,12 @@
+# Supabase local development configuration
+# See: https://supabase.com/docs/guides/cli/config
+
+[project]
+id = "nepal-election-live"
+
+[db]
+port = 54322
+major_version = 15
+
+[api]
+port = 54321

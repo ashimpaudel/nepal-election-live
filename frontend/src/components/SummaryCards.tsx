@@ -1,4 +1,4 @@
-import { BarChart3, CheckCircle2, Timer, AlertCircle } from "lucide-react";
+import { BarChart3, CheckCircle2, Timer, AlertCircle, Vote } from "lucide-react";
 import type { ElectionSummary } from "@/data/electionData";
 
 interface SummaryCardsProps {
@@ -10,7 +10,7 @@ export default function SummaryCards({ summary }: SummaryCardsProps) {
     {
       label: "Total Seats",
       value: summary.totalSeats,
-      sublabel: "प्रतिनिधि सभा",
+      sublabel: `${165} FPTP + ${110} PR`,
       icon: BarChart3,
       bg: "glass-card",
       border: "border-gray-600/30",
@@ -47,12 +47,27 @@ export default function SummaryCards({ summary }: SummaryCardsProps) {
       text: "text-red-400",
       iconColor: "text-red-400",
     },
+    {
+      label: "Total Votes",
+      value: summary.totalVotesCast,
+      sublabel: "कुल मतदान",
+      icon: Vote,
+      bg: "glass-card",
+      border: "border-purple-500/30",
+      text: "text-purple-400",
+      iconColor: "text-purple-400",
+      isLarge: true,
+    },
   ];
 
   return (
-    <div className="grid grid-cols-2 sm:grid-cols-4 gap-3">
+    <div className="grid grid-cols-2 sm:grid-cols-5 gap-3">
       {cards.map((card) => {
         const Icon = card.icon;
+        const displayValue =
+          "isLarge" in card && card.isLarge
+            ? card.value.toLocaleString()
+            : card.value;
         return (
           <div
             key={card.label}
@@ -64,8 +79,8 @@ export default function SummaryCards({ summary }: SummaryCardsProps) {
             <p className="text-xs text-gray-400 uppercase tracking-wide">
               {card.label}
             </p>
-            <p className={`text-3xl font-black ${card.text} mt-1`}>
-              {card.value}
+            <p className={`text-2xl sm:text-3xl font-black ${card.text} mt-1`}>
+              {displayValue}
             </p>
             <p className="text-xs text-gray-500 mt-1">{card.sublabel}</p>
           </div>

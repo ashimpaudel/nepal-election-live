@@ -1,0 +1,106 @@
+{
+  "common": {
+    "home": "Home",
+    "live": "LIVE",
+    "lastUpdated": "Last updated",
+    "seats": "Seats",
+    "votes": "Votes",
+    "search": "Search",
+    "loading": "Loading...",
+    "notFound": "Not found",
+    "showMore": "Show More",
+    "showLess": "Show Less",
+    "all": "All"
+  },
+  "header": {
+    "title": "Nepal Election",
+    "subtitle": "House of Representatives Election 2082",
+    "seatBreakdown": "{total} Seats ({fptp} FPTP + {pr} PR)"
+  },
+  "summary": {
+    "totalSeats": "Total Seats",
+    "declared": "Declared",
+    "counting": "Counting",
+    "pending": "Pending",
+    "totalVotes": "Total Votes",
+    "fptpPlusPr": "{fptp} FPTP + {pr} PR"
+  },
+  "parties": {
+    "title": "Party-wise Results",
+    "subtitle": "Majority: {majority} seats",
+    "won": "Won",
+    "leading": "Leading",
+    "total": "Total",
+    "progress": "Progress",
+    "showAllParties": "Show All {count} Parties"
+  },
+  "pr": {
+    "title": "Proportional Representation",
+    "subtitle": "{seats} Seats",
+    "totalPRVotes": "Total PR Votes",
+    "seatsAllocated": "Seats Allocated",
+    "threshold": "3% Threshold",
+    "thresholdNote": "Parties need ≥3% of total PR votes ({threshold}) to qualify for PR seats",
+    "belowThreshold": "Below threshold"
+  },
+  "constituency": {
+    "title": "Constituency Results",
+    "subtitle": "Constituency-wise results",
+    "searchPlaceholder": "Search constituency...",
+    "candidates": "Candidates",
+    "winner": "Winner",
+    "registeredVoters": "Registered voters",
+    "votesCast": "Votes cast",
+    "turnout": "Turnout",
+    "noData": "No candidate data available yet",
+    "noResults": "No constituencies found"
+  },
+  "seatBar": {
+    "title": "Seat Distribution",
+    "declared": "{declared}/{total} declared",
+    "majority": "majority",
+    "pathToMajority": "{party} — Path to Majority",
+    "seatsNeeded": "{count} / {total} seats needed",
+    "moreSeatsNeeded": "{count} more seats needed for majority",
+    "majorityAchieved": "Majority achieved!"
+  },
+  "drillDown": {
+    "districts": "Districts",
+    "constituencies": "Constituencies"
+  },
+  "province": {
+    "koshi": "Koshi Province",
+    "madhesh": "Madhesh Province",
+    "bagmati": "Bagmati Province",
+    "gandaki": "Gandaki Province",
+    "lumbini": "Lumbini Province",
+    "karnali": "Karnali Province",
+    "sudurpashchim": "Sudurpashchim Province"
+  },
+  "status": {
+    "declared": "Declared",
+    "counting": "Counting",
+    "pending": "Pending"
+  },
+  "dataSources": {
+    "title": "Data Sources",
+    "disclaimer": "Results shown are for demonstration. Visit sources above for official live data."
+  },
+  "disclaimer": {
+    "title": "Unofficial Results",
+    "titleNe": "अनधिकृत नतिजा",
+    "body": "The data shown on this dashboard is aggregated from publicly available sources and may be delayed or inaccurate. This is {notOfficial} an official government portal.",
+    "notOfficial": "NOT",
+    "viewOfficial": "View Official ECN Results Portal",
+    "copyright": "© {year} Nepal Election LIVE Dashboard • Open-source under GPLv3"
+  },
+  "language": {
+    "en": "English",
+    "ne": "नेपाली",
+    "mai": "मैथिली",
+    "bho": "भोजपुरी",
+    "thr": "थारु",
+    "tam": "तामाङ",
+    "new": "नेवारी"
+  }
+}

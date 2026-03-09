@@ -1,0 +1,46 @@
+{
+  "common": {
+    "home": "मूल पृष्ठ",
+    "live": "प्रत्यक्ष",
+    "lastUpdated": "अन्तिम अपडेट",
+    "seats": "सीट",
+    "votes": "मत",
+    "search": "खोजू",
+    "loading": "लोड भऽ रहल अछि...",
+    "notFound": "नहि भेटल",
+    "showMore": "आओर देखाउ",
+    "showLess": "कम देखाउ",
+    "all": "सभ"
+  },
+  "header": {
+    "title": "नेपाल निर्वाचन",
+    "subtitle": "प्रतिनिधि सभा निर्वाचन २०८२",
+    "seatBreakdown": "{total} सीट ({fptp} प्रत्यक्ष + {pr} समानुपातिक)"
+  },
+  "summary": {
+    "totalSeats": "कुल सीट",
+    "declared": "घोषित",
+    "counting": "मतगणना",
+    "pending": "बाँकी",
+    "totalVotes": "कुल मतदान",
+    "fptpPlusPr": "{fptp} प्रत्यक्ष + {pr} समानुपातिक"
+  },
+  "parties": {
+    "title": "दलगत नतिजा",
+    "subtitle": "बहुमत: {majority} सीट",
+    "won": "जीत",
+    "leading": "अगाड़ी",
+    "total": "कुल",
+    "progress": "प्रगति",
+    "showAllParties": "सभ {count} दल देखाउ"
+  },
+  "language": {
+    "en": "English",
+    "ne": "नेपाली",
+    "mai": "मैथिली",
+    "bho": "भोजपुरी",
+    "thr": "थारु",
+    "tam": "तामाङ",
+    "new": "नेवारी"
+  }
+}

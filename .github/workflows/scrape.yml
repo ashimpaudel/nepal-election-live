@@ -25,7 +25,10 @@ jobs:
           npm install
 
       - name: Run scraper
-        run: node scripts/scrape.js
+        run: node scripts/scrape-v2.js
+        env:
+          SUPABASE_URL: ${{ secrets.SUPABASE_URL }}
+          SUPABASE_SERVICE_KEY: ${{ secrets.SUPABASE_SERVICE_KEY }}
 
       - name: Commit and push data.json if changed
         run: |
