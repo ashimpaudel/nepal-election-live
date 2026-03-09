@@ -8,6 +8,7 @@ import Header from "@/components/Header";
 import DrillDown from "@/components/DrillDown";
 import DisclaimerFooter from "@/components/DisclaimerFooter";
 import { getSupabase } from "@/lib/supabase";
+import PAResults from "@/components/PAResults";
 import type { Province, District } from "@/lib/types";
 
 export default function ProvincePage() {
@@ -129,6 +130,11 @@ export default function ProvincePage() {
               </div>
             </Link>
           ))}
+        </div>
+
+        {/* Provincial Assembly Results */}
+        <div className="border-t border-gray-800 pt-4 mt-2">
+          <PAResults provinceId={provinceId} provinceName={province.name_en} />
         </div>
       </main>
 

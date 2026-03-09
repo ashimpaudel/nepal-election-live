@@ -8,8 +8,15 @@ const EC_PAGE = `${EC_BASE}/PRVoteChartResult2082.aspx`;
 const EC_JSON = `${EC_BASE}/Handlers/SecureJson.ashx`;
 
 const VALID_FILES: Record<string, string> = {
-  "pr": "PRHoRPartyTop5.txt",
+  // HoR (House of Representatives) results
   "fptp": "HoRPartyTop5.txt",
+  "fptp-all": "HoRPartyAll.txt",
+  "pr": "PRHoRPartyTop5.txt",
+  "pr-all": "PRHoRPartyAll.txt",
+  "hor-const": "HoRConstResult.txt",
+  "hor-cand": "HoRCandResult.txt",
+  "pr-const": "PRConstResult.txt",
+  // Provincial Assembly (PA) results
   "pa-s1": "PAPartyTop5-S1.txt",
   "pa-s2": "PAPartyTop5-S2.txt",
   "pa-s3": "PAPartyTop5-S3.txt",
@@ -17,6 +24,39 @@ const VALID_FILES: Record<string, string> = {
   "pa-s5": "PAPartyTop5-S5.txt",
   "pa-s6": "PAPartyTop5-S6.txt",
   "pa-s7": "PAPartyTop5-S7.txt",
+  // Voter turnout
+  "turnout": "VoterTurnout.txt",
+};
+
+// Dynamic routes that require additional parameters
+const DYNAMIC_ROUTES: Record<string, (params: URLSearchParams) => string | null> = {
+  "hor-fptp-cand": (p) => {
+    const dist = p.get("dist");
+    const cnst = p.get("const");
+    return dist && cnst ? `JSONFiles/Election2082/HOR/FPTP/HOR-${dist}-${cnst}.json` : null;
+  },
+  "hor-pr-cand": (p) => {
+    const dist = p.get("dist");
+    const cnst = p.get("const");
+    return dist && cnst ? `JSONFiles/Election2082/HOR/PR/HOR/HOR-${dist}-${cnst}.json` : null;
+  },
+  "pr-province": (p) => {
+    const id = p.get("dist");
+    return id ? `JSONFiles/Election2082/HOR/PR/Province/${id}.json` : null;
+  },
+  "pr-district": (p) => {
+    const id = p.get("dist");
+    return id ? `JSONFiles/Election2082/HOR/PR/District/${id}.json` : null;
+  },
+  "pa-fptp-cand": (p) => {
+    const dist = p.get("dist");
+    const fc = p.get("const");
+    const pc = p.get("pconst");
+    return dist && fc && pc ? `JSONFiles/Election2082/PA/FPTP/PA-${dist}-${fc}-${pc}.json` : null;
+  },
+  "lookup-states": () => `JSONFiles/Election2082/Local/Lookup/states.json`,
+  "lookup-districts": () => `JSONFiles/Election2082/Local/Lookup/districts.json`,
+  "lookup-constituencies": () => `JSONFiles/Election2082/HOR/Lookup/constituencies.json`,
 };
 
 // Session cache — reuse cookies for 5 minutes
@@ -53,23 +93,43 @@ async function getSession(): Promise<{ cookies: string; csrf: string }> {
 }
 
 /**
- * GET /api/ec-proxy?type=pr    → PR vote data
- * GET /api/ec-proxy?type=fptp  → FPTP seat data
+ * GET /api/ec-proxy?type=pr                        → PR vote data (static)
+ * GET /api/ec-proxy?type=fptp                      → FPTP seat data (static)
+ * GET /api/ec-proxy?type=hor-fptp-cand&dist=15&const=4 → per-constituency candidates (dynamic)
+ * GET /api/ec-proxy?type=lookup-states             → lookup data (dynamic)
  */
 export async function GET(request: NextRequest) {
   const type = request.nextUrl.searchParams.get("type") ?? "pr";
-  const file = VALID_FILES[type];
 
-  if (!file) {
+  // Try static files first
+  let filePath: string | null | undefined = VALID_FILES[type];
+
+  // Try dynamic routes
+  if (!filePath) {
+    const dynamicRoute = DYNAMIC_ROUTES[type];
+    if (dynamicRoute) {
+      filePath = dynamicRoute(request.nextUrl.searchParams);
+      if (!filePath) {
+        return NextResponse.json(
+          { error: `Missing required parameters for type '${type}'` },
+          { status: 400 }
+        );
+      }
+    }
+  }
+
+  if (!filePath) {
     return NextResponse.json(
-      { error: `Invalid type. Use: ${Object.keys(VALID_FILES).join(", ")}` },
+      { error: `Invalid type. Static: ${Object.keys(VALID_FILES).join(", ")}. Dynamic: ${Object.keys(DYNAMIC_ROUTES).join(", ")}` },
       { status: 400 }
     );
   }
 
   try {
     const session = await getSession();
-    const url = `${EC_JSON}?file=JSONFiles/Election2082/Common/${file}`;
+    const url = filePath.startsWith("JSONFiles/")
+      ? `${EC_JSON}?file=${filePath}`
+      : `${EC_JSON}?file=JSONFiles/Election2082/Common/${filePath}`;
 
     const controller = new AbortController();
     const timeout = setTimeout(() => controller.abort(), 10000);
@@ -92,7 +152,10 @@ export async function GET(request: NextRequest) {
         // Session expired, clear cache and retry once
         cachedSession = null;
         const newSession = await getSession();
-        const retry = await fetch(url, {
+        const retryUrl = filePath.startsWith("JSONFiles/")
+          ? `${EC_JSON}?file=${filePath}`
+          : `${EC_JSON}?file=JSONFiles/Election2082/Common/${filePath}`;
+        const retry = await fetch(retryUrl, {
           headers: {
             "User-Agent": "Mozilla/5.0 (Windows NT 10.0; Win64; x64) Chrome/131.0",
             Cookie: newSession.cookies,
@@ -105,14 +168,14 @@ export async function GET(request: NextRequest) {
         if (!retry.ok) throw new Error(`EC returned ${retry.status}`);
         const data = await retry.json();
         return NextResponse.json(
-          { type, file, data, lastFetched: new Date().toISOString() },
+          { type, file: filePath, data, lastFetched: new Date().toISOString() },
           { headers: { "Cache-Control": "public, s-maxage=30, stale-while-revalidate=60" } }
         );
       }
 
       const data = await res.json();
       return NextResponse.json(
-        { type, file, data, lastFetched: new Date().toISOString() },
+        { type, file: filePath, data, lastFetched: new Date().toISOString() },
         { headers: { "Cache-Control": "public, s-maxage=30, stale-while-revalidate=60" } }
       );
     } finally {

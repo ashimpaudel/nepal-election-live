@@ -87,6 +87,74 @@ export interface ElectionSummary {
   lastUpdated: string | null;  // ISO string from API
 }
 
+// ============================================================
+// Provincial Assembly (PA) Types
+// ============================================================
+
+export interface PAConstituency {
+  id: number;
+  province_id: number;
+  district_id: number;
+  number: number;
+  name_en: string;
+  name_ne: string;
+  total_registered_voters: number;
+  status: "pending" | "counting" | "declared";
+  total_votes_cast: number;
+  invalid_votes: number;
+  updated_at: string;
+  district?: District;
+  candidates?: PACandidate[];
+}
+
+export interface PACandidate {
+  id: number;
+  pa_constituency_id: number;
+  party_id: number | null;
+  name_en: string;
+  name_ne: string;
+  votes: number;
+  is_winner: boolean;
+  is_leading: boolean;
+  updated_at: string;
+  party?: Party;
+}
+
+export interface PAPartyResult {
+  id: number;
+  province_id: number;
+  party_id: number;
+  fptp_won: number;
+  fptp_leading: number;
+  pr_votes: number;
+  pr_seats: number;
+  total_seats: number;
+  updated_at: string;
+  party?: Party;
+}
+
+export interface PAPRVote {
+  id: number;
+  pa_constituency_id: number;
+  party_id: number;
+  votes: number;
+  updated_at: string;
+  party?: Party;
+}
+
+export interface PAElectionSummary {
+  province_id: number;
+  totalSeats: number;
+  fptpSeats: number;
+  prSeats: number;
+  declared: number;
+  counting: number;
+  pending: number;
+  totalVotesCast: number;
+  totalPRVotes: number;
+  lastUpdated: string | null;
+}
+
 // Legacy compatibility — maps to old data.json shape
 export interface LegacyParty {
   name: string;

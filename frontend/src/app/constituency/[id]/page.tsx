@@ -7,7 +7,28 @@ import Header from "@/components/Header";
 import DrillDown from "@/components/DrillDown";
 import DisclaimerFooter from "@/components/DisclaimerFooter";
 import { getSupabase } from "@/lib/supabase";
+import { useLiveConstituencyCandidates } from "@/lib/hooks";
 import type { Constituency, Candidate, District, Province } from "@/lib/types";
+
+const PARTY_MAP: Record<string, { en: string; short: string; color: string }> = {
+  "राष्ट्रिय स्वतन्त्र पार्टी": { en: "RSP", short: "RSP", color: "#F59E0B" },
+  "नेपाली काँग्रेस": { en: "Nepali Congress", short: "NC", color: "#E11D48" },
+  "नेपाल कम्युनिष्ट पार्टी (एकीकृत मार्क्सवादी लेनिनवादी)": { en: "CPN-UML", short: "UML", color: "#2563EB" },
+  "नेपाली कम्युनिष्ट पार्टी": { en: "CPN-Maoist", short: "MC", color: "#DC2626" },
+  "राष्ट्रिय प्रजातन्त्र पार्टी": { en: "RPP", short: "RPP", color: "#8B5CF6" },
+  "जनता समाजवादी पार्टी, नेपाल": { en: "Janata Samajbadi", short: "JSP", color: "#10B981" },
+  "जनमत पार्टी": { en: "Janamat", short: "JP", color: "#F97316" },
+  "श्रम संस्कृति पार्टी": { en: "Shram Sanskriti", short: "SSP", color: "#059669" },
+  "नागरिक उन्मुक्ति पार्टी, नेपाल(एकल चुनाव चिन्ह)": { en: "Nagarik Unmukti", short: "NUP", color: "#14B8A6" },
+  "स्वतन्त्र": { en: "Independent", short: "Ind", color: "#6B7280" },
+};
+
+function getPartyInfo(name: string) {
+  for (const [np, info] of Object.entries(PARTY_MAP)) {
+    if (name.includes(np) || np.includes(name)) return info;
+  }
+  return { en: name, short: name.substring(0, 4), color: "#6B7280" };
+}
 
 export default function ConstituencyPage() {
   const params = useParams();
@@ -18,6 +39,37 @@ export default function ConstituencyPage() {
   const [district, setDistrict] = useState<District | null>(null);
   const [province, setProvince] = useState<Province | null>(null);
   const [loading, setLoading] = useState(true);
+
+  const ecDistrictCd = district?.id;
+  const ecConstNo = constituency?.number;
+  const { candidateData } = useLiveConstituencyCandidates(
+    candidates.length === 0 ? ecDistrictCd : undefined,
+    candidates.length === 0 ? ecConstNo : undefined
+  );
+
+  const liveCandidates: Candidate[] = candidateData?.data?.map((c, idx) => ({
+    id: idx,
+    constituency_id: constId,
+    party_id: null as unknown as number,
+    name_en: c.CandidateName,
+    name_ne: c.CandidateName,
+    votes: c.TotalVoteReceived || 0,
+    is_winner: c.Remarks === "Elected",
+    is_leading: idx === 0 && c.Remarks !== "Elected",
+    updated_at: candidateData.lastFetched,
+    party: {
+      id: 0,
+      name_en: getPartyInfo(c.PoliticalPartyName).en,
+      name_ne: c.PoliticalPartyName,
+      short_name: getPartyInfo(c.PoliticalPartyName).short,
+      color: getPartyInfo(c.PoliticalPartyName).color,
+    } as Candidate["party"],
+  })) ?? [];
+
+  const displayCandidates = candidates.length > 0 ? candidates : liveCandidates;
+  const totalVotes = candidates.length > 0
+    ? constituency?.total_votes_cast ?? 0
+    : displayCandidates.reduce((s, c) => s + c.votes, 0);
 
   useEffect(() => {
     async function load() {
@@ -103,7 +155,7 @@ export default function ConstituencyPage() {
   };
 
   const style = STATUS_STYLES[constituency.status];
-  const maxVotes = candidates[0]?.votes || 1;
+  const maxVotes = displayCandidates[0]?.votes || 1;
 
   return (
     <div className="min-h-screen bg-[var(--background)]">
@@ -150,13 +202,13 @@ export default function ConstituencyPage() {
             </span>
             <span>
               Votes cast:{" "}
-              {constituency.total_votes_cast?.toLocaleString() ?? "0"}
+              {totalVotes?.toLocaleString() ?? "0"}
             </span>
-            {constituency.total_registered_voters > 0 && (
+            {constituency.total_registered_voters > 0 && totalVotes > 0 && (
               <span>
                 Turnout:{" "}
                 {(
-                  (constituency.total_votes_cast /
+                  (totalVotes /
                     constituency.total_registered_voters) *
                   100
                 ).toFixed(1)}
@@ -175,20 +227,27 @@ export default function ConstituencyPage() {
             </h2>
           </div>
 
-          {candidates.length === 0 ? (
+          {candidates.length === 0 && displayCandidates.length > 0 && (
+            <div className="px-4 py-2 bg-green-900/20 border-b border-green-700/20 flex items-center gap-2">
+              <span className="w-2 h-2 rounded-full bg-green-400 animate-pulse" />
+              <p className="text-xs text-green-400/80">Live data from Election Commission • Auto-refreshes every 30s</p>
+            </div>
+          )}
+
+          {displayCandidates.length === 0 ? (
             <p className="text-center text-gray-500 py-8 text-sm">
               No candidate data available yet
             </p>
           ) : (
             <div className="divide-y divide-gray-700/30">
-              {candidates.map((cand, idx) => {
+              {displayCandidates.map((cand, idx) => {
                 const party = cand.party;
                 const pctOfMax =
                   maxVotes > 0 ? (cand.votes / maxVotes) * 100 : 0;
                 const pctOfTotal =
-                  constituency.total_votes_cast > 0
+                  totalVotes > 0
                     ? (
-                        (cand.votes / constituency.total_votes_cast) *
+                        (cand.votes / totalVotes) *
                         100
                       ).toFixed(1)
                     : "0";

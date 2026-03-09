@@ -4,6 +4,8 @@ import type {
   ElectionSummary,
   Constituency,
   LegacyElectionData,
+  PAPartyResult,
+  PAElectionSummary,
 } from "./types";
 
 const API_BASE = process.env.NEXT_PUBLIC_API_BASE ?? "";
@@ -116,6 +118,108 @@ export function useLiveECData(type: "pr" | "fptp" = "pr") {
     { refreshInterval: REFRESH_INTERVAL, dedupingInterval: 10_000 }
   );
   return { ecData: data, error, isLoading };
+}
+
+// ─── Provincial Assembly (PA) Data ──────────────────────────
+
+/**
+ * Hook to fetch PA results for a specific province.
+ */
+export function usePAResults(provinceId: number | undefined) {
+  const { data, error, isLoading } = useSWR<{
+    province_id: number;
+    summary: {
+      totalConstituencies: number;
+      declared: number;
+      counting: number;
+      pending: number;
+      totalVotesCast: number;
+    };
+    parties: Array<PAPartyResult & { party: { id: number; name_en: string; name_ne: string; short_name: string; color: string } }>;
+  }>(
+    provinceId ? `${API_BASE}/api/pa-results?province_id=${provinceId}` : null,
+    fetcher,
+    { refreshInterval: REFRESH_INTERVAL, dedupingInterval: 10_000 }
+  );
+  return { paResults: data, error, isLoading };
+}
+
+/**
+ * Hook to fetch live PA data from EC proxy for a province.
+ * Uses the FPTP PA data from the Election Commission.
+ */
+export function useLivePAData(provinceId: number | undefined) {
+  const { data, error, isLoading } = useSWR<{
+    type: string;
+    file: string;
+    data: Array<{
+      PoliticalPartyName: string;
+      TotalVoteReceived?: number;
+      TotWin?: number;
+      TotLead?: number;
+      TotWinLead?: number;
+      SymbolID: number;
+    }>;
+    lastFetched: string;
+  }>(
+    provinceId ? `${API_BASE}/api/ec-proxy?type=pa-s${provinceId}` : null,
+    fetcher,
+    { refreshInterval: REFRESH_INTERVAL, dedupingInterval: 10_000 }
+  );
+  return { paData: data, error, isLoading };
+}
+
+/**
+ * Hook to fetch live FPTP candidate data for a specific constituency from EC.
+ * @param districtCd - EC district code
+ * @param constNo - Constituency number within the district
+ */
+export function useLiveConstituencyCandidates(districtCd: number | undefined, constNo: number | undefined) {
+  const { data, error, isLoading } = useSWR<{
+    type: string;
+    file: string;
+    data: Array<{
+      CandidateID: number;
+      CandidateName: string;
+      Age: number;
+      Gender: string;
+      PoliticalPartyName: string;
+      SymbolID: number;
+      TotalVoteReceived: number;
+      Remarks: string | null;
+    }>;
+    lastFetched: string;
+  }>(
+    districtCd && constNo
+      ? `${API_BASE}/api/ec-proxy?type=hor-fptp-cand&dist=${districtCd}&const=${constNo}`
+      : null,
+    fetcher,
+    { refreshInterval: REFRESH_INTERVAL, dedupingInterval: 10_000 }
+  );
+  return { candidateData: data, error, isLoading };
+}
+
+/**
+ * Hook to fetch live PR vote data for a specific constituency from EC.
+ */
+export function useLiveConstituencyPR(districtCd: number | undefined, constNo: number | undefined) {
+  const { data, error, isLoading } = useSWR<{
+    type: string;
+    file: string;
+    data: Array<{
+      PoliticalPartyName: string;
+      TotalVoteReceived: number;
+      SymbolID: number;
+    }>;
+    lastFetched: string;
+  }>(
+    districtCd && constNo
+      ? `${API_BASE}/api/ec-proxy?type=hor-pr-cand&dist=${districtCd}&const=${constNo}`
+      : null,
+    fetcher,
+    { refreshInterval: REFRESH_INTERVAL, dedupingInterval: 10_000 }
+  );
+  return { prData: data, error, isLoading };
 }
 
 // ─── Legacy fallback: fetch from static data.json ─────────────

@@ -1,0 +1,17 @@
+{
+  "polling": {
+    "active_interval_minutes": 5,
+    "idle_interval_minutes": 60,
+    "description": "Use active during counting, idle when all declared"
+  },
+  "behavior": {
+    "skip_finalized": true,
+    "rate_limit_ms": 200,
+    "max_retries": 3,
+    "retry_delay_ms": 2000
+  },
+  "thresholds": {
+    "all_declared_stop_fptp": true,
+    "description": "Stop FPTP polling when all 165 constituencies are declared"
+  }
+}
