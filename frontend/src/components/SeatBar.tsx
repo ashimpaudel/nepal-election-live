@@ -1,3 +1,4 @@
+import { Trophy } from "lucide-react";
 import type { Party } from "@/data/electionData";
 
 interface SeatBarProps {
@@ -5,15 +6,27 @@ interface SeatBarProps {
   totalSeats: number;
 }
 
+const MAJORITY_SEATS = 138;
+
 export default function SeatBar({ parties, totalSeats }: SeatBarProps) {
   const majority = Math.floor(totalSeats / 2) + 1;
   const declaredSeats = parties.reduce((s, p) => s + p.won, 0);
   const majorityPct = (majority / totalSeats) * 100;
 
+  // Leading party for the majority progress bar
+  const leadingParty = parties.length
+    ? parties.reduce((a, b) => (a.won + a.leading > b.won + b.leading ? a : b))
+    : null;
+  const leadingTotal = leadingParty ? leadingParty.won + leadingParty.leading : 0;
+  const majorityProgress = Math.min((leadingTotal / MAJORITY_SEATS) * 100, 100);
+
   return (
-    <div className="bg-gray-800/50 border border-gray-700 rounded-xl p-4">
+    <div className="glass-card rounded-2xl p-4 space-y-4">
       <div className="flex items-center justify-between mb-2">
-        <h2 className="text-sm font-bold text-white">Seat Distribution</h2>
+        <h2 className="text-sm font-bold text-white flex items-center gap-2">
+          <Trophy className="w-4 h-4 text-yellow-400" />
+          Seat Distribution
+        </h2>
         <span className="text-xs text-gray-400">
           {declaredSeats}/{totalSeats} declared
         </span>
@@ -21,7 +34,7 @@ export default function SeatBar({ parties, totalSeats }: SeatBarProps) {
 
       {/* Stacked bar */}
       <div className="relative">
-        <div className="flex h-6 rounded-full overflow-hidden bg-gray-700">
+        <div className="flex h-6 rounded-full overflow-hidden bg-gray-700/50">
           {parties
             .filter((p) => p.won > 0)
             .map((party) => (
@@ -56,8 +69,36 @@ export default function SeatBar({ parties, totalSeats }: SeatBarProps) {
         </p>
       </div>
 
+      {/* Majority progress bar */}
+      {leadingParty && (
+        <div className="mt-8 glass rounded-xl p-3">
+          <div className="flex items-center justify-between text-xs mb-2">
+            <span className="text-gray-300 font-medium">
+              🏆 {leadingParty.shortName} — Path to Majority
+            </span>
+            <span className="text-gray-400">
+              {leadingTotal} / {MAJORITY_SEATS} seats needed
+            </span>
+          </div>
+          <div className="w-full bg-gray-700/50 rounded-full h-3">
+            <div
+              className="h-3 rounded-full transition-all duration-700"
+              style={{
+                width: `${majorityProgress}%`,
+                backgroundColor: leadingParty.color,
+              }}
+            />
+          </div>
+          <p className="text-[10px] text-gray-500 mt-1 text-right">
+            {MAJORITY_SEATS - leadingTotal > 0
+              ? `${MAJORITY_SEATS - leadingTotal} more seats needed for majority`
+              : "Majority achieved!"}
+          </p>
+        </div>
+      )}
+
       {/* Legend */}
-      <div className="flex flex-wrap gap-x-4 gap-y-1 mt-8">
+      <div className="flex flex-wrap gap-x-4 gap-y-1 mt-2">
         {parties
           .filter((p) => p.won > 0)
           .slice(0, 6)

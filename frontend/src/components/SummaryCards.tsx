@@ -1,3 +1,4 @@
+import { BarChart3, CheckCircle2, Timer, AlertCircle } from "lucide-react";
 import type { ElectionSummary } from "@/data/electionData";
 
 interface SummaryCardsProps {
@@ -10,52 +11,66 @@ export default function SummaryCards({ summary }: SummaryCardsProps) {
       label: "Total Seats",
       value: summary.totalSeats,
       sublabel: "प्रतिनिधि सभा",
-      bg: "bg-gray-800",
-      border: "border-gray-700",
+      icon: BarChart3,
+      bg: "glass-card",
+      border: "border-gray-600/30",
       text: "text-white",
+      iconColor: "text-blue-400",
     },
     {
       label: "Declared",
       value: summary.declared,
       sublabel: "घोषित",
-      bg: "bg-green-900/40",
-      border: "border-green-700",
+      icon: CheckCircle2,
+      bg: "glass-card",
+      border: "border-green-500/30",
       text: "text-green-400",
+      iconColor: "text-green-400",
     },
     {
       label: "Counting",
       value: summary.counting,
       sublabel: "मतगणना",
-      bg: "bg-yellow-900/40",
-      border: "border-yellow-700",
+      icon: Timer,
+      bg: "glass-card",
+      border: "border-yellow-500/30",
       text: "text-yellow-400",
+      iconColor: "text-yellow-400",
     },
     {
       label: "Pending",
       value: summary.pending,
       sublabel: "बाँकी",
-      bg: "bg-red-900/40",
-      border: "border-red-700",
+      icon: AlertCircle,
+      bg: "glass-card",
+      border: "border-red-500/30",
       text: "text-red-400",
+      iconColor: "text-red-400",
     },
   ];
 
   return (
     <div className="grid grid-cols-2 sm:grid-cols-4 gap-3">
-      {cards.map((card) => (
-        <div
-          key={card.label}
-          className={`${card.bg} ${card.border} border rounded-xl p-4 text-center`}
-        >
-          <p className="text-xs text-gray-400 uppercase tracking-wide">
-            {card.label}
-          </p>
-          <p className={`text-3xl font-black ${card.text} mt-1`}>
-            {card.value}
-          </p>
-          <p className="text-xs text-gray-500 mt-1">{card.sublabel}</p>
-        </div>
-      ))}
+      {cards.map((card) => {
+        const Icon = card.icon;
+        return (
+          <div
+            key={card.label}
+            className={`${card.bg} ${card.border} border rounded-2xl p-4 text-center`}
+          >
+            <div className="flex justify-center mb-1">
+              <Icon className={`w-4 h-4 ${card.iconColor}`} />
+            </div>
+            <p className="text-xs text-gray-400 uppercase tracking-wide">
+              {card.label}
+            </p>
+            <p className={`text-3xl font-black ${card.text} mt-1`}>
+              {card.value}
+            </p>
+            <p className="text-xs text-gray-500 mt-1">{card.sublabel}</p>
+          </div>
+        );
+      })}
     </div>
   );
 }

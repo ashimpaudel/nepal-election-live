@@ -1,6 +1,7 @@
 "use client";
 
 import { useState } from "react";
+import { Search, MapPin, ChevronDown, ChevronUp } from "lucide-react";
 import type { Constituency } from "@/data/electionData";
 
 interface ConstituencyResultsProps {
@@ -12,19 +13,19 @@ const STATUS_STYLES = {
     label: "Declared",
     bg: "bg-green-900/50",
     text: "text-green-400",
-    border: "border-green-700",
+    border: "border-green-700/50",
   },
   counting: {
     label: "Counting",
     bg: "bg-yellow-900/50",
     text: "text-yellow-400",
-    border: "border-yellow-700",
+    border: "border-yellow-700/50",
   },
   pending: {
     label: "Pending",
-    bg: "bg-gray-800",
+    bg: "bg-gray-800/50",
     text: "text-gray-500",
-    border: "border-gray-700",
+    border: "border-gray-700/50",
   },
 };
 
@@ -56,9 +57,10 @@ export default function ConstituencyResults({
   });
 
   return (
-    <div className="bg-gray-800/50 border border-gray-700 rounded-xl overflow-hidden">
-      <div className="px-4 py-3 border-b border-gray-700">
-        <h2 className="text-base font-bold text-white">
+    <div className="glass-card rounded-2xl overflow-hidden">
+      <div className="px-4 py-3 border-b border-gray-700/50">
+        <h2 className="text-base font-bold text-white flex items-center gap-2">
+          <MapPin className="w-4 h-4 text-red-400" />
           Constituency Results
         </h2>
         <p className="text-xs text-gray-400">
@@ -67,14 +69,17 @@ export default function ConstituencyResults({
       </div>
 
       {/* Filters */}
-      <div className="px-4 py-3 border-b border-gray-700 space-y-2">
-        <input
-          type="text"
-          placeholder="Search constituency..."
-          value={search}
-          onChange={(e) => setSearch(e.target.value)}
-          className="w-full bg-gray-900 border border-gray-600 rounded-lg px-3 py-2 text-sm text-white placeholder-gray-500 focus:outline-none focus:border-blue-500"
-        />
+      <div className="px-4 py-3 border-b border-gray-700/50 space-y-2">
+        <div className="relative">
+          <Search className="absolute left-3 top-1/2 -translate-y-1/2 w-4 h-4 text-gray-500" />
+          <input
+            type="text"
+            placeholder="Search constituency..."
+            value={search}
+            onChange={(e) => setSearch(e.target.value)}
+            className="w-full bg-gray-900/50 border border-gray-600/50 rounded-lg pl-9 pr-3 py-2 text-sm text-white placeholder-gray-500 focus:outline-none focus:border-blue-500 transition-colors"
+          />
+        </div>
 
         <div className="flex gap-2 overflow-x-auto pb-1 scrollbar-hide">
           {PROVINCES.map((prov) => (
@@ -84,7 +89,7 @@ export default function ConstituencyResults({
               className={`px-3 py-1 rounded-full text-xs font-medium whitespace-nowrap transition-colors ${
                 selectedProvince === prov
                   ? "bg-blue-600 text-white"
-                  : "bg-gray-700 text-gray-300 hover:bg-gray-600"
+                  : "bg-gray-700/50 text-gray-300 hover:bg-gray-600/50"
               }`}
             >
               {prov}
@@ -100,7 +105,7 @@ export default function ConstituencyResults({
               className={`px-3 py-1 rounded-full text-xs font-medium transition-colors ${
                 statusFilter === status
                   ? "bg-blue-600 text-white"
-                  : "bg-gray-700 text-gray-300 hover:bg-gray-600"
+                  : "bg-gray-700/50 text-gray-300 hover:bg-gray-600/50"
               }`}
             >
               {status === "all"
@@ -118,7 +123,7 @@ export default function ConstituencyResults({
             No constituencies found
           </p>
         ) : (
-          <div className="divide-y divide-gray-700/50">
+          <div className="divide-y divide-gray-700/30">
             {filtered.map((c) => {
               const style = STATUS_STYLES[c.status];
               const isExpanded = expandedId === c.id;
@@ -129,7 +134,7 @@ export default function ConstituencyResults({
                     onClick={() =>
                       setExpandedId(isExpanded ? null : c.id)
                     }
-                    className="w-full text-left px-4 py-3 hover:bg-gray-700/30 transition-colors"
+                    className="w-full text-left px-4 py-3 hover:bg-white/5 transition-colors"
                   >
                     <div className="flex items-center justify-between">
                       <div className="flex-1 min-w-0">
@@ -166,7 +171,11 @@ export default function ConstituencyResults({
                       )}
 
                       <span className="text-gray-500 ml-2">
-                        {isExpanded ? "▲" : "▼"}
+                        {isExpanded ? (
+                          <ChevronUp className="w-4 h-4" />
+                        ) : (
+                          <ChevronDown className="w-4 h-4" />
+                        )}
                       </span>
                     </div>
                   </button>
@@ -190,7 +199,7 @@ export default function ConstituencyResults({
                                   {cand.votes.toLocaleString()}
                                 </span>
                               </div>
-                              <div className="w-full bg-gray-700 rounded-full h-1.5">
+                              <div className="w-full bg-gray-700/50 rounded-full h-1.5">
                                 <div
                                   className="h-1.5 rounded-full"
                                   style={{
