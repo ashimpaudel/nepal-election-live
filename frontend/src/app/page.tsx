@@ -1,12 +1,15 @@
 "use client";
 
 import { useEffect, useState } from "react";
+import { Newspaper } from "lucide-react";
 import Header from "@/components/Header";
 import SummaryCards from "@/components/SummaryCards";
 import PartyResults from "@/components/PartyResults";
 import ConstituencyResults from "@/components/ConstituencyResults";
 import SeatBar from "@/components/SeatBar";
 import DataSourceBanner from "@/components/DataSourceBanner";
+import DisclaimerFooter from "@/components/DisclaimerFooter";
+import { fetchElectionNews, type NewsArticle } from "@/lib/api";
 import type {
   Party,
   Constituency,
@@ -92,6 +95,7 @@ export const EMPTY_DATA: ElectionData = {
 export default function Home() {
   const [data, setData] = useState<ElectionData | null>(null);
   const [loading, setLoading] = useState(true);
+  const [news, setNews] = useState<NewsArticle[]>([]);
 
   useEffect(() => {
     // Show cached data immediately for instant perceived load
@@ -121,6 +125,11 @@ export default function Home() {
           setLoading(false);
         }
       });
+
+    // Fetch election-related news from Hamro Patro API
+    fetchElectionNews().then(setNews).catch((err) => {
+      console.warn("Unexpected error fetching news:", err);
+    });
   }, []);
 
   if (loading || !data) {
@@ -132,14 +141,14 @@ export default function Home() {
             {[...Array(4)].map((_, i) => (
               <div
                 key={i}
-                className="bg-gray-800 border border-gray-700 rounded-xl p-4 animate-pulse h-24"
+                className="glass-card rounded-2xl p-4 animate-pulse h-24"
               />
             ))}
           </div>
-          <div className="bg-gray-800 border border-gray-700 rounded-xl p-4 animate-pulse h-16" />
+          <div className="glass-card rounded-2xl p-4 animate-pulse h-16" />
           <div className="grid grid-cols-1 lg:grid-cols-5 gap-4">
-            <div className="lg:col-span-3 bg-gray-800 border border-gray-700 rounded-xl p-4 animate-pulse h-64" />
-            <div className="lg:col-span-2 bg-gray-800 border border-gray-700 rounded-xl p-4 animate-pulse h-64" />
+            <div className="lg:col-span-3 glass-card rounded-2xl p-4 animate-pulse h-64" />
+            <div className="lg:col-span-2 glass-card rounded-2xl p-4 animate-pulse h-64" />
           </div>
         </main>
       </div>
@@ -156,7 +165,7 @@ export default function Home() {
         {/* Summary Statistics */}
         <SummaryCards summary={summary} />
 
-        {/* Seat Distribution Bar */}
+        {/* Seat Distribution Bar + Majority Progress */}
         <SeatBar parties={data.parties} totalSeats={summary.totalSeats} />
 
         {/* Two-column layout on desktop, stacked on mobile */}
@@ -169,9 +178,40 @@ export default function Home() {
           </div>
         </div>
 
+        {/* Election News from Hamro Patro API */}
+        {news.length > 0 && (
+          <div className="glass-card rounded-2xl p-4">
+            <h2 className="text-sm font-bold text-white flex items-center gap-2 mb-3">
+              <Newspaper className="w-4 h-4 text-purple-400" />
+              Election News
+            </h2>
+            <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-3">
+              {news.slice(0, 6).map((article, idx) => (
+                <a
+                  key={idx}
+                  href={article.url}
+                  target="_blank"
+                  rel="noopener noreferrer"
+                  className="glass rounded-xl p-3 hover:bg-white/5 transition-colors block"
+                >
+                  <p className="text-sm text-white font-medium line-clamp-2">
+                    {article.title}
+                  </p>
+                  <p className="text-xs text-gray-500 mt-1">
+                    {article.source}
+                  </p>
+                </a>
+              ))}
+            </div>
+          </div>
+        )}
+
         {/* Data Sources */}
         <DataSourceBanner sources={DATA_SOURCES} />
       </main>
+
+      {/* Unofficial Results Disclaimer Footer */}
+      <DisclaimerFooter />
     </div>
   );
 }

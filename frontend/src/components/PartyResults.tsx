@@ -1,6 +1,7 @@
 "use client";
 
 import { useState } from "react";
+import { Users, ChevronDown, ChevronUp } from "lucide-react";
 import type { Party } from "@/data/electionData";
 
 interface PartyResultsProps {
@@ -21,10 +22,11 @@ export default function PartyResults({
   const majority = Math.floor(totalSeats / 2) + 1;
 
   return (
-    <div className="bg-gray-800/50 border border-gray-700 rounded-xl overflow-hidden">
-      <div className="px-4 py-3 border-b border-gray-700 flex items-center justify-between">
+    <div className="glass-card rounded-2xl overflow-hidden">
+      <div className="px-4 py-3 border-b border-gray-700/50 flex items-center justify-between">
         <div>
-          <h2 className="text-base font-bold text-white">
+          <h2 className="text-base font-bold text-white flex items-center gap-2">
+            <Users className="w-4 h-4 text-blue-400" />
             Party-wise Results
           </h2>
           <p className="text-xs text-gray-400">
@@ -33,11 +35,11 @@ export default function PartyResults({
         </div>
       </div>
 
-      {/* Mobile-friendly stacked cards on small screens, table on larger */}
+      {/* Desktop table view */}
       <div className="hidden sm:block overflow-x-auto">
         <table className="w-full text-sm">
           <thead>
-            <tr className="border-b border-gray-700 text-gray-400 text-xs uppercase">
+            <tr className="border-b border-gray-700/50 text-gray-400 text-xs uppercase">
               <th className="text-left px-4 py-2">Party</th>
               <th className="text-center px-2 py-2">Won</th>
               <th className="text-center px-2 py-2">Leading</th>
@@ -56,7 +58,7 @@ export default function PartyResults({
               return (
                 <tr
                   key={party.name}
-                  className="border-b border-gray-700/50 hover:bg-gray-700/30 transition-colors"
+                  className="border-b border-gray-700/30 hover:bg-white/5 transition-colors"
                 >
                   <td className="px-4 py-3">
                     <div className="flex items-center gap-2">
@@ -88,7 +90,7 @@ export default function PartyResults({
                     </span>
                   </td>
                   <td className="px-4 py-3">
-                    <div className="w-full bg-gray-700 rounded-full h-2.5">
+                    <div className="w-full bg-gray-700/50 rounded-full h-2.5">
                       <div
                         className="h-2.5 rounded-full transition-all duration-500"
                         style={{
@@ -109,8 +111,8 @@ export default function PartyResults({
         </table>
       </div>
 
-      {/* Mobile card layout */}
-      <div className="sm:hidden divide-y divide-gray-700/50">
+      {/* Mobile vertical card layout */}
+      <div className="sm:hidden divide-y divide-gray-700/30">
         {displayed.map((party) => {
           const total = party.won + party.leading;
           const votePercent =
@@ -147,7 +149,7 @@ export default function PartyResults({
                 </span>
               </div>
 
-              <div className="w-full bg-gray-700 rounded-full h-2">
+              <div className="w-full bg-gray-700/50 rounded-full h-2">
                 <div
                   className="h-2 rounded-full transition-all duration-500"
                   style={{
@@ -164,11 +166,17 @@ export default function PartyResults({
       {parties.length > 6 && (
         <button
           onClick={() => setShowAll(!showAll)}
-          className="w-full text-center py-3 text-sm text-blue-400 hover:text-blue-300 border-t border-gray-700 transition-colors"
+          className="w-full text-center py-3 text-sm text-blue-400 hover:text-blue-300 border-t border-gray-700/50 transition-colors flex items-center justify-center gap-1"
         >
-          {showAll
-            ? "Show Less ▲"
-            : `Show All ${parties.length} Parties ▼`}
+          {showAll ? (
+            <>
+              Show Less <ChevronUp className="w-4 h-4" />
+            </>
+          ) : (
+            <>
+              Show All {parties.length} Parties <ChevronDown className="w-4 h-4" />
+            </>
+          )}
         </button>
       )}
     </div>
