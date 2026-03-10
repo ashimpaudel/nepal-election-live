@@ -11,14 +11,20 @@ const MAJORITY_SEATS = 138;
 
 export default function SeatBar({ parties, totalSeats }: SeatBarProps) {
   const majority = Math.floor(totalSeats / 2) + 1;
-  const declaredSeats = parties.reduce((s, p) => s + p.won, 0);
+  const allocatedSeats = parties.reduce((s, p) => s + (p.totalSeats || p.won), 0);
   const majorityPct = (majority / totalSeats) * 100;
 
   // Leading party for the majority progress bar
   const leadingParty = parties.length
-    ? parties.reduce((a, b) => (a.won + a.leading > b.won + b.leading ? a : b))
+    ? parties.reduce((a, b) => {
+        const aTotal = a.totalSeats || (a.won + a.leading);
+        const bTotal = b.totalSeats || (b.won + b.leading);
+        return aTotal > bTotal ? a : b;
+      })
     : null;
-  const leadingTotal = leadingParty ? leadingParty.won + leadingParty.leading : 0;
+  const leadingTotal = leadingParty
+    ? (leadingParty.totalSeats || (leadingParty.won + leadingParty.leading))
+    : 0;
   const majorityProgress = Math.min((leadingTotal / MAJORITY_SEATS) * 100, 100);
 
   return (
@@ -26,36 +32,39 @@ export default function SeatBar({ parties, totalSeats }: SeatBarProps) {
       <div className="flex items-center justify-between mb-2">
         <h2 className="text-sm font-bold text-white flex items-center gap-2">
           <Trophy className="w-4 h-4 text-yellow-400" />
-          Seat Distribution
+          Seat Distribution (FPTP + PR)
         </h2>
         <span className="text-xs text-gray-400">
-          {declaredSeats}/{totalSeats} declared
+          {allocatedSeats}/{totalSeats} allocated
         </span>
       </div>
 
       {/* Stacked bar */}
       <div className="relative">
-        <div className="flex h-6 rounded-full overflow-hidden bg-gray-700/50" role="img" aria-label={`Seat distribution: ${declaredSeats} of ${totalSeats} seats declared`}>
+        <div className="flex h-6 rounded-full overflow-hidden bg-gray-700/50" role="img" aria-label={`Seat distribution: ${allocatedSeats} of ${totalSeats} seats allocated`}>
           {parties
-            .filter((p) => p.won > 0)
-            .map((party) => (
-              <div
-                key={party.name}
-                title={`${party.shortName}: ${party.won} seats`}
-                aria-label={`${party.shortName}: ${party.won} seats`}
-                className="h-full transition-all duration-500 relative group"
-                style={{
-                  width: `${(party.won / totalSeats) * 100}%`,
-                  backgroundColor: party.color,
-                }}
-              >
-                {party.won > 3 && (
-                  <span className="absolute inset-0 flex items-center justify-center text-white text-[10px] font-bold">
-                    {party.won}
-                  </span>
-                )}
-              </div>
-            ))}
+            .filter((p) => (p.totalSeats || p.won) > 0)
+            .map((party) => {
+              const partyTotal = party.totalSeats || party.won;
+              return (
+                <div
+                  key={party.name}
+                  title={`${party.shortName}: ${partyTotal} seats (${party.won} FPTP + ${party.prSeats} PR)`}
+                  aria-label={`${party.shortName}: ${partyTotal} seats`}
+                  className="h-full transition-all duration-500 relative group"
+                  style={{
+                    width: `${(partyTotal / totalSeats) * 100}%`,
+                    backgroundColor: party.color,
+                  }}
+                >
+                  {partyTotal > 3 && (
+                    <span className="absolute inset-0 flex items-center justify-center text-white text-[10px] font-bold">
+                      {partyTotal}
+                    </span>
+                  )}
+                </div>
+              );
+            })}
         </div>
 
         {/* Majority line */}
@@ -102,19 +111,22 @@ export default function SeatBar({ parties, totalSeats }: SeatBarProps) {
       {/* Legend */}
       <div className="flex flex-wrap gap-x-4 gap-y-1 mt-2">
         {parties
-          .filter((p) => p.won > 0)
+          .filter((p) => (p.totalSeats || p.won) > 0)
           .slice(0, 6)
-          .map((party) => (
-            <div key={party.name} className="flex items-center gap-1">
-              <span
-                className="w-2 h-2 rounded-full"
-                style={{ backgroundColor: party.color }}
-              />
-              <span className="text-xs text-gray-400">
-                {party.shortName} ({party.won})
-              </span>
-            </div>
-          ))}
+          .map((party) => {
+            const partyTotal = party.totalSeats || party.won;
+            return (
+              <div key={party.name} className="flex items-center gap-1">
+                <span
+                  className="w-2 h-2 rounded-full"
+                  style={{ backgroundColor: party.color }}
+                />
+                <span className="text-xs text-gray-400">
+                  {party.shortName} ({partyTotal})
+                </span>
+              </div>
+            );
+          })}
       </div>
     </div>
   );

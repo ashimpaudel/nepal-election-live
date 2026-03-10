@@ -15,6 +15,10 @@ import DataSourceBanner from "@/components/DataSourceBanner";
 import DisclaimerFooter from "@/components/DisclaimerFooter";
 import PopularCandidates from "@/components/PopularCandidates";
 import PAResults from "@/components/PAResults";
+import StoryHero from "@/components/StoryHero";
+import SwingChart from "@/components/SwingChart";
+import KeyMatchups from "@/components/KeyMatchups";
+import LivePulse from "@/components/LivePulse";
 
 // Lazy-load the map component to reduce initial bundle size
 const NepalMap = dynamic(() => import("@/components/NepalMap"), {
@@ -69,6 +73,7 @@ function toLegacyParties(
     fptp_won: number;
     fptp_leading: number;
     pr_votes: number;
+    pr_seats: number;
     total_seats: number;
   }>
 ): LegacyParty[] {
@@ -79,7 +84,9 @@ function toLegacyParties(
     color: p.color,
     won: p.fptp_won,
     leading: p.fptp_leading,
-    totalVotes: p.pr_votes, // approximate: using PR votes as proxy
+    totalVotes: p.pr_votes,
+    prSeats: p.pr_seats,
+    totalSeats: p.total_seats,
   }));
 }
 
@@ -196,24 +203,40 @@ export default function Home() {
 
   let displayParties: LegacyParty[];
   if (liveFPTP?.data && liveFPTP.data.length > 0) {
-    // Use live EC data (freshest)
+    // Merge live EC FPTP data with Supabase PR seat data for complete picture
+    const supabasePartyMap: Record<string, { prSeats: number; prVotes: number }> = {};
+    if (parties.length > 0) {
+      parties.forEach((p) => {
+        supabasePartyMap[p.name_en] = { prSeats: p.pr_seats, prVotes: p.pr_votes };
+      });
+    }
+
     displayParties = liveFPTP.data.map((p) => {
       const en = PARTY_NAME_MAP[p.PoliticalPartyName] ?? p.PoliticalPartyName;
       const info = PARTY_COLORS[en] ?? { shortName: en.substring(0, 4), color: "#6B7280", nameNp: p.PoliticalPartyName };
+      const supaData = supabasePartyMap[en];
+      const prSeats = supaData?.prSeats ?? 0;
+      const won = p.TotWin ?? 0;
       return {
         name: en,
         nameNp: info.nameNp,
         shortName: info.shortName,
         color: info.color,
-        won: p.TotWin ?? 0,
+        won,
         leading: p.TotLead ?? 0,
-        totalVotes: 0,
+        totalVotes: supaData?.prVotes ?? 0,
+        prSeats,
+        totalSeats: won + prSeats,
       };
     });
   } else if (useSupabase) {
     displayParties = toLegacyParties(parties);
   } else {
-    displayParties = fallbackData?.parties ?? [];
+    displayParties = (fallbackData?.parties ?? []).map((p) => ({
+      ...p,
+      prSeats: p.prSeats ?? 0,
+      totalSeats: p.totalSeats ?? 0,
+    }));
   }
 
   const displayConstituencies: LegacyConstituency[] = useSupabase
@@ -261,60 +284,61 @@ export default function Home() {
 
   return (
     <div className="min-h-screen bg-[var(--background)]">
+      {/* 1. LivePulse — Sticky top bar */}
+      <LivePulse
+        declared={displaySummary.declared}
+        totalFPTP={165}
+        prVotesCounted={displaySummary.totalVotesCast}
+        lastUpdated={displaySummary.lastUpdated}
+        isLive={displaySummary.declared < 165 || displaySummary.counting > 0}
+      />
+
+      {/* 2. Header */}
       <Header
         lastUpdated={displaySummary.lastUpdated}
         totalSeats={displaySummary.totalSeats}
       />
 
       <main className="max-w-7xl mx-auto px-4 sm:px-6 py-6 space-y-6">
-        {/* Summary Statistics */}
-        <SummaryCards summary={displaySummary} />
+        {/* 3. StoryHero — Narrative + 2/3 majority tracker */}
+        <StoryHero parties={displayParties} summary={displaySummary} />
 
-        {/* Big Number Hero — NYT-style bold election status */}
-        <div className="text-center py-4">
-          <p className="text-xs uppercase tracking-widest text-gray-500 font-medium">
-            House of Representatives • प्रतिनिधि सभा
-          </p>
-          <div className="flex items-baseline justify-center gap-3 mt-2">
-            <span className="text-6xl sm:text-7xl font-black text-white tabular-nums">
-              {displaySummary.declared + displaySummary.counting}
-            </span>
-            <span className="text-2xl sm:text-3xl text-gray-500 font-light">
-              / {165}
-            </span>
-          </div>
-          <p className="text-sm text-gray-400 mt-1">
-            seats called • <span className="text-green-400">{displaySummary.declared} declared</span>
-            {displaySummary.counting > 0 && (
-              <span className="text-yellow-400 ml-2">{displaySummary.counting} counting</span>
-            )}
-          </p>
-        </div>
-
-        {/* Hero: Hemicycle Parliament Visualization */}
+        {/* 4. HemicycleChart — Parliament visualization */}
         <HemicycleChart parties={displayParties} totalSeats={displaySummary.totalSeats} />
 
-        {/* Seat Distribution Bar (compact summary) */}
+        {/* 5. KeyMatchups — Spotlight constituency battles */}
+        <KeyMatchups />
+
+        {/* 6. SwingChart — 2079 vs 2082 comparison */}
+        <SwingChart parties={displayParties} totalSeats={displaySummary.totalSeats} />
+
+        {/* 7. SeatBar — Compact seat distribution */}
         <SeatBar parties={displayParties} totalSeats={displaySummary.totalSeats} />
 
-        {/* Interactive Nepal Province Map */}
-        <NepalMap />
+        {/* 8. SummaryCards — Stats grid */}
+        <SummaryCards summary={displaySummary} />
 
-        {/* Provincial Assembly Quick View */}
+        {/* 9. PopularCandidates — Top vote-getters */}
+        <PopularCandidates constituencies={displayConstituencies} />
+
+        {/* 10. Three-column grid: Party Results | Live PR | Constituencies */}
         <div className="border-t border-gray-800 pt-4">
           <h2 className="text-xs uppercase tracking-widest text-gray-500 font-semibold mb-4">
-            Provincial Assembly Overview • प्रदेश सभा
+            Detailed Results
           </h2>
-          <div className="grid grid-cols-1 lg:grid-cols-2 gap-4">
-            {[1, 2, 3, 4, 5, 6, 7].map((pid) => (
-              <PAResults
-                key={pid}
-                provinceId={pid}
-                provinceName={
-                  ["", "Koshi", "Madhesh", "Bagmati", "Gandaki", "Lumbini", "Karnali", "Sudurpashchim"][pid]
-                }
+          <div className="grid grid-cols-1 lg:grid-cols-5 gap-4 sm:gap-6">
+            <div className="lg:col-span-2">
+              <PartyResults
+                parties={displayParties}
+                totalSeats={displaySummary.totalSeats}
               />
-            ))}
+            </div>
+            <div className="lg:col-span-1">
+              <LivePRTicker />
+            </div>
+            <div className="lg:col-span-2">
+              <ConstituencyResults constituencies={displayConstituencies} />
+            </div>
           </div>
         </div>
 
@@ -343,31 +367,28 @@ export default function Home() {
           </div>
         )}
 
-        {/* Top Vote-Getters */}
-        <PopularCandidates constituencies={displayConstituencies} />
+        {/* 11. NepalMap — Province map */}
+        <NepalMap />
 
-        {/* Three-column layout: Party Results | Live PR Votes | Constituencies */}
+        {/* 12. PA Overview — Provincial Assembly section */}
         <div className="border-t border-gray-800 pt-4">
           <h2 className="text-xs uppercase tracking-widest text-gray-500 font-semibold mb-4">
-            Detailed Results
+            Provincial Assembly Overview • प्रदेश सभा
           </h2>
-          <div className="grid grid-cols-1 lg:grid-cols-5 gap-4 sm:gap-6">
-            <div className="lg:col-span-2">
-              <PartyResults
-                parties={displayParties}
-                totalSeats={displaySummary.totalSeats}
+          <div className="grid grid-cols-1 lg:grid-cols-2 gap-4">
+            {[1, 2, 3, 4, 5, 6, 7].map((pid) => (
+              <PAResults
+                key={pid}
+                provinceId={pid}
+                provinceName={
+                  ["", "Koshi", "Madhesh", "Bagmati", "Gandaki", "Lumbini", "Karnali", "Sudurpashchim"][pid]
+                }
               />
-            </div>
-            <div className="lg:col-span-1">
-              <LivePRTicker />
-            </div>
-            <div className="lg:col-span-2">
-              <ConstituencyResults constituencies={displayConstituencies} />
-            </div>
+            ))}
           </div>
         </div>
 
-        {/* Election News from Hamro Patro API */}
+        {/* 13. News — Election coverage */}
         {news.length > 0 && (
           <div className="border-t border-gray-800 pt-4">
             <h2 className="text-xs uppercase tracking-widest text-gray-500 font-semibold mb-3 flex items-center gap-2">
@@ -395,11 +416,10 @@ export default function Home() {
           </div>
         )}
 
-        {/* Data Sources */}
+        {/* 14. DataSourceBanner + Footer */}
         <DataSourceBanner sources={DATA_SOURCES} />
       </main>
 
-      {/* Unofficial Results Disclaimer Footer */}
       <DisclaimerFooter />
     </div>
   );

@@ -15,7 +15,7 @@ export default function Header({ lastUpdated, totalSeats }: HeaderProps) {
   const [locale, setLocale] = useState<Locale>("en");
 
   return (
-    <header className="glass border-b border-white/5 sticky top-0 z-50">
+    <header className="glass border-b border-white/5 sticky top-0 z-40">
       <div className="max-w-7xl mx-auto px-4 py-3 flex items-center justify-between">
         <div className="flex items-center gap-3">
           {/* Nepal flag accent — gradient bars */}
@@ -24,8 +24,15 @@ export default function Header({ lastUpdated, totalSeats }: HeaderProps) {
             <div className="w-1 h-9 bg-gradient-to-b from-blue-600 to-blue-900 rounded-full" />
           </div>
           <div>
-            <h1 className="text-lg sm:text-xl font-black tracking-tight text-white">
-              🗳️ Nepal Election <span className="bg-gradient-to-r from-red-500 to-red-400 bg-clip-text text-transparent">LIVE</span>
+            <h1 className="text-lg sm:text-xl font-black tracking-tight text-white flex items-center gap-1">
+              Nepal Election
+              <span className="relative inline-flex items-center ml-1.5">
+                <span className="absolute -left-1.5 w-2 h-2 rounded-full bg-red-500 animate-ping opacity-75" />
+                <span className="absolute -left-1.5 w-2 h-2 rounded-full bg-red-500" />
+                <span className="ml-2 text-red-500 font-black tracking-wider text-sm sm:text-base">
+                  LIVE
+                </span>
+              </span>
             </h1>
             <p className="text-[11px] text-gray-500">
               प्रतिनिधि सभा निर्वाचन २०८२ • {totalSeats} Seats

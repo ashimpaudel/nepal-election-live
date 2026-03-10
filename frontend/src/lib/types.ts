@@ -161,9 +161,11 @@ export interface LegacyParty {
   nameNp: string;
   shortName: string;
   color: string;
-  won: number;
-  leading: number;
-  totalVotes: number;
+  won: number;        // FPTP won
+  leading: number;    // FPTP leading
+  totalVotes: number; // PR votes
+  prSeats: number;    // PR seats allocated
+  totalSeats: number; // won + prSeats (the REAL total)
 }
 
 export interface LegacyCandidate {

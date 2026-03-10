@@ -10,6 +10,8 @@ interface HemicycleChartProps {
     color: string;
     won: number;
     leading: number;
+    prSeats: number;
+    totalSeats: number;
   }>;
   totalSeats: number; // 275
 }
@@ -63,10 +65,15 @@ export default function HemicycleChart({
   const majority = Math.floor(totalSeats / 2) + 1;
 
   // Build ordered seat assignments: largest parties from center outward
+  // FPTP won + PR seats = confirmed ("won"), FPTP leading = still counting ("leading")
   const seatAssignments = useMemo(() => {
     const sorted = [...parties]
-      .filter((p) => p.won + p.leading > 0)
-      .sort((a, b) => b.won + b.leading - (a.won + a.leading));
+      .filter((p) => (p.totalSeats || (p.won + p.leading)) > 0)
+      .sort((a, b) => {
+        const aTotal = a.totalSeats || (a.won + a.leading);
+        const bTotal = b.totalSeats || (b.won + b.leading);
+        return bTotal - aTotal;
+      });
 
     const assignments: Array<{
       party: string;
@@ -76,7 +83,8 @@ export default function HemicycleChart({
     }> = [];
 
     for (const party of sorted) {
-      for (let i = 0; i < party.won; i++) {
+      const confirmedSeats = party.won + (party.prSeats ?? 0);
+      for (let i = 0; i < confirmedSeats; i++) {
         assignments.push({
           party: party.name,
           shortName: party.shortName,
@@ -186,11 +194,15 @@ export default function HemicycleChart({
   // Party summary for legend
   const legendParties = useMemo(() => {
     return [...parties]
-      .filter((p) => p.won + p.leading > 0)
-      .sort((a, b) => b.won + b.leading - (a.won + a.leading));
+      .filter((p) => (p.totalSeats || (p.won + p.leading)) > 0)
+      .sort((a, b) => {
+        const aTotal = a.totalSeats || (a.won + a.leading);
+        const bTotal = b.totalSeats || (b.won + b.leading);
+        return bTotal - aTotal;
+      });
   }, [parties]);
 
-  const totalDeclared = parties.reduce((s, p) => s + p.won, 0);
+  const totalConfirmed = parties.reduce((s, p) => s + p.won + (p.prSeats ?? 0), 0);
   const totalLeading = parties.reduce((s, p) => s + p.leading, 0);
 
   return (
@@ -211,7 +223,7 @@ export default function HemicycleChart({
           </div>
           <div className="ml-auto flex items-center gap-3 text-xs text-gray-500">
             <span className="tabular-nums">
-              {totalDeclared + totalLeading}/{totalSeats}
+              {totalConfirmed + totalLeading}/{totalSeats}
             </span>
           </div>
         </div>
@@ -369,7 +381,7 @@ export default function HemicycleChart({
         <div className="flex items-center justify-center gap-4 mb-3 text-[10px] text-gray-500">
           <span className="flex items-center gap-1.5">
             <span className="w-2 h-2 rounded-full bg-gray-400" />
-            Won: {totalDeclared}
+            Confirmed: {totalConfirmed}
           </span>
           <span className="flex items-center gap-1.5">
             <span className="w-2 h-2 rounded-full bg-gray-400 hemicycle-pulse" />
@@ -377,7 +389,7 @@ export default function HemicycleChart({
           </span>
           <span className="flex items-center gap-1.5">
             <span className="w-2 h-2 rounded-full bg-[#1e293b] border border-white/10" />
-            Pending: {totalSeats - totalDeclared - totalLeading}
+            Pending: {totalSeats - totalConfirmed - totalLeading}
           </span>
         </div>
 
@@ -409,7 +421,7 @@ export default function HemicycleChart({
                 {party.shortName}
               </span>
               <span className="text-[10px] tabular-nums text-gray-600">
-                {party.won + party.leading}
+                {party.totalSeats || (party.won + party.leading)}
               </span>
             </div>
           ))}
