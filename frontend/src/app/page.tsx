@@ -203,20 +203,30 @@ export default function Home() {
 
   let displayParties: LegacyParty[];
   if (liveFPTP?.data && liveFPTP.data.length > 0) {
-    // Use live EC data (freshest)
+    // Merge live EC FPTP data with Supabase PR seat data for complete picture
+    const supabasePartyMap: Record<string, { prSeats: number; prVotes: number }> = {};
+    if (parties.length > 0) {
+      parties.forEach((p) => {
+        supabasePartyMap[p.name_en] = { prSeats: p.pr_seats, prVotes: p.pr_votes };
+      });
+    }
+
     displayParties = liveFPTP.data.map((p) => {
       const en = PARTY_NAME_MAP[p.PoliticalPartyName] ?? p.PoliticalPartyName;
       const info = PARTY_COLORS[en] ?? { shortName: en.substring(0, 4), color: "#6B7280", nameNp: p.PoliticalPartyName };
+      const supaData = supabasePartyMap[en];
+      const prSeats = supaData?.prSeats ?? 0;
+      const won = p.TotWin ?? 0;
       return {
         name: en,
         nameNp: info.nameNp,
         shortName: info.shortName,
         color: info.color,
-        won: p.TotWin ?? 0,
+        won,
         leading: p.TotLead ?? 0,
-        totalVotes: 0,
-        prSeats: 0,
-        totalSeats: p.TotWin ?? 0,
+        totalVotes: supaData?.prVotes ?? 0,
+        prSeats,
+        totalSeats: won + prSeats,
       };
     });
   } else if (useSupabase) {
