@@ -1,5 +1,5 @@
 {
-  "lastUpdated": "2026-03-10T20:23:00.303Z",
+  "lastUpdated": "2026-03-10T20:58:07.864Z",
   "totalSeats": 275,
   "fptpSeats": 165,
   "prSeats": 110,
@@ -19887,6 +19887,85 @@
       ]
     },
     {
+      "id": "63-1",
+      "name": "दैलेख-1",
+      "province": "6",
+      "status": "declared",
+      "totalVotes": 37846,
+      "candidates": [
+        {
+          "name": "बासना थापा",
+          "party": "Nepali Congress",
+          "partyShort": "NC",
+          "votes": 12372,
+          "color": "#E11D48"
+        },
+        {
+          "name": "रविन्द्र राज शर्मा",
+          "party": "CPN-UML",
+          "partyShort": "UML",
+          "votes": 11796,
+          "color": "#2563EB"
+        },
+        {
+          "name": "नन्द किशोर बस्नेत",
+          "party": "RSP",
+          "partyShort": "RSP",
+          "votes": 8151,
+          "color": "#F59E0B"
+        },
+        {
+          "name": "अम्मर बहादुर थापा",
+          "party": "CPN-Maoist Centre",
+          "partyShort": "MC",
+          "votes": 4256,
+          "color": "#DC2626"
+        },
+        {
+          "name": "रण बहादुर सिंह",
+          "party": "RPP",
+          "partyShort": "RPP",
+          "votes": 598,
+          "color": "#8B5CF6"
+        },
+        {
+          "name": "जगत वहादुर ओली",
+          "party": "नेपाल मजदुर किसान पार्टी",
+          "partyShort": "नेपा",
+          "votes": 302,
+          "color": "#3B82F6"
+        },
+        {
+          "name": "रामलाल बिश्वकर्मा",
+          "party": "नेपाल कम्युनिस्ट पार्टी (माओवादी)",
+          "partyShort": "नेपा",
+          "votes": 235,
+          "color": "#3B82F6"
+        },
+        {
+          "name": "नर बहादुर सिंह",
+          "party": "राष्ट्रिय जनमोर्चा",
+          "partyShort": "राष्",
+          "votes": 91,
+          "color": "#3B82F6"
+        },
+        {
+          "name": "लोग बहादुर बोगटी",
+          "party": "Independent",
+          "partyShort": "Ind",
+          "votes": 29,
+          "color": "#6B7280"
+        },
+        {
+          "name": "मेनका श्रेष्ठ",
+          "party": "आम जनता पार्टी(एकल चुनाव चिन्ह)",
+          "partyShort": "आम ज",
+          "votes": 16,
+          "color": "#3B82F6"
+        }
+      ]
+    },
+    {
       "id": "63-2",
       "name": "दैलेख-2",
       "province": "6",
@@ -20197,6 +20276,113 @@
           "partyShort": "Ind",
           "votes": 6,
           "color": "#6B7280"
+        }
+      ]
+    },
+    {
+      "id": "65-1",
+      "name": "बाँके-1",
+      "province": "5",
+      "status": "declared",
+      "totalVotes": 70907,
+      "candidates": [
+        {
+          "name": "सुरेश कुमार चौधरी",
+          "party": "RSP",
+          "partyShort": "RSP",
+          "votes": 32792,
+          "color": "#F59E0B"
+        },
+        {
+          "name": "नारायण प्रसाद गौडेल",
+          "party": "Nepali Congress",
+          "partyShort": "NC",
+          "votes": 15301,
+          "color": "#E11D48"
+        },
+        {
+          "name": "सुर्य प्रसाद ढकाल",
+          "party": "CPN-UML",
+          "partyShort": "UML",
+          "votes": 11095,
+          "color": "#2563EB"
+        },
+        {
+          "name": "नरेन्द्र प्रसाद पाण्डे",
+          "party": "CPN-Maoist Centre",
+          "partyShort": "MC",
+          "votes": 6033,
+          "color": "#DC2626"
+        },
+        {
+          "name": "प्रदिप कुमार शाह",
+          "party": "RPP",
+          "partyShort": "RPP",
+          "votes": 3234,
+          "color": "#8B5CF6"
+        },
+        {
+          "name": "कृष्णा के.सी.",
+          "party": "प्रगतिशील लोकतान्त्रिक पार्टी",
+          "partyShort": "प्रग",
+          "votes": 1240,
+          "color": "#3B82F6"
+        },
+        {
+          "name": "भरत निधी तिवारी",
+          "party": "Shram Sanskriti Party",
+          "partyShort": "SSP",
+          "votes": 463,
+          "color": "#059669"
+        },
+        {
+          "name": "धन बहादुर खड्का",
+          "party": "उज्यालो नेपाल पार्टी",
+          "partyShort": "उज्य",
+          "votes": 246,
+          "color": "#3B82F6"
+        },
+        {
+          "name": "दिपक वुढाथोकी",
+          "party": "नेपाल कम्युनिस्ट पार्टी (माओवादी)",
+          "partyShort": "नेपा",
+          "votes": 186,
+          "color": "#3B82F6"
+        },
+        {
+          "name": "तुलसी राम सापकोटा",
+          "party": "राष्ट्रिय जनमोर्चा",
+          "partyShort": "राष्",
+          "votes": 126,
+          "color": "#3B82F6"
+        },
+        {
+          "name": "राजेन्द्र कुमार विश्वकर्मा",
+          "party": "Janata Samajbadi",
+          "partyShort": "JSP",
+          "votes": 84,
+          "color": "#10B981"
+        },
+        {
+          "name": "सुर्जा थापा",
+          "party": "नेपाल मजदुर किसान पार्टी",
+          "partyShort": "नेपा",
+          "votes": 56,
+          "color": "#3B82F6"
+        },
+        {
+          "name": "दिवाकर​ शर्मा",
+          "party": "Independent",
+          "partyShort": "Ind",
+          "votes": 39,
+          "color": "#6B7280"
+        },
+        {
+          "name": "फेरुलाल चौधरी",
+          "party": "मंगोल नेशनल अर्गनाइजेसन",
+          "partyShort": "मंगो",
+          "votes": 12,
+          "color": "#3B82F6"
         }
       ]
     },
