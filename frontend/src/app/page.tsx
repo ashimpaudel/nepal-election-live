@@ -19,6 +19,7 @@ import StoryHero from "@/components/StoryHero";
 import SwingChart from "@/components/SwingChart";
 import KeyMatchups from "@/components/KeyMatchups";
 import LivePulse from "@/components/LivePulse";
+import QuickSearch from "@/components/QuickSearch";
 
 // Lazy-load the map component to reduce initial bundle size
 const NepalMap = dynamic(() => import("@/components/NepalMap"), {
@@ -300,28 +301,25 @@ export default function Home() {
       />
 
       <main className="max-w-7xl mx-auto px-4 sm:px-6 py-6 space-y-6">
-        {/* 3. StoryHero — Narrative + 2/3 majority tracker */}
+        {/* 3. StoryHero — THE story: 182/184 and the ⅔ question */}
         <StoryHero parties={displayParties} summary={displaySummary} />
 
-        {/* 4. HemicycleChart — Parliament visualization */}
+        {/* Quick Search — find any constituency or candidate instantly */}
+        <QuickSearch constituencies={displayConstituencies} />
+
+        {/* 4. HemicycleChart — Visual proof of the landslide */}
         <HemicycleChart parties={displayParties} totalSeats={displaySummary.totalSeats} />
 
-        {/* 5. KeyMatchups — Spotlight constituency battles */}
+        {/* 5. KeyMatchups — The races everyone watched */}
         <KeyMatchups />
 
-        {/* 6. SwingChart — 2079 vs 2082 comparison */}
-        <SwingChart parties={displayParties} totalSeats={displaySummary.totalSeats} />
-
-        {/* 7. SeatBar — Compact seat distribution */}
-        <SeatBar parties={displayParties} totalSeats={displaySummary.totalSeats} />
-
-        {/* 8. SummaryCards — Stats grid */}
-        <SummaryCards summary={displaySummary} />
-
-        {/* 9. PopularCandidates — Top vote-getters */}
+        {/* 6. PopularCandidates — Top vote-getters */}
         <PopularCandidates constituencies={displayConstituencies} />
 
-        {/* 10. Three-column grid: Party Results | Live PR | Constituencies */}
+        {/* 7. SwingChart — The earthquake: 2079 vs 2082 */}
+        <SwingChart parties={displayParties} totalSeats={displaySummary.totalSeats} />
+
+        {/* 8. Detailed Results — Party table, Live PR, Constituencies */}
         <div className="border-t border-gray-800 pt-4">
           <h2 className="text-xs uppercase tracking-widest text-gray-500 font-semibold mb-4">
             Detailed Results
@@ -342,53 +340,10 @@ export default function Home() {
           </div>
         </div>
 
-        {/* Key Race Calls — top declared constituencies */}
-        {displayConstituencies.filter(c => c.status === "declared" && c.candidates.length > 0).length > 0 && (
-          <div className="border-t border-gray-800 pt-4">
-            <h2 className="text-xs uppercase tracking-widest text-gray-500 font-semibold mb-3 flex items-center gap-2">
-              <span className="w-2 h-2 rounded-full bg-green-400 animate-pulse" />
-              Key Race Calls
-            </h2>
-            <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-3">
-              {displayConstituencies
-                .filter(c => c.status === "declared" && c.candidates.length > 0)
-                .sort((a, b) => b.totalVotes - a.totalVotes)
-                .slice(0, 6)
-                .map((c) => (
-                  <RaceCallCard
-                    key={c.id}
-                    constituencyName={c.name}
-                    status={c.status}
-                    candidates={c.candidates}
-                    totalVotes={c.totalVotes}
-                  />
-                ))}
-            </div>
-          </div>
-        )}
-
-        {/* 11. NepalMap — Province map */}
+        {/* 9. Province Map */}
         <NepalMap />
 
-        {/* 12. PA Overview — Provincial Assembly section */}
-        <div className="border-t border-gray-800 pt-4">
-          <h2 className="text-xs uppercase tracking-widest text-gray-500 font-semibold mb-4">
-            Provincial Assembly Overview • प्रदेश सभा
-          </h2>
-          <div className="grid grid-cols-1 lg:grid-cols-2 gap-4">
-            {[1, 2, 3, 4, 5, 6, 7].map((pid) => (
-              <PAResults
-                key={pid}
-                provinceId={pid}
-                provinceName={
-                  ["", "Koshi", "Madhesh", "Bagmati", "Gandaki", "Lumbini", "Karnali", "Sudurpashchim"][pid]
-                }
-              />
-            ))}
-          </div>
-        </div>
-
-        {/* 13. News — Election coverage */}
+        {/* 10. News — Election coverage (if available) */}
         {news.length > 0 && (
           <div className="border-t border-gray-800 pt-4">
             <h2 className="text-xs uppercase tracking-widest text-gray-500 font-semibold mb-3 flex items-center gap-2">
@@ -416,7 +371,7 @@ export default function Home() {
           </div>
         )}
 
-        {/* 14. DataSourceBanner + Footer */}
+        {/* 11. Data Sources */}
         <DataSourceBanner sources={DATA_SOURCES} />
       </main>
 
