@@ -232,7 +232,7 @@ export default function StoryHero({ parties, summary }: StoryHeroProps) {
             style={{ opacity: mounted ? 1 : 0, transitionDelay: "400ms" }}
           >
             <svg
-              viewBox="0 0 400 230"
+              viewBox="0 0 400 250"
               className="w-full h-auto"
               role="img"
               aria-label={`Seat gauge: ${leaderTotal} of ${TOTAL_SEATS} seats`}
@@ -314,11 +314,11 @@ export default function StoryHero({ parties, summary }: StoryHeroProps) {
                 fill={majorityStatus.hasMajority ? "#22c55e" : "#94a3b8"}
               >
                 {majorityStatus.hasMajority
-                  ? "✓ Majority"
+                  ? "✓ Majority (138)"
                   : `${MAJORITY} Majority`}
               </text>
 
-              {/* Supermajority tick (184) */}
+              {/* Supermajority tick (184) — PROMINENT */}
               <line
                 x1={superTick.outer.x}
                 y1={superTick.outer.y}
@@ -327,25 +327,26 @@ export default function StoryHero({ parties, summary }: StoryHeroProps) {
                 stroke={
                   majorityStatus.hasSuper
                     ? "#f59e0b"
-                    : "rgba(148,163,184,0.5)"
+                    : "#ef4444"
                 }
-                strokeWidth="2.5"
+                strokeWidth="3"
+                strokeDasharray={majorityStatus.hasSuper ? "none" : "4 3"}
               />
               <circle
                 cx={superPt.x}
                 cy={superPt.y}
-                r="5"
+                r="6"
                 fill={
                   majorityStatus.hasSuper
                     ? "#f59e0b"
-                    : "rgba(148,163,184,0.3)"
+                    : "transparent"
                 }
                 stroke={
                   majorityStatus.hasSuper
                     ? "#f59e0b"
-                    : "rgba(148,163,184,0.15)"
+                    : "#ef4444"
                 }
-                strokeWidth="2"
+                strokeWidth="2.5"
               />
               <text
                 x={superLabel.x}
@@ -353,11 +354,11 @@ export default function StoryHero({ parties, summary }: StoryHeroProps) {
                 textAnchor="middle"
                 dominantBaseline="middle"
                 className="text-[9px] sm:text-[10px] font-bold"
-                fill={majorityStatus.hasSuper ? "#f59e0b" : "#94a3b8"}
+                fill={majorityStatus.hasSuper ? "#f59e0b" : "#ef4444"}
               >
                 {majorityStatus.hasSuper
                   ? "✓ ⅔ Supermajority"
-                  : `${SUPERMAJORITY} ⅔ Amendment`}
+                  : `⅔ = ${SUPERMAJORITY} seats`}
               </text>
 
               {/* Center status text */}
@@ -405,6 +406,36 @@ export default function StoryHero({ parties, summary }: StoryHeroProps) {
               </text>
             </svg>
           </div>
+
+          {/* ── Clear seats-remaining callout ── */}
+          {!majorityStatus.hasSuper && majorityStatus.hasMajority && (
+            <div
+              className="flex items-center justify-center gap-3 mt-2"
+              style={{
+                opacity: mounted ? 1 : 0,
+                transition: "opacity 0.7s ease-out",
+                transitionDelay: "600ms",
+              }}
+            >
+              <div className="flex items-center gap-2 px-5 py-3 rounded-xl border-2 border-dashed border-red-500/40 bg-red-950/20">
+                <span className="text-3xl sm:text-4xl font-black text-red-400 tabular-nums">
+                  <AnimatedCount value={majorityStatus.seatsAway} duration={1200} />
+                </span>
+                <div className="text-left">
+                  <p className="text-sm font-bold text-red-300">
+                    {majorityStatus.seatsAway === 1 ? "seat" : "seats"} away
+                  </p>
+                  <p className="text-xs text-red-400/70">
+                    from ⅔ supermajority ({SUPERMAJORITY})
+                  </p>
+                </div>
+              </div>
+              <div className="hidden sm:flex items-center gap-1.5 text-xs text-gray-500">
+                <span className="inline-block w-3 h-3 rounded-full border-2 border-red-500/50" />
+                <span>{leaderTotal} / {SUPERMAJORITY}</span>
+              </div>
+            </div>
+          )}
         </div>
 
         {/* ── Stat Pills ── */}
