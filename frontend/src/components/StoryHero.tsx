@@ -66,13 +66,15 @@ export default function StoryHero({ parties, summary }: StoryHeroProps) {
   /* ── Derived data ── */
   const leadingParty = useMemo(() => {
     if (!parties.length) return null;
-    return parties.reduce((a, b) =>
-      a.won + a.leading > b.won + b.leading ? a : b
-    );
+    return parties.reduce((a, b) => {
+      const aTotal = a.totalSeats || (a.won + a.leading);
+      const bTotal = b.totalSeats || (b.won + b.leading);
+      return aTotal > bTotal ? a : b;
+    });
   }, [parties]);
 
   const leaderTotal = leadingParty
-    ? leadingParty.won + leadingParty.leading
+    ? (leadingParty.totalSeats || (leadingParty.won + leadingParty.leading))
     : 0;
 
   const headlineLabel = useMemo(() => {

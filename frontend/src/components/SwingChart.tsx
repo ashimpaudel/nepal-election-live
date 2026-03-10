@@ -44,7 +44,7 @@ export default function SwingChart({ parties, totalSeats }: SwingChartProps) {
     const entries: SwingEntry[] = parties
       .map((p) => {
         const prev = RESULTS_2079[p.shortName] ?? 0;
-        const current = p.won + p.leading;
+        const current = p.totalSeats || (p.won + p.leading);
         return {
           name: p.name,
           shortName: p.shortName,

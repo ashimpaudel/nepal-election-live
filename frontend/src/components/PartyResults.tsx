@@ -17,7 +17,7 @@ export default function PartyResults({
 
   const displayed = showAll ? parties : parties.slice(0, 6);
 
-  const maxTotal = Math.max(...parties.map((p) => p.won + p.leading), 1);
+  const maxTotal = Math.max(...parties.map((p) => p.totalSeats || (p.won + p.leading)), 1);
   const totalVotes = parties.reduce((s, p) => s + p.totalVotes, 0);
   const majority = Math.floor(totalSeats / 2) + 1;
 
@@ -30,7 +30,7 @@ export default function PartyResults({
             Party-wise Results
           </h2>
           <p className="text-xs text-gray-400">
-            दलगत नतिजा • Majority: {majority} seats
+            दलगत नतिजा • FPTP + PR • Majority: {majority} seats
           </p>
         </div>
       </div>
@@ -41,16 +41,16 @@ export default function PartyResults({
           <thead>
             <tr className="border-b border-gray-700/50 text-gray-400 text-xs uppercase">
               <th className="text-left px-4 py-2">Party</th>
-              <th className="text-center px-2 py-2">Won</th>
-              <th className="text-center px-2 py-2">Leading</th>
+              <th className="text-center px-2 py-2">FPTP</th>
+              <th className="text-center px-2 py-2">PR</th>
               <th className="text-center px-2 py-2">Total</th>
               <th className="text-left px-4 py-2 w-40">Progress</th>
-              <th className="text-right px-4 py-2">Votes</th>
+              <th className="text-right px-4 py-2">PR Votes</th>
             </tr>
           </thead>
           <tbody>
             {displayed.map((party) => {
-              const total = party.won + party.leading;
+              const total = party.totalSeats || (party.won + party.leading);
               const votePercent =
                 totalVotes > 0
                   ? ((party.totalVotes / totalVotes) * 100).toFixed(1)
@@ -78,10 +78,15 @@ export default function PartyResults({
                     <span className="text-green-400 font-bold">
                       {party.won}
                     </span>
+                    {party.leading > 0 && (
+                      <span className="text-yellow-400 text-xs ml-1">
+                        +{party.leading}
+                      </span>
+                    )}
                   </td>
                   <td className="text-center px-2 py-3">
-                    <span className="text-yellow-400 font-medium">
-                      {party.leading}
+                    <span className="text-blue-400 font-medium">
+                      {party.prSeats}
                     </span>
                   </td>
                   <td className="text-center px-2 py-3">
@@ -114,7 +119,7 @@ export default function PartyResults({
       {/* Mobile vertical card layout */}
       <div className="sm:hidden divide-y divide-gray-700/30">
         {displayed.map((party) => {
-          const total = party.won + party.leading;
+          const total = party.totalSeats || (party.won + party.leading);
           const votePercent =
             totalVotes > 0
               ? ((party.totalVotes / totalVotes) * 100).toFixed(1)
@@ -139,10 +144,13 @@ export default function PartyResults({
 
               <div className="flex items-center gap-3 text-xs mb-2">
                 <span className="text-green-400">
-                  Won: <strong>{party.won}</strong>
+                  FPTP: <strong>{party.won}</strong>
+                  {party.leading > 0 && (
+                    <span className="text-yellow-400 ml-1">+{party.leading}</span>
+                  )}
                 </span>
-                <span className="text-yellow-400">
-                  Leading: <strong>{party.leading}</strong>
+                <span className="text-blue-400">
+                  PR: <strong>{party.prSeats}</strong>
                 </span>
                 <span className="text-gray-400 ml-auto">
                   {party.totalVotes.toLocaleString()} ({votePercent}%)

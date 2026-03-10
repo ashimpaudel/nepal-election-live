@@ -73,6 +73,7 @@ function toLegacyParties(
     fptp_won: number;
     fptp_leading: number;
     pr_votes: number;
+    pr_seats: number;
     total_seats: number;
   }>
 ): LegacyParty[] {
@@ -83,7 +84,9 @@ function toLegacyParties(
     color: p.color,
     won: p.fptp_won,
     leading: p.fptp_leading,
-    totalVotes: p.pr_votes, // approximate: using PR votes as proxy
+    totalVotes: p.pr_votes,
+    prSeats: p.pr_seats,
+    totalSeats: p.total_seats,
   }));
 }
 
@@ -212,12 +215,18 @@ export default function Home() {
         won: p.TotWin ?? 0,
         leading: p.TotLead ?? 0,
         totalVotes: 0,
+        prSeats: 0,
+        totalSeats: p.TotWin ?? 0,
       };
     });
   } else if (useSupabase) {
     displayParties = toLegacyParties(parties);
   } else {
-    displayParties = fallbackData?.parties ?? [];
+    displayParties = (fallbackData?.parties ?? []).map((p) => ({
+      ...p,
+      prSeats: p.prSeats ?? 0,
+      totalSeats: p.totalSeats ?? 0,
+    }));
   }
 
   const displayConstituencies: LegacyConstituency[] = useSupabase
