@@ -1,5 +1,5 @@
 {
-  "lastUpdated": "2026-03-20T22:53:46.895Z",
+  "lastUpdated": "2026-03-20T23:20:57.121Z",
   "totalSeats": 275,
   "fptpSeats": 165,
   "prSeats": 110,
@@ -19756,6 +19756,106 @@
           "party": "प्रगतिशील लोकतान्त्रिक पार्टी",
           "partyShort": "प्रग",
           "votes": 22,
+          "color": "#3B82F6"
+        }
+      ]
+    },
+    {
+      "id": "64-1",
+      "name": "सुर्खेत-1",
+      "province": "6",
+      "status": "declared",
+      "totalVotes": 66227,
+      "candidates": [
+        {
+          "name": "विष्णु बहादुर खड्का",
+          "party": "Nepali Congress",
+          "partyShort": "NC",
+          "votes": 26897,
+          "color": "#E11D48"
+        },
+        {
+          "name": "ध्रुवकुमार शाही",
+          "party": "CPN-UML",
+          "partyShort": "UML",
+          "votes": 18890,
+          "color": "#2563EB"
+        },
+        {
+          "name": "टेक बहादुर सिंह ठकुरी",
+          "party": "RSP",
+          "partyShort": "RSP",
+          "votes": 14729,
+          "color": "#F59E0B"
+        },
+        {
+          "name": "जित बहादुर राना",
+          "party": "CPN-Maoist Centre",
+          "partyShort": "MC",
+          "votes": 2828,
+          "color": "#DC2626"
+        },
+        {
+          "name": "रवि हमाल ठकुरी",
+          "party": "RPP",
+          "partyShort": "RPP",
+          "votes": 1049,
+          "color": "#8B5CF6"
+        },
+        {
+          "name": "विर बहादुर राना",
+          "party": "Shram Sanskriti Party",
+          "partyShort": "SSP",
+          "votes": 641,
+          "color": "#059669"
+        },
+        {
+          "name": "धनसिं सार्कि",
+          "party": "Janata Samajbadi",
+          "partyShort": "JSP",
+          "votes": 354,
+          "color": "#10B981"
+        },
+        {
+          "name": "मोहन थापा",
+          "party": "राष्ट्रिय जनमोर्चा",
+          "partyShort": "राष्",
+          "votes": 321,
+          "color": "#3B82F6"
+        },
+        {
+          "name": "ठम्मरबहादुर विष्ट",
+          "party": "उज्यालो नेपाल पार्टी",
+          "partyShort": "उज्य",
+          "votes": 251,
+          "color": "#3B82F6"
+        },
+        {
+          "name": "रमेश सेन्चुरी",
+          "party": "आम जनता पार्टी(एकल चुनाव चिन्ह)",
+          "partyShort": "आम ज",
+          "votes": 112,
+          "color": "#3B82F6"
+        },
+        {
+          "name": "हिरु शाही",
+          "party": "नेपाल कम्युनिस्ट पार्टी (माओवादी)",
+          "partyShort": "नेपा",
+          "votes": 108,
+          "color": "#3B82F6"
+        },
+        {
+          "name": "गज बहादुर खपतडी मगर",
+          "party": "नेपाल मजदुर किसान पार्टी",
+          "partyShort": "नेपा",
+          "votes": 26,
+          "color": "#3B82F6"
+        },
+        {
+          "name": "प्रकाश बुढा मगर",
+          "party": "मितेरी पार्टी नेपाल",
+          "partyShort": "मिते",
+          "votes": 21,
           "color": "#3B82F6"
         }
       ]
