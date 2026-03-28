@@ -1,5 +1,5 @@
 {
-  "lastUpdated": "2026-03-28T03:17:20.760Z",
+  "lastUpdated": "2026-03-28T05:09:01.534Z",
   "totalSeats": 275,
   "fptpSeats": 165,
   "prSeats": 110,
@@ -3953,6 +3953,169 @@
           "partyShort": "मिते",
           "votes": 9,
           "color": "#3B82F6"
+        }
+      ]
+    },
+    {
+      "id": "15-3",
+      "name": "सप्तरी-3",
+      "province": "2",
+      "status": "declared",
+      "totalVotes": 69296,
+      "candidates": [
+        {
+          "name": "अमर कान्त चौधरी",
+          "party": "RSP",
+          "partyShort": "RSP",
+          "votes": 32875,
+          "color": "#F59E0B"
+        },
+        {
+          "name": "उपेन्द्र यादव",
+          "party": "Janata Samajbadi",
+          "partyShort": "JSP",
+          "votes": 15239,
+          "color": "#10B981"
+        },
+        {
+          "name": "दिनेश कुमार यादव",
+          "party": "Nepali Congress",
+          "partyShort": "NC",
+          "votes": 8428,
+          "color": "#E11D48"
+        },
+        {
+          "name": "ताराकान्त चौधरी",
+          "party": "CPN-UML",
+          "partyShort": "UML",
+          "votes": 6715,
+          "color": "#2563EB"
+        },
+        {
+          "name": "सुरेन्द्र प्रसाद शर्मा",
+          "party": "Janamat Party",
+          "partyShort": "JP",
+          "votes": 2869,
+          "color": "#F97316"
+        },
+        {
+          "name": "अरुण कुमार साह",
+          "party": "CPN-Maoist Centre",
+          "partyShort": "MC",
+          "votes": 1635,
+          "color": "#DC2626"
+        },
+        {
+          "name": "उम्देश्‍वर प्रसाद साहु",
+          "party": "RPP",
+          "partyShort": "RPP",
+          "votes": 556,
+          "color": "#8B5CF6"
+        },
+        {
+          "name": "परमेश्‍वर लाल साह",
+          "party": "उज्यालो नेपाल पार्टी",
+          "partyShort": "उज्य",
+          "votes": 212,
+          "color": "#3B82F6"
+        },
+        {
+          "name": "धनिक लाल चौधरी",
+          "party": "आम जनता पार्टी(एकल चुनाव चिन्ह)",
+          "partyShort": "आम ज",
+          "votes": 188,
+          "color": "#3B82F6"
+        },
+        {
+          "name": "संतोष कुमार चमन",
+          "party": "नेपाल जनता पार्टी",
+          "partyShort": "नेपा",
+          "votes": 168,
+          "color": "#3B82F6"
+        },
+        {
+          "name": "जय नारायण मंडल",
+          "party": "Shram Sanskriti Party",
+          "partyShort": "SSP",
+          "votes": 108,
+          "color": "#059669"
+        },
+        {
+          "name": "गजेन्द्र कुमार मण्डल",
+          "party": "राष्ट्रिय मुक्ति पार्टी नेपाल(एकल चुनाव चिन्ह)",
+          "partyShort": "राष्",
+          "votes": 71,
+          "color": "#3B82F6"
+        },
+        {
+          "name": "प्रभु प्रसाद साह",
+          "party": "नेपाल मजदुर किसान पार्टी",
+          "partyShort": "नेपा",
+          "votes": 67,
+          "color": "#3B82F6"
+        },
+        {
+          "name": "सरिता कुमारी यादव",
+          "party": "Independent",
+          "partyShort": "Ind",
+          "votes": 44,
+          "color": "#6B7280"
+        },
+        {
+          "name": "महादेव राम",
+          "party": "बहुजन एकता पार्टी नेपाल(एकल चुनाव चिन्ह)",
+          "partyShort": "बहुज",
+          "votes": 40,
+          "color": "#3B82F6"
+        },
+        {
+          "name": "कोशिला देवी पासवान",
+          "party": "Independent",
+          "partyShort": "Ind",
+          "votes": 21,
+          "color": "#6B7280"
+        },
+        {
+          "name": "हरी नारायण पासमान",
+          "party": "Independent",
+          "partyShort": "Ind",
+          "votes": 18,
+          "color": "#6B7280"
+        },
+        {
+          "name": "कौशल कुमारी चौधरी",
+          "party": "Independent",
+          "partyShort": "Ind",
+          "votes": 17,
+          "color": "#6B7280"
+        },
+        {
+          "name": "दुवी लाल यादव",
+          "party": "Independent",
+          "partyShort": "Ind",
+          "votes": 11,
+          "color": "#6B7280"
+        },
+        {
+          "name": "प्रभु नारायण चौधरी",
+          "party": "Independent",
+          "partyShort": "Ind",
+          "votes": 8,
+          "color": "#6B7280"
+        },
+        {
+          "name": "रजिया देवी सदा",
+          "party": "Independent",
+          "partyShort": "Ind",
+          "votes": 4,
+          "color": "#6B7280"
+        },
+        {
+          "name": "ओम प्रकाश विश्‍वकर्मा",
+          "party": "Independent",
+          "partyShort": "Ind",
+          "votes": 2,
+          "color": "#6B7280"
         }
       ]
     },
@@ -10070,207 +10233,186 @@
       ]
     },
     {
-      "id": "26-4",
-      "name": "काठमाडौं-4",
+      "id": "27-1",
+      "name": "भक्तपुर-1",
       "province": "3",
       "status": "declared",
-      "totalVotes": 48689,
+      "totalVotes": 74967,
       "candidates": [
         {
-          "name": "पुकार बम",
+          "name": "रुकेश रन्जित",
           "party": "RSP",
           "partyShort": "RSP",
-          "votes": 29142,
+          "votes": 33436,
           "color": "#F59E0B"
         },
         {
-          "name": "सचिन तिमल्सेना",
+          "name": "प्रेम सुवाल",
+          "party": "नेपाल मजदुर किसान पार्टी",
+          "partyShort": "नेपा",
+          "votes": 28147,
+          "color": "#3B82F6"
+        },
+        {
+          "name": "किरण न्यौपाने",
           "party": "Nepali Congress",
           "partyShort": "NC",
-          "votes": 8824,
+          "votes": 4282,
           "color": "#E11D48"
         },
         {
-          "name": "राजन भट्टराई",
+          "name": "सोम प्रसाद मिश्र",
           "party": "CPN-UML",
           "partyShort": "UML",
-          "votes": 5733,
+          "votes": 3721,
           "color": "#2563EB"
         },
         {
-          "name": "सुरेन्द्र राज भण्डारी",
+          "name": "भरत बहादुर खड्का",
           "party": "RPP",
           "partyShort": "RPP",
-          "votes": 2025,
+          "votes": 2472,
           "color": "#8B5CF6"
         },
         {
-          "name": "झनक बहादुर अधिकारी",
-          "party": "उज्यालो नेपाल पार्टी",
-          "partyShort": "उज्य",
-          "votes": 1034,
-          "color": "#3B82F6"
-        },
-        {
-          "name": "बरुण अमात्य",
-          "party": "Shram Sanskriti Party",
-          "partyShort": "SSP",
-          "votes": 756,
-          "color": "#059669"
-        },
-        {
-          "name": "इन्द्र कुमार भुसाल",
+          "name": "हरि राम लवजू",
           "party": "CPN-Maoist Centre",
           "partyShort": "MC",
-          "votes": 657,
+          "votes": 1177,
           "color": "#DC2626"
         },
         {
-          "name": "विनोद बाबु प्रधान",
-          "party": "Independent",
-          "partyShort": "Ind",
-          "votes": 102,
-          "color": "#6B7280"
-        },
-        {
-          "name": "अर्चन शम्शेर राणा",
-          "party": "Independent",
-          "partyShort": "Ind",
-          "votes": 83,
-          "color": "#6B7280"
-        },
-        {
-          "name": "आशा लाल श्रेष्‍ठ",
-          "party": "नेपाल मजदुर किसान पार्टी",
-          "partyShort": "नेपा",
-          "votes": 56,
+          "name": "रमेश बल्ल",
+          "party": "उज्यालो नेपाल पार्टी",
+          "partyShort": "उज्य",
+          "votes": 558,
           "color": "#3B82F6"
         },
         {
-          "name": "पुजन गजुरेल",
-          "party": "Independent",
-          "partyShort": "Ind",
-          "votes": 40,
-          "color": "#6B7280"
-        },
-        {
-          "name": "करिस्मा  खरेल ",
-          "party": "नेपाल कम्युनिस्ट पार्टी (माओवादी)",
-          "partyShort": "नेपा",
-          "votes": 31,
-          "color": "#3B82F6"
-        },
-        {
-          "name": "संजिव दर्जी",
-          "party": "Independent",
-          "partyShort": "Ind",
-          "votes": 29,
-          "color": "#6B7280"
-        },
-        {
-          "name": "केम्श सिंह",
-          "party": "जनादेश पार्टी नेपाल(एकल चुनाव चिन्ह)",
-          "partyShort": "जनाद",
-          "votes": 22,
-          "color": "#3B82F6"
-        },
-        {
-          "name": "छवि बहादुर खनाल",
+          "name": "इश्‍वरी प्रसाद पैयानी",
           "party": "राष्ट्रिय जनमोर्चा",
           "partyShort": "राष्",
-          "votes": 20,
+          "votes": 334,
           "color": "#3B82F6"
         },
         {
-          "name": "श्‍याम कुमार भट्रराई खत्री",
-          "party": "नेपालका लागि नेपाली पार्टी",
-          "partyShort": "नेपा",
-          "votes": 18,
-          "color": "#3B82F6"
+          "name": "बिष्णु हरि न्हिसुतु",
+          "party": "Shram Sanskriti Party",
+          "partyShort": "SSP",
+          "votes": 310,
+          "color": "#059669"
         },
         {
-          "name": "दीपेन्द्र कुमार काफ्ले",
-          "party": "Independent",
-          "partyShort": "Ind",
-          "votes": 18,
-          "color": "#6B7280"
+          "name": "श्याम सुन्दर शिल्पकार",
+          "party": "Janata Samajbadi",
+          "partyShort": "JSP",
+          "votes": 124,
+          "color": "#10B981"
         },
         {
-          "name": "दत्त बुढा",
+          "name": "रबि खाइजु",
           "party": "प्रगतिशील लोकतान्त्रिक पार्टी",
           "partyShort": "प्रग",
-          "votes": 16,
+          "votes": 95,
           "color": "#3B82F6"
         },
         {
-          "name": "सिता तामाङ्ग",
-          "party": "मंगोल नेशनल अर्गनाइजेसन",
-          "partyShort": "मंगो",
-          "votes": 16,
+          "name": "चन्द्र मान कोजू",
+          "party": "नेपाल कम्युनिस्ट पार्टी (माओवादी)",
+          "partyShort": "नेपा",
+          "votes": 68,
           "color": "#3B82F6"
         },
         {
-          "name": "राजन पुरी",
-          "party": "जय मातृभूमि पार्टी",
-          "partyShort": "जय म",
+          "name": "सुरेश कोजु",
+          "party": "Independent",
+          "partyShort": "Ind",
+          "votes": 43,
+          "color": "#6B7280"
+        },
+        {
+          "name": "देबेन्द्र ठाकुर",
+          "party": "आम जनता पार्टी(एकल चुनाव चिन्ह)",
+          "partyShort": "आम ज",
+          "votes": 38,
+          "color": "#3B82F6"
+        },
+        {
+          "name": "दामोदर काफ्ले",
+          "party": "नेपाल कम्युनिष्ट पार्टी (संयुक्त)",
+          "partyShort": "नेपा",
+          "votes": 26,
+          "color": "#3B82F6"
+        },
+        {
+          "name": "राजु श्रेष्ठ",
+          "party": "Independent",
+          "partyShort": "Ind",
+          "votes": 25,
+          "color": "#6B7280"
+        },
+        {
+          "name": "राजेश्वरी प्रजापती ",
+          "party": "Independent",
+          "partyShort": "Ind",
+          "votes": 23,
+          "color": "#6B7280"
+        },
+        {
+          "name": "बाल कृष्ण खाइतु",
+          "party": "Independent",
+          "partyShort": "Ind",
+          "votes": 21,
+          "color": "#6B7280"
+        },
+        {
+          "name": "दिपक कुमार पोखरेल",
+          "party": "नेपालका लागि नेपाली पार्टी",
+          "partyShort": "नेपा",
+          "votes": 17,
+          "color": "#3B82F6"
+        },
+        {
+          "name": "सुजिता बुढाथोकी",
+          "party": "Independent",
+          "partyShort": "Ind",
+          "votes": 12,
+          "color": "#6B7280"
+        },
+        {
+          "name": "दशरथ थापा",
+          "party": "Independent",
+          "partyShort": "Ind",
           "votes": 11,
-          "color": "#3B82F6"
+          "color": "#6B7280"
         },
         {
-          "name": "प्रेम कुमार राई",
+          "name": "सुदिप न्यौपाने",
+          "party": "Independent",
+          "partyShort": "Ind",
+          "votes": 9,
+          "color": "#6B7280"
+        },
+        {
+          "name": "विष्‍णु राम दुमरु",
+          "party": "Independent",
+          "partyShort": "Ind",
+          "votes": 7,
+          "color": "#6B7280"
+        },
+        {
+          "name": "पुन्य राम सुवाल",
+          "party": "Independent",
+          "partyShort": "Ind",
+          "votes": 6,
+          "color": "#6B7280"
+        },
+        {
+          "name": "सावित्री न्यौपाने",
           "party": "मितेरी पार्टी नेपाल",
           "partyShort": "मिते",
-          "votes": 9,
-          "color": "#3B82F6"
-        },
-        {
-          "name": "देवराज पौडेल",
-          "party": "Independent",
-          "partyShort": "Ind",
-          "votes": 9,
-          "color": "#6B7280"
-        },
-        {
-          "name": "मदन देव आचार्य",
-          "party": "Independent",
-          "partyShort": "Ind",
-          "votes": 9,
-          "color": "#6B7280"
-        },
-        {
-          "name": "मनोज अधिकारी",
-          "party": "Independent",
-          "partyShort": "Ind",
-          "votes": 8,
-          "color": "#6B7280"
-        },
-        {
-          "name": "मुस्कान पौडेल",
-          "party": "युनाईटेड नेपाल डिमोक्रयाटीक पार्टी",
-          "partyShort": "युना",
-          "votes": 7,
-          "color": "#3B82F6"
-        },
-        {
-          "name": "चेत बहादुर आले",
-          "party": "राष्ट्रिय जनमुक्ति पार्टी",
-          "partyShort": "राष्",
-          "votes": 7,
-          "color": "#3B82F6"
-        },
-        {
-          "name": "केदार बहादुर कार्की",
-          "party": "Independent",
-          "partyShort": "Ind",
           "votes": 5,
-          "color": "#6B7280"
-        },
-        {
-          "name": "आशिष श्रेष्‍ठ",
-          "party": "Independent",
-          "partyShort": "Ind",
-          "votes": 2,
-          "color": "#6B7280"
+          "color": "#3B82F6"
         }
       ]
     },
@@ -15352,130 +15494,251 @@
       ]
     },
     {
-      "id": "39-1",
-      "name": "कास्की-1",
+      "id": "41-2",
+      "name": "स्याङजा-2",
       "province": "4",
       "status": "declared",
-      "totalVotes": 67410,
+      "totalVotes": 62266,
       "candidates": [
         {
-          "name": "खडक राज पौडेल",
+          "name": "झवि लाल डुम्रे",
           "party": "RSP",
           "partyShort": "RSP",
-          "votes": 39883,
+          "votes": 25354,
           "color": "#F59E0B"
         },
         {
-          "name": "तिलक बहादुर रानाभाट",
+          "name": "भागवत प्रकाश मल्ल",
           "party": "Nepali Congress",
           "partyShort": "NC",
-          "votes": 11214,
+          "votes": 20830,
           "color": "#E11D48"
         },
         {
-          "name": "वैन बहादुर क्षेत्री(अधिकारी)",
+          "name": "खिम बहादुर थापा",
           "party": "CPN-UML",
           "partyShort": "UML",
-          "votes": 10429,
+          "votes": 14108,
           "color": "#2563EB"
         },
         {
-          "name": "राजकाजी गुरुङ",
+          "name": "पदम बहादुर वि.क.",
           "party": "CPN-Maoist Centre",
           "partyShort": "MC",
-          "votes": 2479,
+          "votes": 848,
           "color": "#DC2626"
         },
         {
-          "name": "विल बहादुर तमाङ लामा",
-          "party": "Shram Sanskriti Party",
-          "partyShort": "SSP",
-          "votes": 1141,
-          "color": "#059669"
-        },
-        {
-          "name": "बाबु राम थापा",
+          "name": "रविन पाठक",
           "party": "RPP",
           "partyShort": "RPP",
-          "votes": 978,
+          "votes": 566,
           "color": "#8B5CF6"
         },
         {
-          "name": "मनिषा द्धा",
-          "party": "उज्यालो नेपाल पार्टी",
-          "partyShort": "उज्य",
-          "votes": 670,
+          "name": "तेज बहादुर थापा",
+          "party": "नेशनल रिपब्लिक नेपाल",
+          "partyShort": "नेशन",
+          "votes": 200,
           "color": "#3B82F6"
         },
         {
-          "name": "श्री मान थापा",
+          "name": "खर्क वहादुर थापा",
           "party": "मंगोल नेशनल अर्गनाइजेसन",
           "partyShort": "मंगो",
-          "votes": 109,
+          "votes": 132,
           "color": "#3B82F6"
         },
         {
-          "name": "कृष्ण बहादुर राउत",
+          "name": "राजेन्द्र प्रसाद गैह्रे",
+          "party": "राष्ट्रिय जनमोर्चा",
+          "partyShort": "राष्",
+          "votes": 71,
+          "color": "#3B82F6"
+        },
+        {
+          "name": "खिम बहादुर क्षेत्री",
           "party": "Independent",
           "partyShort": "Ind",
-          "votes": 84,
+          "votes": 67,
           "color": "#6B7280"
         },
         {
-          "name": "रवि मोहन ढकाल",
+          "name": "हरिदेव थापा",
+          "party": "राष्ट्रिय जनमुक्ति पार्टी",
+          "partyShort": "राष्",
+          "votes": 65,
+          "color": "#3B82F6"
+        },
+        {
+          "name": "धन बहादुर थापा",
+          "party": "जय मातृभूमि पार्टी",
+          "partyShort": "जय म",
+          "votes": 16,
+          "color": "#3B82F6"
+        },
+        {
+          "name": "सागर थापा मगर",
+          "party": "Independent",
+          "partyShort": "Ind",
+          "votes": 9,
+          "color": "#6B7280"
+        }
+      ]
+    },
+    {
+      "id": "42-1",
+      "name": "गुल्मी-1",
+      "province": "5",
+      "status": "declared",
+      "totalVotes": 62880,
+      "candidates": [
+        {
+          "name": "सागर ढकाल",
+          "party": "RSP",
+          "partyShort": "RSP",
+          "votes": 29642,
+          "color": "#F59E0B"
+        },
+        {
+          "name": "प्रदिप कुमार ज्ञवाली",
+          "party": "CPN-UML",
+          "partyShort": "UML",
+          "votes": 15181,
+          "color": "#2563EB"
+        },
+        {
+          "name": "चन्द्रकान्त भण्डारी",
+          "party": "Nepali Congress",
+          "partyShort": "NC",
+          "votes": 13505,
+          "color": "#E11D48"
+        },
+        {
+          "name": "सुदर्शन वराल",
+          "party": "CPN-Maoist Centre",
+          "partyShort": "MC",
+          "votes": 3167,
+          "color": "#DC2626"
+        },
+        {
+          "name": "शेर बहादुर थापा",
           "party": "राष्ट्रिय जनमोर्चा",
           "partyShort": "राष्",
-          "votes": 82,
+          "votes": 671,
           "color": "#3B82F6"
         },
         {
-          "name": "कुमार परियार",
-          "party": "नेपाल कम्युनिस्ट पार्टी (माओवादी)",
-          "partyShort": "नेपा",
-          "votes": 81,
-          "color": "#3B82F6"
+          "name": "घन श्‍याम गौतम",
+          "party": "Independent",
+          "partyShort": "Ind",
+          "votes": 362,
+          "color": "#6B7280"
         },
         {
-          "name": "हर्क  बहादुर  थापा",
-          "party": "आम जनता पार्टी(एकल चुनाव चिन्ह)",
-          "partyShort": "आम ज",
-          "votes": 79,
-          "color": "#3B82F6"
+          "name": "अजित कुमार श्रेष्‍ठ",
+          "party": "RPP",
+          "partyShort": "RPP",
+          "votes": 130,
+          "color": "#8B5CF6"
         },
         {
-          "name": "कर्ण बहादुर गुरुङ",
-          "party": "प्रगतिशील लोकतान्त्रिक पार्टी",
-          "partyShort": "प्रग",
-          "votes": 78,
-          "color": "#3B82F6"
-        },
-        {
-          "name": "यज्ञ वहादुर गुरुङ्ग",
+          "name": "लोक बहादुर थापा",
           "party": "नेशनल रिपब्लिक नेपाल",
           "partyShort": "नेशन",
-          "votes": 35,
+          "votes": 72,
           "color": "#3B82F6"
         },
         {
-          "name": "आश बहादुर दमै",
-          "party": "नेपाल मानवतावादी पार्टी",
-          "partyShort": "नेपा",
+          "name": "खडक वहादुर गुरुङ",
+          "party": "मंगोल नेशनल अर्गनाइजेसन",
+          "partyShort": "मंगो",
+          "votes": 39,
+          "color": "#3B82F6"
+        },
+        {
+          "name": "टोप बहादुर थापा",
+          "party": "Independent",
+          "partyShort": "Ind",
           "votes": 25,
-          "color": "#3B82F6"
+          "color": "#6B7280"
         },
         {
-          "name": "राम काजी चर्माकार",
-          "party": "Janata Samajbadi",
-          "partyShort": "JSP",
-          "votes": 22,
-          "color": "#10B981"
+          "name": "चेतन बहादुर बस्नेत",
+          "party": "Independent",
+          "partyShort": "Ind",
+          "votes": 23,
+          "color": "#6B7280"
         },
         {
-          "name": "मिन बहादुर दर्जी",
-          "party": "नेपाल जनमुक्ति पार्टी",
+          "name": "मैया लक्ष्मी त्यात",
+          "party": "नेपाल मजदुर किसान पार्टी",
           "partyShort": "नेपा",
           "votes": 21,
           "color": "#3B82F6"
+        },
+        {
+          "name": "सिखा रेश्मी",
+          "party": "आम जनता पार्टी(एकल चुनाव चिन्ह)",
+          "partyShort": "आम ज",
+          "votes": 20,
+          "color": "#3B82F6"
+        },
+        {
+          "name": "प्रेमलाल भण्‍डारी",
+          "party": "Independent",
+          "partyShort": "Ind",
+          "votes": 6,
+          "color": "#6B7280"
+        },
+        {
+          "name": "लक्ष्मण भण्डारी",
+          "party": "Independent",
+          "partyShort": "Ind",
+          "votes": 6,
+          "color": "#6B7280"
+        },
+        {
+          "name": "मेघ बहादुर गाहा",
+          "party": "Independent",
+          "partyShort": "Ind",
+          "votes": 4,
+          "color": "#6B7280"
+        },
+        {
+          "name": "यम बहादुर श्रेष्‍ठ",
+          "party": "Independent",
+          "partyShort": "Ind",
+          "votes": 4,
+          "color": "#6B7280"
+        },
+        {
+          "name": "कृष्ण बहादुर सुनार",
+          "party": "Independent",
+          "partyShort": "Ind",
+          "votes": 1,
+          "color": "#6B7280"
+        },
+        {
+          "name": "सुर्य बहादुर सोनी सुनार",
+          "party": "Independent",
+          "partyShort": "Ind",
+          "votes": 1,
+          "color": "#6B7280"
+        },
+        {
+          "name": "प्रेम प्रसाद श्रेष्‍ठ",
+          "party": "Independent",
+          "partyShort": "Ind",
+          "votes": 0,
+          "color": "#6B7280"
+        },
+        {
+          "name": "विमल ज्ञवाली",
+          "party": "Independent",
+          "partyShort": "Ind",
+          "votes": 0,
+          "color": "#6B7280"
         }
       ]
     },
@@ -19498,159 +19761,129 @@
       ]
     },
     {
-      "id": "59-1",
-      "name": "जुम्ला-1",
+      "id": "64-2",
+      "name": "सुर्खेत-2",
       "province": "6",
       "status": "declared",
-      "totalVotes": 39173,
+      "totalVotes": 68766,
       "candidates": [
         {
-          "name": "ज्ञान बहादुर शाही",
-          "party": "RPP",
-          "partyShort": "RPP",
-          "votes": 14816,
-          "color": "#8B5CF6"
-        },
-        {
-          "name": "नरेश भण्‍डारी",
-          "party": "CPN-Maoist Centre",
-          "partyShort": "MC",
-          "votes": 11635,
-          "color": "#DC2626"
-        },
-        {
-          "name": "दिप बहादुर शाही",
-          "party": "Nepali Congress",
-          "partyShort": "NC",
-          "votes": 7143,
-          "color": "#E11D48"
-        },
-        {
-          "name": "शान्ति लाल महत",
-          "party": "CPN-UML",
-          "partyShort": "UML",
-          "votes": 4518,
-          "color": "#2563EB"
-        },
-        {
-          "name": "बिनिता कठायत",
+          "name": "रमेश कुमार सापकोटा",
           "party": "RSP",
           "partyShort": "RSP",
-          "votes": 421,
+          "votes": 30826,
           "color": "#F59E0B"
         },
         {
-          "name": "बिर्ष बहादुर रावत",
-          "party": "नेपाल मजदुर किसान पार्टी",
-          "partyShort": "नेपा",
-          "votes": 400,
-          "color": "#3B82F6"
-        },
-        {
-          "name": "मनऋषि धिताल",
-          "party": "प्रगतिशील लोकतान्त्रिक पार्टी",
-          "partyShort": "प्रग",
-          "votes": 112,
-          "color": "#3B82F6"
-        },
-        {
-          "name": "विर्ख बहादुर शाही",
-          "party": "नेपाल कम्युनिस्ट पार्टी (माओवादी)",
-          "partyShort": "नेपा",
-          "votes": 71,
-          "color": "#3B82F6"
-        },
-        {
-          "name": "रनील विक्रम शाही",
-          "party": "नेपाल जनता पार्टी",
-          "partyShort": "नेपा",
-          "votes": 43,
-          "color": "#3B82F6"
-        },
-        {
-          "name": "भक्त बहादुर रावल",
-          "party": "Independent",
-          "partyShort": "Ind",
-          "votes": 14,
-          "color": "#6B7280"
-        }
-      ]
-    },
-    {
-      "id": "60-1",
-      "name": "कालिकोट-1",
-      "province": "6",
-      "status": "declared",
-      "totalVotes": 39377,
-      "candidates": [
-        {
-          "name": "महेन्द्र बहादुर शाही",
-          "party": "CPN-Maoist Centre",
-          "partyShort": "MC",
-          "votes": 11734,
-          "color": "#DC2626"
-        },
-        {
-          "name": "श्री नगीन्द्र शाही",
-          "party": "CPN-UML",
-          "partyShort": "UML",
-          "votes": 10647,
-          "color": "#2563EB"
-        },
-        {
-          "name": "हर्ष बहादुर बम",
+          "name": "नारायण कुमार कोइराला",
           "party": "Nepali Congress",
           "partyShort": "NC",
-          "votes": 7450,
+          "votes": 16392,
           "color": "#E11D48"
         },
         {
-          "name": "खडग वहादुर विश्वकर्मा",
-          "party": "नेपाल कम्युनिस्ट पार्टी (माओवादी)",
-          "partyShort": "नेपा",
-          "votes": 4993,
-          "color": "#3B82F6"
+          "name": "कुलमणि देवकोटा",
+          "party": "CPN-UML",
+          "partyShort": "UML",
+          "votes": 13155,
+          "color": "#2563EB"
         },
         {
-          "name": "प्रकाश न्यौपाने",
-          "party": "RSP",
-          "partyShort": "RSP",
-          "votes": 3101,
-          "color": "#F59E0B"
+          "name": "झक बहादुर मल्ल",
+          "party": "CPN-Maoist Centre",
+          "partyShort": "MC",
+          "votes": 4587,
+          "color": "#DC2626"
         },
         {
-          "name": "सुर्य बहादुर शाही",
+          "name": "राजेन्द्र रामजाली",
+          "party": "Shram Sanskriti Party",
+          "partyShort": "SSP",
+          "votes": 1646,
+          "color": "#059669"
+        },
+        {
+          "name": "कबि राम पुरी",
           "party": "RPP",
           "partyShort": "RPP",
-          "votes": 603,
+          "votes": 1315,
           "color": "#8B5CF6"
         },
         {
-          "name": "नन्द बहादुर शाही",
-          "party": "नेपाल मजदुर किसान पार्टी",
-          "partyShort": "नेपा",
-          "votes": 597,
+          "name": "गम्भीर सिह भुल",
+          "party": "उज्यालो नेपाल पार्टी",
+          "partyShort": "उज्य",
+          "votes": 184,
           "color": "#3B82F6"
         },
         {
-          "name": "अज बहादुर गिरी",
+          "name": "तुल्छी खडका",
+          "party": "नेपाल मजदुर किसान पार्टी",
+          "partyShort": "नेपा",
+          "votes": 158,
+          "color": "#3B82F6"
+        },
+        {
+          "name": "धर्मराज देवकोटा",
+          "party": "नेपाल कम्युनिस्ट पार्टी (माओवादी)",
+          "partyShort": "नेपा",
+          "votes": 150,
+          "color": "#3B82F6"
+        },
+        {
+          "name": "पूर्ण बहादुर शाही",
           "party": "राष्ट्रिय जनमोर्चा",
           "partyShort": "राष्",
-          "votes": 175,
+          "votes": 130,
           "color": "#3B82F6"
         },
         {
-          "name": "अस्मिन कुमार विष्ट",
+          "name": "प्रेम बहादुर तारामी",
+          "party": "नेपाल कम्युनिष्ट पार्टी (संयुक्त)",
+          "partyShort": "नेपा",
+          "votes": 63,
+          "color": "#3B82F6"
+        },
+        {
+          "name": "दिप बहादुर नेपाली",
+          "party": "Janata Samajbadi",
+          "partyShort": "JSP",
+          "votes": 52,
+          "color": "#10B981"
+        },
+        {
+          "name": "कृष्ण खत्री",
           "party": "Independent",
           "partyShort": "Ind",
-          "votes": 70,
+          "votes": 38,
           "color": "#6B7280"
         },
         {
-          "name": "मान बहादुर तिरुवा",
+          "name": "पवन थापा मगर",
+          "party": "गतिशील लोकतान्त्रिक पार्टी",
+          "partyShort": "गतिश",
+          "votes": 34,
+          "color": "#3B82F6"
+        },
+        {
+          "name": "रमेश परियार",
           "party": "Independent",
           "partyShort": "Ind",
+          "votes": 23,
+          "color": "#6B7280"
+        },
+        {
+          "name": "हृदयन्द्र  अधिकारी ",
+          "party": "नेपाल जनसेवा पार्टी",
+          "partyShort": "नेपा",
           "votes": 7,
+          "color": "#3B82F6"
+        },
+        {
+          "name": "उदीराम चुनारा",
+          "party": "Independent",
+          "partyShort": "Ind",
+          "votes": 6,
           "color": "#6B7280"
         }
       ]
